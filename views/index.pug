@@ -1,5 +1,74 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	div.container
+		nav.navbar.navbar-expand-lg.navbar-dark(style='background-color: #1a80df;')
+			a.navbar-brand(href='#') #{title}
+
+			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
+				span.navbar-toggler-icon
+
+			div#navbarSupportedContent.collapse.navbar-collapse
+				ul.navbar-nav.ml-auto
+					li.nav-item
+						a.nav-link(href='#') Inicio
+					li.nav-item
+						a.nav-link(href='#') Institucional
+					li.nav-item.dropdown
+						a#navbarDropdown.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
+						div.dropdown-menu
+							a.dropdown-item(href='#') Análisis Funcional de Sistemas Informáticos
+							a.dropdown-item(href='#') Infraestructura de Tecnología de la Información
+							a.dropdown-item(href='#') Desarrollo de Software
+					li.nav-item
+						a.nav-link(href='#') Ingresantes
+					li.nav-item
+						a.nav-link(href='#') Académica
+					li.nav-item
+						a.nav-link(href='#') Contacto
+		
+		div.jumbotron
+			h1.display-4 #{news}
+			p.lead #{newSummary}
+			hr.my-4
+			p #{textNews}
+			p.lead
+				a.btn.btn-lg.btn-primary(href='#', role='button', style='background-color: #1a80df;') Leer mas
+
+		div.row
+			div.col-sm-12.col-md-4
+				div.card.mb-4
+					div.card-body.text-center
+						h5.card-title Titulo de novedades
+						p.card-text Algun resumen del referido a las novedades
+						a.card-link(href='#') Otro enlace
+			div.col
+				div.card
+					div.card-body.text-center
+						h5.card-title Titulo de novedades
+						p.card-text Algun resumen del referido a las novedades
+						a.card-link(href='#') Otro enlace
+			div.col
+				div.card
+						div.card-body.text-center
+							h5.card-title Titulo de novedades
+							p.card-text Algun resumen del referido a las novedades
+							a.card-link(href='#') Otro enlace
+			
+
+		div.row.mt-sm-4.mt-md-0
+			div.col-sm-12.col-md-8.text-sm-center.text-md-left
+				h3 Una importante cabecera
+				p.lead Una sub-cabesera importante pueder ir aqui, lo cual es mas grande y gris
+				p #{text1}
+			div.col-sm-12.col-md-4
+				h3.mb-4 Menu Secundario
+				ul.nav.flex-column.nav-pills
+					li.nav-item
+						a.nav-link.active(href='#',style='background-color: #1a80df;') Activo
+					li.nav-item
+						a.nav-link(href='#') Enlace1
+					li.nav-item
+						a.nav-link(href='#') Enlace2
+					li.nav-item
+						a.nav-link.disabled(href='#') Desactivado
