@@ -2,14 +2,14 @@ extends layout
 
 block content
 	div.container
-		nav.navbar.navbar-expand-lg.navbar-dark(style='background-color: #1a80df;')
+		nav.navbar.navbar-expand-lg.navbar-dark.fixed-top(style='background-color: #1a80df;')
 			a.navbar-brand(href='#') #{title}
 
 			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
 				span.navbar-toggler-icon
 
-			div#navbarSupportedContent.collapse.navbar-collapse
-				ul.navbar-nav.ml-auto
+			div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
+				ul.navbar-nav
 					li.nav-item
 						a.nav-link(href='#') Inicio
 					li.nav-item
@@ -26,16 +26,45 @@ block content
 						a.nav-link(href='#') Académica
 					li.nav-item
 						a.nav-link(href='#') Contacto
-		
-		div.jumbotron
-			h1.display-4 #{news}
-			p.lead #{newSummary}
-			hr.my-4
-			p #{textNews}
-			p.lead
-				a.btn.btn-lg.btn-primary(href='#', role='button', style='background-color: #1a80df;') Leer mas
 
-		div.row
+				form.form-inline.my-2.my-lg-0
+					input.form-control.mr-sm-2(type='search', placeholder='Buscar', aria-label='Search')
+		
+
+		div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
+			ol.carousel-indicators
+				li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+				li(data-target='#carouselExampleIndicators', data-slide-to='1')
+				li(data-target='#carouselExampleIndicators', data-slide-to='2')
+
+			div.carousel-inner
+				div.carousel-item.active
+					img.d-block.w-100(src='../images/1.jpg', alt='First slide')
+					div.carousel-caption.d-none.d-md-block
+						h5 Slide1
+						p text text text text
+
+				div.carousel-item
+					img.d-block.w-100(src='../images/2.jpg', alt='Second slide')
+					div.carousel-caption.d-none.d-md-block
+						h5 Slide2
+						p text text text text
+
+				div.carousel-item
+					img.d-block.w-100(src='../images/3.jpg', alt='Third slide')
+					div.carousel-caption.d-none.d-md-block
+						h5 Slide3
+						p text text text text
+
+			a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+				span.carousel-control-prev-icon(aria-hidden='true')
+				span.sr-only Previous
+
+			a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+				span.carousel-control-next-icon(aria-hidden='true')
+				span.sr-only Next
+
+		div.row.mt-4
 			div.col-sm-12.col-md-4
 				div.card.mb-4
 					div.card-body.text-center
@@ -72,3 +101,18 @@ block content
 						a.nav-link(href='#') Enlace2
 					li.nav-item
 						a.nav-link.disabled(href='#') Desactivado
+
+	section
+		div.footer
+			div.container
+				div.row
+					div.col-md-3
+						h3 Suscribirce a novedades
+						
+					div.col-md-3 2
+
+					div.col-md-3 3
+
+					div.col-md-3 4
+
+		
