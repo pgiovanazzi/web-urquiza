@@ -10,3 +10,46 @@ body {
 
   background-color: #d1d0de;
 }
+
+.footer {
+	background-color: #272d34;
+	color: #ffff;
+	padding-top: 24px;
+	padding-bottom: 24px;
+}
+
+.p-footer-font {
+	color: #777777;
+	font-size: 0.9em;
+	margin-top: 8px;
+}
+
+.ul-footer {
+	margin-left: 0px;
+}
+
+.a-footer {
+	color: #999999;
+	display: block;
+	padding: 2px;
+}
+
+.copyright {
+	background-color: #1a1e23;
+	color: #777777;
+	padding: 8px;
+}
+.ul-copyright {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0px;
+}
+
+.li-copy {
+	float: left;
+	margin-right: 16px;
+}
+
+.a-copy {
+	color: #fff;
+}

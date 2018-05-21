@@ -2,7 +2,7 @@ extends layout
 
 block content
 	div.container
-		nav.navbar.navbar-expand-lg.navbar-dark.fixed-top(style='background-color: #1a80df;')
+		nav.navbar.navbar-expand-lg.navbar-dark.fixed-top(style='background-color: #272d34;')
 			a.navbar-brand(href='#') #{title}
 
 			button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
@@ -29,8 +29,8 @@ block content
 
 				form.form-inline.my-2.my-lg-0
 					input.form-control.mr-sm-2(type='search', placeholder='Buscar', aria-label='Search')
+					<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
 		
-
 		div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
 			ol.carousel-indicators
 				li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
@@ -107,12 +107,45 @@ block content
 			div.container
 				div.row
 					div.col-md-3
-						h3 Suscribirce a novedades
+						h4 Suscribete a novedades
+						form(action='./')
+							div.input-group.mb-3
+								input.form-control(type='text', placeholder='Email')
+								div.input-group-append
+									button.btn.btn-outline-secondary(type='button') Enviar
+							p.p-footer-font Recibi nuestras actualizaciones directamente en tu correo electrónico.
 						
-					div.col-md-3 2
+					div.col-md-3
+						h4 Alumnos
+						ul.ul-footer
+							li
+								a.a-footer(href='#') Calendario académico
+							li
+								a.a-footer(href='#') Reglamentos
+							li
+								a.a-footer(href='#') Cursos
+							li
+								a.a-footer(href='#') Webs de asignaturas
+							li
+								a.a-footer(href='#') Tutoría
 
-					div.col-md-3 3
+					div.col-md-3
+						h4 Contacto
+						p.p-footer-font
+							strong Esc. Urquiza
+						p.p-footer-font Direccion
+						p.p-footer-font Telefonos
 
-					div.col-md-3 4
+					div.col-md-3
+						h4 Redes sociales
 
-		
+		div.copyright
+			div.container
+				div.row.justify-content-center
+					ul.ul-copyright
+						li.li-copy
+							p(style='font-size: 0.9em;') Web designed for Urquiza school by Paulo and Iván
+						li.li-copy
+							a.a-copy(href='#') Privacidad
+						li.li-copy
+							a.a-copy(href='#') Terminos y condiciones
