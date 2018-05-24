@@ -17,25 +17,27 @@ block content
 
 		div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
 			ul.navbar-nav
-				li.nav-item
+				li.nav-item.mx-2
 					a.nav-link(href='#') Inicio
-				li.nav-item
+				li.nav-item.mx-2
 					a.nav-link(href='#') Institucional
-				li.nav-item.dropdown
+				li.nav-item.dropdown.mx-2
 					a#navbarDropdown.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
 					div.dropdown-menu
 						a.dropdown-item(href='#') Análisis Funcional de Sistemas Informáticos
 						a.dropdown-item(href='#') Infraestructura de Tecnología de la Información
 						a.dropdown-item(href='#') Desarrollo de Software
-				li.nav-item
+				li.nav-item.mx-2
 					a.nav-link(href='#') Ingresantes
-				li.nav-item
+				li.nav-item.mx-2
 					a.nav-link(href='#') Académica
-				li.nav-item
-					a.nav-link(href='#') Contacto
+				li.nav-item.mx-2
+					a.nav-link(href='#consultas') Contacto
 
-			form.form-inline.my-2.my-lg-0(action='', method='get')
-				input.mr-sm-2.search(type='text', name='search', placeholder='Buscar...')
+			form.form-inline(action='', method='get')
+				input.mr-sm-2.search.mx-2.my-2(type='text', name='search', placeholder='Buscar...')
+				button.btn.btn-outline-light(type='button') Ingresar
+				button.btn.btn-secondary.mx-2(type='button') Registrarse
 
 	br
 	br
@@ -131,7 +133,8 @@ block content
 								i.fa.fa-envelope
 								|  info@terciariourquiza.edu.ar
 					.contact
-						h3 Envianos tus consultas
+						a(name='consultas') 
+							h3 Envianos tus consultas
 						form
 							p
 								label Nombre
