@@ -34,9 +34,9 @@ block content
 				li.nav-item
 					a.nav-link(href='#') Contacto
 
-			form.form-inline.my-2.my-lg-0
-				input.form-control.mr-sm-2(type='search', placeholder='Buscar', aria-label='Search')
-				<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+			form.form-inline.my-2.my-lg-0(action='', method='get')
+				input.mr-sm-2.search(type='text', name='search', placeholder='Buscar...')
+
 	br
 	br
 	
@@ -73,7 +73,7 @@ block content
 			span.carousel-control-next-icon(aria-hidden='true')
 			span.sr-only Next
 	
-	div.container
+	div.container.mb-4
 		
 		div.row.mb-4
 			div.col-sm-12.col-md-4.mt-4
@@ -114,35 +114,37 @@ block content
 						a.nav-link.disabled(href='#') Desactivado
 
 	section
-			.bg-contact
-				#contact.container
-					.wrapper
-						.company-info
-							ul
-								li
-									i.fa.fa-road
-									|  Bv. Oroño 690 - Rosario
-								li
-									i.fa.fa-phone
-									|	(0341) 4721430 o 
-									|	(0341) 4721431
-								li
-									i.fa.fa-envelope
-									|  info@terciariourquiza.edu.ar
-						.contact
-							h3 Envianos tus consultas
-							form
-								p
-									label Nombre
-									input(type='text', name='name')
-								p
-									label Direccion de email
-									input(type='email', name='email')
-								p.full
-									label Mensaje
-									textarea(name='message', rows='5')
-								p.full
-									button Enviar
+		div.bg-contact
+			br
+			#contact.container
+				.wrapper
+					.company-info
+						ul
+							li
+								i.fa.fa-road
+								|  Bv. Oroño 690 - Rosario
+							li
+								i.fa.fa-phone
+								|	(0341) 4721430 o 
+								|	(0341) 4721431
+							li
+								i.fa.fa-envelope
+								|  info@terciariourquiza.edu.ar
+					.contact
+						h3 Envianos tus consultas
+						form
+							p
+								label Nombre
+								input(type='text', name='name')
+							p
+								label Direccion de email
+								input(type='email', name='email')
+							p.full
+								label Mensaje
+								textarea(name='message', rows='5')
+							p.full
+								button Enviar
+			br
 
 	section
 		div.footer

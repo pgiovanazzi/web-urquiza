@@ -6,6 +6,24 @@
 a {
   color: #00B7FF;
 } */
+.search{
+  width: 120px;
+  height: 40px;
+  border: 1px solid slategrey;
+  background: #ecebf5 url('../images/search.png') no-repeat;
+  background-position: 3px 7px;
+  background-size: 30px;
+  padding: 14px 20px 14px 42px;
+  font-size: 14px;
+  outline: none;
+  -webkit-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+}
+
+.search:focus{
+  width: 250px;
+}
+
 body {
 
   background-color: #d1d0de;
@@ -95,7 +113,7 @@ ul{
 }
 
 .company-info{
-  background:#c9e6ff;
+  background: #d1d0de;
 }
 
 .company-info h3, .company-info ul{
@@ -111,7 +129,7 @@ ul{
 .contact form{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap:20px;
+  grid-gap: 20px;
 }
 
 .contact form label{
@@ -132,8 +150,12 @@ ul{
   border:1px solid #c9e6ff;
 }
 
+.contact form input{
+  height: 50%;
+}
+
 .contact form button{
-  background:#c9e6ff;
+  background:#d1d0de;
   border:0;
   text-transform: uppercase;
 }
