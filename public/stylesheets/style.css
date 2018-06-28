@@ -6,11 +6,12 @@
 a {
   color: #00B7FF;
 } */
+
 .search{
   width: 120px;
   height: 40px;
   border: 1px solid slategrey;
-  background: #ecebf5 url('../images/search.png') no-repeat;
+  background: #f9feff url('../images/search.png') no-repeat;
   background-position: 3px 7px;
   background-size: 30px;
   padding: 14px 20px 14px 42px;
@@ -23,33 +24,57 @@ a {
 .search:focus{
   width: 250px;
 }
+.navbar{
+	background: #12334ecc;
+}
+
+.nav-pills>a.active,
+.nav-pills>a:hover,
+.nav-pills>a:focus {
+  background-color: #92bde7 !important;
+  color: white !important;
+}
+
+div .dropdown-menu {
+	background: #12334ecc;
+}
+
+nav div .dropdown-item{
+	color: #999999;
+}
+
+nav div .dropdown-item:hover,
+nav .nav-link:hover{
+	background-color:#92bde79d !important;
+	color: #fff !important;
+}
 
 body {
-
-  background-color: #d1d0de;
+  background-color: #f9feff;
 }
 
 .footer {
-	background-color: #272d34;
+	background-color: #1d2e3b;
 	color: #ffff;
 	padding-top: 24px;
 	padding-bottom: 24px;
 }
 
-.p-footer-font {
+.footer p {
 	color: #777777;
 	font-size: 0.9em;
 	margin-top: 8px;
 }
 
-.ul-footer {
+.footer ul {
 	margin-left: 0px;
 }
 
-.a-footer {
+.footer a {
 	color: #999999;
 	display: block;
 	padding: 2px;
+	text-decoration: none;
 }
 
 .copyright {
@@ -57,19 +82,21 @@ body {
 	color: #777777;
 	padding: 8px;
 }
-.ul-copyright {
+
+.copyright ul {
 	display: inline-block;
 	list-style-type: none;
 	margin: 0px;
 }
 
-.li-copy {
+.copyright ul li {
 	float: left;
 	margin-right: 16px;
 }
 
-.a-copy {
+.copyright a {
 	color: #fff;
+	text-decoration: none;
 }
 
 .d-block.w-100{
@@ -113,7 +140,7 @@ ul{
 }
 
 .company-info{
-  background: #d1d0de;
+  background: #92bde7;
 }
 
 .company-info h3, .company-info ul{
@@ -155,7 +182,7 @@ ul{
 }
 
 .contact form button{
-  background:#d1d0de;
+  background:#92bde7;
   border:0;
   text-transform: uppercase;
 }
