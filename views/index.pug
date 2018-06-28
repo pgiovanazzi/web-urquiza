@@ -10,38 +10,44 @@ block content
 		include ../public/js/jq.js
 		include ../public/js/jquery.waypoints.min.js
 
-	nav.navbar.navbar-expand-lg.navbar-dark.fixed-top(style='background-color: #272d34;')
+	nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
 		a.navbar-brand(href='#') #{title}
 		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
 			span.navbar-toggler-icon
 
 		div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
-			ul.navbar-nav
-				li.nav-item.mx-2
+			ul.nav.navbar-nav.mr-2
+				li.nav-item
 					a.nav-link(href='#') Inicio
-				li.nav-item.mx-2
+				li.nav-item
 					a.nav-link(href='#') Institucional
-				li.nav-item.dropdown.mx-2
-					a#navbarDropdown.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
-					div.dropdown-menu
+				li.nav-item
+					a.nav-link(href='#') Ingresantes
+				li.nav-item.dropdown
+					a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
+					div.dropdown-menu.rounded-0
 						a.dropdown-item(href='#') Análisis Funcional de Sistemas Informáticos
 						a.dropdown-item(href='#') Infraestructura de Tecnología de la Información
 						a.dropdown-item(href='#') Desarrollo de Software
-				li.nav-item.mx-2
-					a.nav-link(href='#') Ingresantes
-				li.nav-item.mx-2
-					a.nav-link(href='#') Académica
-				li.nav-item.mx-2
+				li.nav-item.dropdown
+					a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') Alumnado
+					div.dropdown-menu.rounded-0
+						a.dropdown-item(href='#') Calendario Academico
+						a.dropdown-item(href='#') Turnos de Exámenes
+						a.dropdown-item(href='#') Horarios
+						a.dropdown-item(href='#') Trámites
+				li.nav-item
+					a.nav-link(href='#') Docentes
+				li.nav-item
+					a.nav-link(href='#') Graduados
+				li.nav-item
 					a.nav-link(href='#consultas') Contacto
-
+				
 			form.form-inline(action='', method='get')
-				input.mr-sm-2.search.mx-2.my-2(type='text', name='search', placeholder='Buscar...')
-				button.btn.btn-outline-light(type='button') Ingresar
-				button.btn.btn-secondary.mx-2(type='button') Registrarse
+				input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
+				button.btn.btn-outline-light.rounded-0.mr-2.mt-2(type='button') Ingresar
+				button.btn.btn-secondary.rounded-0.mt-2(type='button') Registrarse
 
-	br
-	br
-	
 	div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
 		ol.carousel-indicators
 			li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
@@ -105,16 +111,16 @@ block content
 				p #{text1}
 			div.col-sm-12.col-md-4
 				h3.mb-4 Menu Secundario
-				ul.nav.flex-column.nav-pills
-					li.nav-item
-						a.nav-link.active(href='#',style='background-color: #1a80df;') Activo
-					li.nav-item
-						a.nav-link(href='#') Enlace1
-					li.nav-item
-						a.nav-link(href='#') Enlace2
-					li.nav-item
-						a.nav-link.disabled(href='#') Desactivado
+				#v-pills-tab.nav.flex-column.nav-pills.rounded-0(role='tablist', aria-orientation='vertical')
+					a#v-pills-home-tab.nav-link.active.rounded-0(data-toggle='pill', href='#v-pills-home', role='tab', aria-controls='v-pills-home', aria-selected='true') Home
+					a#v-pills-profile-tab.nav-link.rounded-0(data-toggle='pill', href='#v-pills-profile', role='tab', aria-controls='v-pills-profile', aria-selected='false') Profile
+					a#v-pills-messages-tab.nav-link.rounded-0(data-toggle='pill', href='#v-pills-messages', role='tab', aria-controls='v-pills-messages', aria-selected='false') Messages
+					a#v-pills-settings-tab.nav-link.rounded-0(data-toggle='pill', href='#v-pills-settings', role='tab', aria-controls='v-pills-settings', aria-selected='false') Settings
 
+
+	a(name='consultas')
+	br
+	br
 	section
 		div.bg-contact
 			br
@@ -133,8 +139,7 @@ block content
 								i.fa.fa-envelope
 								|  info@terciariourquiza.edu.ar
 					.contact
-						a(name='consultas') 
-							h3 Envianos tus consultas
+						h3 Envianos tus consultas
 						form
 							p
 								label Nombre
@@ -157,31 +162,32 @@ block content
 						h4 Suscribete a novedades
 						form(action='./')
 							div.input-group.mb-3
-								input.form-control(type='text', placeholder='Email')
+								input.form-control.rounded-0(type='text', placeholder='Email')
 								div.input-group-append
-									button.btn.btn-outline-secondary(type='button') Enviar
-							p.p-footer-font Recibi nuestras actualizaciones directamente en tu correo electrónico.
+									button.btn.btn-outline-light.rounded-0(type='button')
+										i.fa.fa-paper-plane
+							p Recibi nuestras actualizaciones directamente en tu correo electrónico.
 						
 					div.col-md-3
 						h4 Alumnos
-						ul.ul-footer
+						ul
 							li
-								a.a-footer(href='#') Calendario académico
+								a(href='#') Calendario académico
 							li
-								a.a-footer(href='#') Reglamentos
+								a(href='#') Reglamentos
 							li
-								a.a-footer(href='#') Cursos
+								a(href='#') Cursos
 							li
-								a.a-footer(href='#') Webs de asignaturas
+								a(href='#') Webs de asignaturas
 							li
-								a.a-footer(href='#') Tutoría
+								a(href='#') Tutoría
 
 					div.col-md-3
 						h4 Contacto
-						p.p-footer-font
+						p
 							strong Esc. Urquiza
-						p.p-footer-font Direccion
-						p.p-footer-font Telefonos
+						p Direccion
+						p Telefonos
 
 					div.col-md-3
 						h4 Redes sociales
@@ -189,10 +195,10 @@ block content
 		div.copyright
 			div.container
 				div.row.justify-content-center
-					ul.ul-copyright
-						li.li-copy
+					ul
+						li
 							p(style='font-size: 0.9em;') Web designed for Urquiza school by Paulo and Iván
+						li
+							a(href='#') Privacidad
 						li.li-copy
-							a.a-copy(href='#') Privacidad
-						li.li-copy
-							a.a-copy(href='#') Terminos y condiciones
+							a(href='#') Terminos y condiciones
