@@ -7,9 +7,19 @@ a {
   color: #00B7FF;
 } */
 
+#esc-ter {
+  font: 17px "AnjaliOldLipi";
+  margin-top: 18px;
+}
+
+#grl-urq{
+  font: 27px "AnjaliOldLipi";
+  margin-top: -18px;
+}
+
 #icono{
 	/* margin-top: 45px;  */
-	width: 100px;
+	width: 123px;
 	margin-bottom: -10px;
 	/* margin-left: 78px; */
 	/* position: absolute; */

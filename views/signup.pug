@@ -1,1 +1,37 @@
-p registrarse
+doctype html
+html
+	head
+		title Registrare
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+		link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
+
+		link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet', integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN', crossorigin='anonymous')
+
+		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
+		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
+
+	body
+		style
+			include ../public/stylesheets/signupStyle.css
+
+		script
+			include ../public/js/jq.js
+			include ../public/js/jquery.waypoints.min.js
+		.container.mx-auto
+			img.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
+			h5.text-center.margin-bottom
+				i.fa.fa-user.title-icon
+				span(translate-context="Title", translate="") &nbsp; Cree su cuenta
+			form
+				.form-input(action='#')
+					input(type='text', name='text', placeholder='Nombre de usuario')
+				.form-input(action='#')
+					input(type='password', name='chose-pwd', placeholder='Elija una contraseña')
+				.form-input(action='#')
+					input(type='password', name='confirm-pwd', placeholder='Confirmar contraseña')
+				.form-input(action='#')
+					input(type='text', name='email', placeholder='Correo electronico')
+				.form-input(action='#')
+					input(type='text', name='dni', placeholder='Ingrese su dni')
+				input.btn-login(type='submit', value='Crear cuenta')
