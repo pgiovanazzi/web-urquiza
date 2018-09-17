@@ -22,7 +22,7 @@ html
 			img.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
 			h5.text-center.margin-bottom
 				i.fa.fa-user.title-icon
-				span(translate-context="Title" translate="") &nbsp; Inicio de sesión
+				span(translate-context="Title", translate="") &nbsp; Inicio de sesión
 			form
 				.form-input(action='#')
 					input(type='text', name='text', placeholder='Nombre de usuario')
@@ -30,4 +30,4 @@ html
 					input(type='password', name='password', placeholder='Contraseña')
 				input.btn-login(type='submit', value='Iniciar sesión')
 			a(href='#') ¿Necesita  ayuda?
-			a(href='#') Crear cuenta
+			a(href='/signup') Crear cuenta

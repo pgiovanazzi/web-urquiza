@@ -12,7 +12,11 @@ block content
 
 	nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
 		img#icono.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
-		//- a.navbar-brand(href='#') #{title}
+		a.navbar-brand(href='#')
+				p#esc-ter Esc. Superior Nº 49
+					br
+					p#grl-urq Grl. Urquiza
+
 		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
 			span.navbar-toggler-icon
 
@@ -48,7 +52,11 @@ block content
 				input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
 				a.btn.btn-outline-light.rounded-0.mr-2.mt-2(href='/login') Ingresar
 				a.btn.btn-secondary.rounded-0.mt-2(href='/signup') Registrarse
-
+	br
+	br
+	br
+	br
+	br
 	div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
 		ol.carousel-indicators
 			li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
