@@ -10,7 +10,7 @@ block content
 		include ../public/js/jq.js
 		include ../public/js/jquery.waypoints.min.js
 
-	nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
+	nav.navbar.navbar-expand-lg.navbar-dark.sticky-top
 		img#icono.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
 		a.navbar-brand(href='#')
 			p#esc-ter Esc. Superior Nº 49
@@ -52,11 +52,7 @@ block content
 				input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
 				a.btn.btn-outline-light.rounded-0.mr-2.mt-2(href='/login') Ingresar
 				a.btn.btn-secondary.rounded-0.mt-2(href='/signup') Registrarse
-	br
-	br
-	br
-	br
-	br
+				
 	div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
 		ol.carousel-indicators
 			li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
