@@ -10,14 +10,11 @@ block content
 		include ../public/js/jq.js
 		include ../public/js/jquery.waypoints.min.js
 
-	nav.navbar.navbar-expand-lg.navbar-dark.sticky-top
+	nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
 		img#icono.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
 		a.navbar-brand(href='#')
-			p#esc-ter Esc. Superior Nº 49
-				br
-				p#grl-urq Grl. Urquiza
 
-		button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
+		button#toggle-color-navbar.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
 			span.navbar-toggler-icon
 
 		div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
@@ -52,6 +49,7 @@ block content
 				input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
 				a.btn.btn-outline-light.rounded-0.mr-2.mt-2(href='/login') Ingresar
 				a.btn.btn-secondary.rounded-0.mt-2(href='/signup') Registrarse
+
 	div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
 		ol.carousel-indicators
 			li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
@@ -106,7 +104,6 @@ block content
 						h5.card-title Titulo de novedades
 						p.card-text Algun resumen del referido a las novedades
 						a.card-link(href='#') Otro enlace
-
 
 		div.row.mt-sm-4
 			div.col-sm-12.col-md-8.text-sm-center.text-md-left

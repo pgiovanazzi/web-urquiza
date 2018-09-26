@@ -7,20 +7,11 @@ a {
   color: #00B7FF;
 } */
 
-#esc-ter {
-  font: 17px "AnjaliOldLipi";
-  margin-top: 18px;
-}
-
-#grl-urq{
-  font: 27px "AnjaliOldLipi";
-  margin-top: -18px;
-}
-
 #icono{
 	/* margin-top: 45px;  */
-	width: 123px;
-	margin-bottom: -10px;
+	width: 250px;
+  /* height: auto;
+	margin-bottom: -10px; */
 	/* margin-left: 78px; */
 	/* position: absolute; */
 	/* top: 50px; */
@@ -48,10 +39,15 @@ a {
   width: 250px;
 }
 .navbar{
-	background: #12334ecc;
-	box-shadow: 0px 2px 10px rgba(32, 32, 32, 0.678);
+  background: #12334e00;
 }
-
+.navbar-after-scroll, .color-onClick-menu{
+  background: #12334e;
+  box-shadow: 0px 2px 10px rgba(32, 32, 32, 0.678);
+}
+.navbar-dark{
+  transition: all 0.5s ease;
+}
 /* Menu Secundario */
 .nav-pills>a.active,
 .nav-pills>a:hover,

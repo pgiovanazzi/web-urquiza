@@ -65,8 +65,9 @@ a, a:hover{
 
 
 img{
-	margin-top: -75px; 
+	margin-top: 10px; 
 	width: 200px;
+	margin-bottom: 45px;
 	/* position: absolute; */
 	/* top: 50px; */
 	/* left: 100px; */
