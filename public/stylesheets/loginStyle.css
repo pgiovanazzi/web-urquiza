@@ -16,7 +16,7 @@ body{
 	height: 390px;
 	text-align: center;
 	margin: 0 auto;
-	background-color: rgba(18, 51, 78, 0.7);
+	background-color: rgba(18, 51, 78, 0.800);
 	margin-top: 160px;
 	border: 1px solid #81a2bd77;
 }
@@ -45,16 +45,16 @@ input::placeholder {
 .btn-login{
 	margin-top: 20px;
 	border: none;
-	background-color: #92bde7;
+	background-color: #6096cc;
 	width: 300px;
 	height: 40px;
 	box-shadow: 2px 2px 10px rgba(32, 32, 32, 0.425);
-	color: #2e2e2e;
+	color: #ffffff;
 	margin-bottom: 40px;
 }
 
 .btn-login:hover, .btn-login:focus{
-	background-color: #add6ff;
+	background-color: #2074c9;
 }
 
 a, a:hover{

@@ -8,6 +8,11 @@ html
 
 		style
 			include ../public/stylesheets/loginStyle.css
+			include ../public/stylesheets/style.css
+		
+		script
+			include ../public/js/jq.js
+			include ../public/js/jquery.waypoints.min.js
 
 	body
 		.container.mx-auto
@@ -23,7 +28,3 @@ html
 				input.btn-login(type='submit', value='Iniciar sesión')
 			a(href='#') ¿Necesita  ayuda?
 			a(href='/signup') Crear cuenta
-
-		script
-			include ../public/js/jq.js
-			include ../public/js/jquery.waypoints.min.js
