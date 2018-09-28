@@ -2,14 +2,25 @@ doctype html
 html
 	head
 		title= title
-		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		
+		block head
+			include head
 
-		link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
-
-		link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet', integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN', crossorigin='anonymous')
-
-		script(src='https://code.jquery.com/jquery-3.3.1.min.js', integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', crossorigin='anonymous')
-		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
+		style
+			include ../public/stylesheets/animate.css
+			include ../public/stylesheets/style.css
 
 	body
+		block header
+			include header
+
 		block content
+
+		block prefooter
+			include prefooter
+		block footer
+			include footer
+
+		script
+			include ../public/js/jq.js
+			include ../public/js/jquery.waypoints.min.js

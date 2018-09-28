@@ -1,109 +1,29 @@
 extends layout
 
 block content
-
-	style
-		include ../public/stylesheets/animate.css
-		include ../public/stylesheets/style.css
-
-	script
-		include ../public/js/jq.js
-		include ../public/js/jquery.waypoints.min.js
-
-	nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
-		img#icono.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
-		a.navbar-brand(href='#')
-
-		button#toggle-color-navbar.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
-			span.navbar-toggler-icon
-
-		div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
-			ul.nav.navbar-nav.mr-2
-				li.nav-item
-					a.nav-link(href='#') Inicio
-				li.nav-item
-					a.nav-link(href='#') Institucional
-				li.nav-item
-					a.nav-link(href='#') Ingresantes
-				li.nav-item.dropdown
-					a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
-					div.dropdown-menu.rounded-0
-						a.dropdown-item(href='#') Análisis Funcional de Sistemas Informáticos
-						a.dropdown-item(href='#') Infraestructura de Tecnología de la Información
-						a.dropdown-item(href='#') Desarrollo de Software
-				li.nav-item.dropdown
-					a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') Alumnado
-					div.dropdown-menu.rounded-0
-						a.dropdown-item(href='#') Calendario Academico
-						a.dropdown-item(href='#') Turnos de Exámenes
-						a.dropdown-item(href='#') Horarios
-						a.dropdown-item(href='#') Trámites
-				li.nav-item
-					a.nav-link(href='#') Docentes
-				li.nav-item
-					a.nav-link(href='#') Graduados
-				li.nav-item
-					a.nav-link(href='#consultas') Contacto
-
-			form.form-inline(action='', method='get')
-				input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
-				a.btn.btn-outline-light.rounded-0.mr-2.mt-2(href='/login') Ingresar
-				a.btn.btn-secondary.rounded-0.mt-2(href='/signup') Registrarse
-
-	div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
-		ol.carousel-indicators
-			li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
-			li(data-target='#carouselExampleIndicators', data-slide-to='1')
-			li(data-target='#carouselExampleIndicators', data-slide-to='2')
-
-		div.carousel-inner
-			div.carousel-item.active
-				img.d-block.w-100(src='../images/1.jpg', alt='First slide')
-				div.carousel-caption.d-none.d-md-block
-					h5 Slide1
-					p text text text text
-
-			div.carousel-item
-				img.d-block.w-100(src='../images/2.jpg', alt='Second slide')
-				div.carousel-caption.d-none.d-md-block
-					h5 Slide2
-					p text text text text
-
-			div.carousel-item
-				img.d-block.w-100(src='../images/3.jpg', alt='Third slide')
-				div.carousel-caption.d-none.d-md-block
-					h5 Slide3
-					p text text text text
-
-		a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
-			span.carousel-control-prev-icon(aria-hidden='true')
-			span.sr-only Previous
-
-		a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
-			span.carousel-control-next-icon(aria-hidden='true')
-			span.sr-only Next
-
 	div.container.mb-4
-
 		div.row.mb-4
 			div.col-sm-12.col-md-4.mt-4
 				div.card
+					img.card-img-top(src=".../100px180/", alt="Card image cap")
 					div.card-body.text-center
 						h5.card-title Titulo de novedades
 						p.card-text Algun resumen del referido a las novedades
-						a.card-link(href='#') Otro enlace
+						a.btn.btn-secondary.rounded-0(href='#') Otro enlace
 			div.col.mt-4
 				div.card
+					img.card-img-top(src=".../100px180/", alt="Card image cap")
 					div.card-body.text-center
 						h5.card-title Titulo de novedades
 						p.card-text Algun resumen del referido a las novedades
-						a.card-link(href='#') Otro enlace
+						a.btn.btn-secondary.rounded-0(href='#') Otro enlace
 			div.col.mt-4
 				div.card
+					img.card-img-top(src=".../100px180/", alt="Card image cap")
 					div.card-body.text-center
 						h5.card-title Titulo de novedades
 						p.card-text Algun resumen del referido a las novedades
-						a.card-link(href='#') Otro enlace
+						a.btn.btn-secondary.rounded-0(href='#') Otro enlace
 
 		div.row.mt-sm-4
 			div.col-sm-12.col-md-8.text-sm-center.text-md-left
@@ -120,11 +40,9 @@ block content
 
 
 	a(name='consultas')
-	br
-	br
+
 	section
-		div.bg-contact
-			br
+		div.bg-contact.mb-5.mt-5
 			#contact.container
 				.wrapper
 					.company-info
@@ -153,53 +71,3 @@ block content
 								textarea(name='message', rows='5')
 							p.full
 								button Enviar
-			br
-
-	section
-		div.footer
-			div.container
-				div.row
-					div.col-md-3
-						h4 Suscribete a novedades
-						form(action='./')
-							div.input-group.mb-3
-								input.form-control.rounded-0(type='text', placeholder='Email')
-								div.input-group-append
-									button.btn.btn-outline-light.rounded-0(type='button')
-										i.fa.fa-paper-plane
-							p Recibi nuestras actualizaciones directamente en tu correo electrónico.
-
-					div.col-md-3
-						h4 Alumnos
-						ul
-							li
-								a(href='#') Calendario académico
-							li
-								a(href='#') Reglamentos
-							li
-								a(href='#') Cursos
-							li
-								a(href='#') Webs de asignaturas
-							li
-								a(href='#') Tutoría
-
-					div.col-md-3
-						h4 Contacto
-						p
-							strong Esc. Urquiza
-						p Direccion
-						p Telefonos
-
-					div.col-md-3
-						h4 Redes sociales
-
-		div.copyright
-			div.container
-				div.row.justify-content-center
-					ul
-						li
-							p(style='font-size: 0.9em;') Web designed for Urquiza school by Paulo and Iván
-						li
-							a(href='#') Privacidad
-						li.li-copy
-							a(href='#') Terminos y condiciones

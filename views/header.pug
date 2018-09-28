@@ -1,0 +1,77 @@
+nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
+	img#icono.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
+	a.navbar-brand(href='#')
+
+	button#toggle-color-navbar.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
+		span.navbar-toggler-icon
+
+	div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
+		ul.nav.navbar-nav.mr-2
+			li.nav-item
+				a.nav-link(href='/') Inicio
+			li.nav-item.dropdown
+				a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Institucional
+				div.dropdown-menu.rounded-0
+					a.dropdown-item(href='#') Historia de la institución
+					a.dropdown-item(href='#') Autoridades
+					a.dropdown-item(href='#') Biblioteca
+					a.dropdown-item(href='#') Asociación Cooperadora
+			li.nav-item
+				a.nav-link(href='#') Ingresantes
+			li.nav-item.dropdown
+				a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
+				div.dropdown-menu.rounded-0
+					a.dropdown-item(href='#') Análisis Funcional de Sistemas Informáticos
+					a.dropdown-item(href='#') Infraestructura de Tecnología de la Información
+					a.dropdown-item(href='#') Desarrollo de Software
+			li.nav-item.dropdown
+				a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') Alumnado
+				div.dropdown-menu.rounded-0
+					a.dropdown-item(href='#') Calendario Academico
+					a.dropdown-item(href='#') Turnos de Exámenes
+					a.dropdown-item(href='#') Horarios
+					a.dropdown-item(href='#') Trámites
+			li.nav-item
+				a.nav-link(href='#') Docentes
+			li.nav-item
+				a.nav-link(href='#') Graduados
+			li.nav-item
+				a.nav-link(href='#consultas') Contacto
+
+		form.form-inline(action='', method='get')
+			input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
+			a.btn.btn-outline-light.rounded-0.mr-2.mt-2(href='/login') Ingresar
+			a.btn.btn-secondary.rounded-0.mt-2(href='/signup') Registrarse
+
+div#carouselExampleIndicators.carousel.slide(data-ride='carousel')
+		ol.carousel-indicators
+			li.active(data-target='#carouselExampleIndicators', data-slide-to='0')
+			li(data-target='#carouselExampleIndicators', data-slide-to='1')
+			li(data-target='#carouselExampleIndicators', data-slide-to='2')
+
+		div.carousel-inner
+			div.carousel-item.active
+				img.d-block.w-100(src='../images/1.jpg', alt='First slide')
+				div.carousel-caption.d-none.d-md-block
+					h5 Slide1
+					p text text text text
+
+			div.carousel-item
+				img.d-block.w-100(src='../images/2.jpg', alt='Second slide')
+				div.carousel-caption.d-none.d-md-block
+					h5 Slide2
+					p text text text text
+
+			div.carousel-item
+				img.d-block.w-100(src='../images/3.jpg', alt='Third slide')
+				div.carousel-caption.d-none.d-md-block
+					h5 Slide3
+					p text text text text
+
+		a.carousel-control-prev(href='#carouselExampleIndicators', role='button', data-slide='prev')
+			span.carousel-control-prev-icon(aria-hidden='true')
+			span.sr-only Previous
+
+		a.carousel-control-next(href='#carouselExampleIndicators', role='button', data-slide='next')
+			span.carousel-control-next-icon(aria-hidden='true')
+			span.sr-only Next
