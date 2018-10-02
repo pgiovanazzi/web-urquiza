@@ -1,0 +1,9 @@
+extends layout
+
+block append current_page
+	- current_page = "Autoridades"
+	
+block content
+	.container.mb-4.mt-4
+		h2 #{titleAuthorities}
+		p #{authoritiesNames}
