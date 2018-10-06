@@ -1,13 +1,15 @@
 doctype html
 html
+	block current_page
+		- var current_page = "Inicio"
+
 	head
-		title= title
-		
+		title= current_page + " | Esc. Urquiza"
+
 		block head
 			include head
 
 		style
-			include ../public/stylesheets/animate.css
 			include ../public/stylesheets/style.css
 
 	body
