@@ -1,73 +1,45 @@
 extends layout
 
 block content
-	div.container.mb-4
+	div.container.content
 		div.row.mb-4
-			div.col-sm-12.col-md-4.mt-4
+			div.col-sm-12.col-md-4.mt-3
 				div.card
-					img.card-img-top(src=".../100px180/", alt="Card image cap")
+					img.card-img-top(src="../images/AF.jpg", alt="Card image cap")
 					div.card-body.text-center
-						h5.card-title Titulo de novedades
-						p.card-text Algun resumen del referido a las novedades
-						a.btn.btn-primary.rounded-0(href='#') Otro enlace
-			div.col.mt-4
+						h5.card-title Análisis Funcional de Sistemas Informáticos 
+						p.card-text El Técnico Superior en Análisis Funcional de Sistemas Informáticos estará capacitado para comprender e interpretar fines, negocios o actividades ...
+						a.btn.btn-primary.rounded-0(href='/analisisFuncional') Saber más
+			div.col-md-4.mt-3
 				div.card
-					img.card-img-top(src=".../100px180/", alt="Card image cap")
+					img.card-img-top(src="../images/ITI.jpg", alt="Card image cap")
 					div.card-body.text-center
-						h5.card-title Titulo de novedades
-						p.card-text Algun resumen del referido a las novedades
-						a.btn.btn-primary.rounded-0(href='#') Otro enlace
-			div.col.mt-4
+						h5.card-title Infraestructura de Tecnología de la Información
+						p.card-text El Técnico Superior en Infraestructura de Tecnología de la Información estará capacitado para implementar, mantener, actualizar, ...
+						a.btn.btn-primary.rounded-0(href='/iti') Saber más
+			div.col-md-4.mt-3
 				div.card
-					img.card-img-top(src=".../100px180/", alt="Card image cap")
+					img.card-img-top(src="../images/DS.jpg", alt="Card image cap")
 					div.card-body.text-center
-						h5.card-title Titulo de novedades
-						p.card-text Algun resumen del referido a las novedades
-						a.btn.btn-primary.rounded-0(href='#') Otro enlace
+						h5.card-title Desarrollo de Software
+						p.card-text El Técnico Superior en Desarrollo de Software participa en proyectos de desarrollo de software desempeñando roles que tienen por objeto producir artefactos de software (programas, módulos, objetos). Estos artefactos ...
+						a.btn.btn-primary.rounded-0(href='/desarrolloSoftware') Saber más
 
 		div.row.mt-sm-4
 			div.col-sm-12.col-md-8.text-sm-center.text-md-left
 				h3 Una importante cabecera
 				p.lead Una sub-cabesera importante pueder ir aqui, lo cual es mas grande y gris
 				p #{text1}
-			div.col-sm-12.col-md-4
-				h3.mb-4 Menu Secundario
-				#v-pills-tab.nav.flex-column.nav-pills.rounded-0(role='tablist', aria-orientation='vertical')
-					a#v-pills-home-tab.nav-link.active.rounded-0(data-toggle='pill', href='#v-pills-home', role='tab', aria-controls='v-pills-home', aria-selected='true') Home
-					a#v-pills-profile-tab.nav-link.rounded-0(data-toggle='pill', href='#v-pills-profile', role='tab', aria-controls='v-pills-profile', aria-selected='false') Profile
-					a#v-pills-messages-tab.nav-link.rounded-0(data-toggle='pill', href='#v-pills-messages', role='tab', aria-controls='v-pills-messages', aria-selected='false') Messages
-					a#v-pills-settings-tab.nav-link.rounded-0(data-toggle='pill', href='#v-pills-settings', role='tab', aria-controls='v-pills-settings', aria-selected='false') Settings
+			.col-sm-4.sidenav
+				.well
+					h5 Noticia 1
+					p  Nam vulputate magna sed leo luctus congue. Proin efficitur non libero ultricies scelerisque. Aenean imperdiet hendrerit volutpat. Cras ultrices tempor nisi sit amet interdum. Fusce ultricies pulvinar ante, vel consequat augue ultrices sed. Cras in malesuada libero, eu vestibulum est. In luctus sem nibh, eu porttitor tellus vehicula eu. Duis vel nulla quis nisi consectetur eleifend. 
+				.well
+					h5 Noticia 2
+					p Nam vulputate magna sed leo luctus congue. Proin efficitur non libero ultricies scelerisque. Aenean imperdiet hendrerit volutpat. Cras ultrices tempor nisi sit amet interdum. Fusce ultricies pulvinar ante, vel consequat augue ultrices sed. Cras in malesuada libero, eu vestibulum est. In luctus sem nibh, eu porttitor tellus vehicula eu. Duis vel nulla quis nisi consectetur eleifend.  
+				.well
+					h5 Noticia 3
+					p Nam vulputate magna sed leo luctus congue. Proin efficitur non libero ultricies scelerisque. Aenean imperdiet hendrerit volutpat. Cras ultrices tempor nisi sit amet interdum. Fusce ultricies pulvinar ante, vel consequat augue ultrices sed. Cras in malesuada libero, eu vestibulum est. In luctus sem nibh, eu porttitor tellus vehicula eu. Duis vel nulla quis nisi consectetur eleifend. 
 
 
 	a(name='consultas')
-
-	section
-		div.bg-contact.mb-5.mt-5
-			#contact.container
-				.wrapper
-					.company-info
-						ul
-							li
-								i.fa.fa-road
-								|  Bv. Oroño 690 - Rosario
-							li
-								i.fa.fa-phone
-								|	(0341) 4721430 o 
-								|	(0341) 4721431
-							li
-								i.fa.fa-envelope
-								|  info@terciariourquiza.edu.ar
-					.contact
-						h3 Envianos tus consultas
-						form
-							p
-								label Nombre
-								input(type='text', name='name')
-							p
-								label E-mail
-								input(type='email', name='email')
-							p.full
-								label Mensaje
-								textarea(name='message', rows='5')
-							p.full
-								button Enviar

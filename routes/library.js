@@ -3,9 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('nuestraHistoria', {
-		titleHistoryInstitute: "Nuestra historia",
-		historyInstitute: "Completar historia..."
+  res.render('biblioteca', {
+		titleLibrary: "Biblioteca",
+		libraries: "Completar con los libros y textos que hay..."
 	});
 });
 
