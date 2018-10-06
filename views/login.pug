@@ -2,29 +2,56 @@ doctype html
 html
 	head
 		title Ingresar
-		
-		block head
-			include head
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
+		meta(name='keywords' content='Ingreso, Ingresar, Ingresar en escuela Urquiza, Urquiza Ingreso, escuela Urquiza')
+		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
 
+		link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
+		
+		
+		
+		script.
+			addEventListener("load", function () {
+				setTimeout(hideURLbar, 0);
+			}, false);
+			function hideURLbar() {
+				window.scrollTo(0, 1);
+				}
+		
 		style
-			include ../public/stylesheets/loginStyle.css
-			include ../public/stylesheets/style.css
-		
-		script
-			include ../public/js/jq.js
-			include ../public/js/jquery.waypoints.min.js
+			include ../public/stylesheets/signIn-upStyle.css
+		//Custom Theme files
+		style
+			include ../public/stylesheets/font-awesome.css
+		// Font-Awesome-Icons-CSS
+		// web font
+		link(href='//fonts.googleapis.com/css?family=Acme' rel='stylesheet')
+		link(href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' rel='stylesheet')
+		link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css' integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU' crossorigin='anonymous')
+//main
+.main-agileits
+	.navbar.bg-dark.navbar-fixed-top
+		.navbar-header.pull-left
+			a.fa.fa-angle-left.navbar-brand(href='#')
+			a.navbar-link(href='/') Volver al inicio 
+		.navbar-header.pull-right
+			a.btn.navbar-btn.rounded-0(href='/signup') Registrarse		
+	center
+		img.img-responsive(src='../images/Urquiza Icon.png' alt='')
+	.register-form
+		form(action='#' method='post')
+			.fields-grid
+				.styled-input-2
+					label.header Login
+					.styled-input
+						input(type='text' name='DNI' placeholder='DNI' title='Ingrese su nro. de documento' required='')
+					.styled-input
+						input(type='text' name='city' placeholder='Contraseña' title='Ingrese su contraseña' required='')
+				.clear
+			.container
+				input(type='submit' value='Ingresar')
+				p: a#crear-y-restaurar(href='#') Restaurar contraseña
+				p: a#crear-y-restaurar(href='/signup') Crear cuenta
 
-	body
-		.container.mx-auto
-			img.img-responsive(src="../images/Urquiza Icon.png",  alt="Responsive image")
-			h5.text-center.margin-bottom
-				i.fa.fa-user.title-icon
-				span(translate-context="Title", translate="") &nbsp; Inicio de sesión
-			form
-				.form-input(action='#')
-					input(type='text', name='text', placeholder='Nombre de usuario')
-				.form-input(action='#')
-					input(type='password', name='password', placeholder='Contraseña')
-				input.btn-login(type='submit', value='Iniciar sesión')
-			a(href='#') ¿Necesita  ayuda?
-			a(href='/signup') Crear cuenta
+// copyright
