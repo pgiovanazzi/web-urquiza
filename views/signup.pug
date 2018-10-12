@@ -23,7 +23,7 @@ head
 	link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
 // main
 .main-agileits
-	.navbar.bg-dark.navbar-fixed-top
+	.navbar.bg-dark.sticky-top
 		.navbar-header.pull-left
 			a.fa.fa-angle-left.navbar-brand(href='#')
 			a.navbar-link(href='/') Volver al inicio 
@@ -32,7 +32,7 @@ head
 	center
 		img.img-responsive(src='../images/Urquiza Icon.png' alt='')
 	.register-form
-		form(action='#' method='post')
+		form(action='/signup' method='post')
 			.fields-grid
 				.styled-input-2
 					label.header Cree su Cuenta
@@ -40,14 +40,17 @@ head
 						span.fa.fa-user(aria-hidden='true')
 						input(type='text' placeholder='Ingrese sus nombres y apellidos' title='Ingrese su nombre completo' name='name' required='')
 					.styled-input
+						span.fa.fa-lock(aria-hidden='true')
+						input(type='password' placeholder='Ingrese la contraseña' title='Ingrese una contraseña entre 8 y 15 digitos' name='password' required='')
+					.styled-input
 						span.fa.fa-user(aria-hidden='true')
-						input(type='text' placeholder='Ingrese su DNI' title='Ingrese su DNI' name='name' required='')
+						input(type='text' placeholder='Ingrese su DNI' title='Ingrese su DNI' name='dni' required='')
 					.styled-input
 						span.fa.fa-calendar(aria-hidden='true')
-						input#datepicker(placeholder='Día de nacimiento' name='date' type='text' value='' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd/mm/aaaa';}" required='')
+						input#datepicker(placeholder='Día de nacimiento' name='birth' type='text' value='' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd/mm/aaaa';}" required='')
 					.styled-input.agile-styled-input-top
 						span.fa.fa-venus(aria-hidden='true')
-						select.category2(required='')
+						select.category2(required='' name='gender')
 							option(value='') Genero
 							option(value='') Femenino
 							option(value='') Masculino
@@ -57,10 +60,10 @@ head
 						input(type='email' placeholder='Correo electrónico' title='Ingrese su correo electrónico' name='email' required='')
 					.styled-input
 						span.fa.fa-phone(aria-hidden='true')
-						input(type='text' placeholder='Numero de teléfono' title='Ingrese su numero de teléfono o numero de celular' name='phone number' required='')
+						input(type='text' placeholder='Numero de teléfono' title='Ingrese su numero de teléfono o numero de celular' name='phone_number' required='')
 					.styled-input.agile-styled-input-top
 						span.fa.fa-book(aria-hidden='true')
-						select.category2(required='')
+						select.category2(required='' name='careers')
 							option(value='') Seleccione carrera
 							option(value='') Tec. Superior en Desarrollo de Software
 							option(value='') Tec. Superior en An&aacute;lisis Funcional de Sistemas Inform&aacute;ticos
@@ -72,8 +75,9 @@ head
 						.styled-input
 							input(type='text' name='city' placeholder='Ciudad' title='Ingrese la ciudad en donde vive' required='')
 						.styled-input
-							input(type='text' name='zip code' placeholder='Código postal' title='Ingrese el código postal' required='')
-					.clear  
+							input(type='text' name='zip_code' placeholder='Código postal' title='Ingrese el código postal' required='')
+					.clear
+			input(type='hidden' name='_csrf' value='#{csrfToken}')
 			input(type='submit' value='Registrarse')
 // copyright
 
