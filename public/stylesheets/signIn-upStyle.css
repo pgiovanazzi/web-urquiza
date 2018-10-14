@@ -67,7 +67,7 @@ p {
     background: rgba(18, 51, 78, 0.445);
 }
 
-.register-form input[type="text"], .register-form input[type="email"], select.category2, input[type="password"]{
+.register-form input[type="text"], .register-form input[type="email"], select.category2, input[type="password"], input[type="date"], input[type="number"] {
     font-size: 15px;
     color: #fff;
     border: 0;

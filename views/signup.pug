@@ -28,33 +28,38 @@ head
 			a.fa.fa-angle-left.navbar-brand(href='#')
 			a.navbar-link(href='/') Volver al inicio 
 		.navbar-header.pull-right
-			a.btn.navbar-btn.rounded-0(href='/login') Ingresar	
+			a.btn.navbar-btn.rounded-0(href='/login') Ingresar
+	
+
 	center
 		img.img-responsive(src='../images/Urquiza Icon.png' alt='')
+		.row.justify-content-center
+				if hasErrors
+					.alert.alert-danger
+						each error in messages
+							p= error
+
 	.register-form
-		form(action='/signup' method='post')
+		form(action='/signup' method='POST')
 			.fields-grid
 				.styled-input-2
-					label.header Cree su Cuenta
+					label.header Cree su cuenta para la pre-inscripción
 					.styled-input
 						span.fa.fa-user(aria-hidden='true')
 						input(type='text' placeholder='Ingrese sus nombres y apellidos' title='Ingrese su nombre completo' name='name' required='')
 					.styled-input
-						span.fa.fa-lock(aria-hidden='true')
-						input(type='password' placeholder='Ingrese la contraseña' title='Ingrese una contraseña entre 8 y 15 digitos' name='password' required='')
-					.styled-input
 						span.fa.fa-user(aria-hidden='true')
-						input(type='text' placeholder='Ingrese su DNI' title='Ingrese su DNI' name='dni' required='')
+						input(type='number' placeholder='Ingrese su DNI' title='Ingrese su DNI' name='dni' min='6000' required='')
 					.styled-input
 						span.fa.fa-calendar(aria-hidden='true')
-						input#datepicker(placeholder='Día de nacimiento' name='birth' type='text' value='' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd/mm/aaaa';}" required='')
+						input(placeholder='Día de nacimiento' name='birth' type='date' value='' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd/mm/aaaa';}" required='' title='Ingrese su fecha de nacimiento')
 					.styled-input.agile-styled-input-top
 						span.fa.fa-venus(aria-hidden='true')
 						select.category2(required='' name='gender')
 							option(value='') Genero
-							option(value='') Femenino
-							option(value='') Masculino
-							option(value='') Otro
+							option(value='Femenino') Femenino
+							option(value='Masculino') Masculino
+							option(value='Otro') Otro
 					.styled-input
 						span.fa.fa-envelope(aria-hidden='true')
 						input(type='email' placeholder='Correo electrónico' title='Ingrese su correo electrónico' name='email' required='')
@@ -65,11 +70,11 @@ head
 						span.fa.fa-book(aria-hidden='true')
 						select.category2(required='' name='careers')
 							option(value='') Seleccione carrera
-							option(value='') Tec. Superior en Desarrollo de Software
-							option(value='') Tec. Superior en An&aacute;lisis Funcional de Sistemas Inform&aacute;ticos
-							option(value='') Tec. Superior en Infraestructura de Tecnolog&iacute;a de la Informaci&oacute;n
+							option(value=' Tec. Superior en Desarrollo de Software') Tec. Superior en Desarrollo de Software
+							option(value='Tec. Superior en Análisis Funcional de Sistemas Informáticos') Tec. Superior en Análisis Funcional de Sistemas Informáticos
+							option(value='Tec. Superior en Infraestructura de Tecnología de la Información') Tec. Superior en Infraestructura de Tecnología de la Información
 					.styled-input-2
-						label.header Direcci&oacute;n
+						label.header Dirección
 						.styled-input
 							input(type='text' name='address' placeholder='Domicilio' title='ingrese su domicilio' required='')
 						.styled-input
@@ -77,39 +82,6 @@ head
 						.styled-input
 							input(type='text' name='zip_code' placeholder='Código postal' title='Ingrese el código postal' required='')
 					.clear
-			input(type='hidden' name='_csrf' value='#{csrfToken}')
+			input(type='hidden' name='_csrf' value=csrfToken)
 			input(type='submit' value='Registrarse')
 // copyright
-
-// js
-script(src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=' crossorigin='anonymous')
-
-
-// Calendar
-script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js' integrity='sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=' crossorigin='anonymous')
-
-style
-	include ../public/stylesheets/jquery-ui.css
-
-script.
-	$.datepicker.regional['es'] = {
-		closeText: 'Cerrar',
-		prevText: '< Ant',
-		nextText: 'Sig >',
-		currentText: 'Hoy',
-		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-		monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
-		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-		dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
-		dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
-		weekHeader: 'Sm',
-		dateFormat: 'dd/mm/yy',
-		firstDay: 1,
-		isRTL: false,
-		showMonthAfterYear: false,
-		yearSuffix: ''
-		};
-	$.datepicker.setDefaults($.datepicker.regional['es']);
-	$(function () {
-		$("#datepicker").datepicker();
-	});
