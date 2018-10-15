@@ -26,28 +26,33 @@ passport.deserializeUser(function (id, done) {
 });
 
 passport.use('local.signup', new LocalStrategy({
-  usernameField: 'name',
+  usernameField: 'email',
   passwordField: 'dni',
   passReqToCallback: true
-}, function (req, name, dni, done) {
+}, function (req, email, dni, done) {
   User.findOne({ 'dni': dni }, function (err, user) {
     if (err) return done(err);
     if (user) return done(null, false, { message: 'El DNI está en uso...' });
-    var newUser = new User();
-    newUser.name = req.body.name;
-    newUser.dni = dni;
-    newUser.pwd = newUser.encryptPassword(make_pwd());
-    newUser.birth = req.body.birth;
-    newUser.gender = req.body.gender;
-    newUser.email = req.body.email;
-    newUser.phone = req.body.phone_number;
-    newUser.career = req.body.careers;
-    newUser.address = req.body.address;
-    newUser.city = req.body.city;
-    newUser.zipCode = req.body.zip_code;
-    newUser.save(function (err, result) {
+    User.findOne({ 'email': email }, function (err, user) {
       if (err) return done(err);
-      return done(null, newUser);
+      if (user) return done(null, false, { message: 'El correo electrónico está en uso.' });
+      var newUser = new User();
+      newUser.name = req.body.name;
+      newUser.dni = dni;
+      newUser.pwd = newUser.encryptPassword(make_pwd());
+      newUser.birth = req.body.birth;
+      newUser.gender = req.body.gender;
+      newUser.email = email;
+      newUser.phone = req.body.phone_number;
+      newUser.career = req.body.careers;
+      newUser.address = req.body.address;
+      newUser.city = req.body.city;
+      newUser.zipCode = req.body.zip_code;
+      newUser.save(function (err, result) {
+        if (err) return done(err);
+        return done(null, newUser);
+      })
     })
+    
   });
 }));

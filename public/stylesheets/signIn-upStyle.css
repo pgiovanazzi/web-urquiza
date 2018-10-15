@@ -166,6 +166,9 @@ label.header {
     -ms-transition: 0.5s all;
     transition: 0.5s all;
 }
+#carrerComp {
+    margin-right: 12px
+}
 
 
 /*--placeholder-color--*/
@@ -186,6 +189,9 @@ label.header {
 
 .register-form input:-ms-input-placeholder {
     color: #fff;
+}
+label.custom-control-label {
+    margin-bottom: 10px;
 }
 
 
@@ -243,7 +249,7 @@ label.header {
     .styled-input span {
         padding-right: 5px;
     }
-    .register-form input[type="text"], .register-form input[type="email"], select.category2 {
+    .register-form input[type="text"], #carrerComp,.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, label.custom-control-label {
         width: 95%;
     }
 }
@@ -261,7 +267,7 @@ label.header {
     h1 img {
         width: 12%;
     }
-    .register-form input[type="text"], .register-form input[type="email"], select.category2 {
+    .register-form input[type="text"], #carrerComp,.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, label.custom-control-label {
         width: 94%;
         font-size: 14px;
     }
@@ -290,7 +296,7 @@ label.header {
     h1 img {
         width: 14%;
     }
-    .register-form input[type="text"], .register-form input[type="email"], select.category2, p {
+    .register-form input[type="text"],.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, p, #carrerComp {
         width: 92%;
         font-size: 13px;
     }
@@ -313,7 +319,7 @@ label.header {
         letter-spacing: 2px;
         margin: 14px 0;
     }
-    .register-form input[type="text"], .register-form input[type="email"], select.category2 {
+    .register-form input[type="text"], #carrerComp ,.register-form input[type="email"],.register-form input[type="number"], .register-form input[type="date"] select.category2, label.custom-control-label {
         width: 91%;
     }
 }
@@ -341,7 +347,7 @@ label.header {
         padding: 10px;
         margin-bottom: 11px;
     }
-    .register-form input[type="text"], .register-form input[type="email"], select.category2 {
+    .register-form input[type="text"], #carrerComp, .register-form input[type="number"], .register-form input[type="date"],.register-form input[type="email"], select.category2, label.custom-control-label {
         width: 89%;
         font-size: 12px;
     }
