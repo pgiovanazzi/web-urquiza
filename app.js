@@ -20,6 +20,8 @@ var coursesEntrantsRoutes = require('./routes/coursesEntrants');
 var functionalAnalysisRoutes = require('./routes/functionalAnalysis');
 var itiRoutes = require('./routes/iti');
 var softwareDevelopmentRoutes = require('./routes/softwareDevelopment');
+var mainAdminRoutes = require('./routes/user/mainAdmin');
+
 
 var app = express();
 
@@ -55,6 +57,7 @@ app.use('/cursosIngresos', coursesEntrantsRoutes);
 app.use('/analisisFuncional', functionalAnalysisRoutes);
 app.use('/iti', itiRoutes);
 app.use('/desarrolloSoftware', softwareDevelopmentRoutes);
+app.use('/user/mainAdmin', mainAdminRoutes);
 
 
 // catch 404 and forward to error handler

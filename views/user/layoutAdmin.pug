@@ -1,0 +1,28 @@
+html
+	block current_page
+		- var current_page = "Area de administración"
+
+	head
+		title= current_page + " | Esc. Urquiza"
+
+		block head
+			include ../head
+
+		style
+			include ../../public/stylesheets/DBstyle.css
+
+	body
+		block DBheader
+			include DBheader
+		
+		block postDBheader
+			include postDBheader
+
+		block content
+
+		block footer
+			include ../footer
+
+		script
+			include ../../public/js/jq.js
+			include ../../public/js/jquery.waypoints.min.js
