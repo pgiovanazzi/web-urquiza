@@ -51,7 +51,7 @@ head
 						input(type='text' placeholder='Ingrese sus nombres y apellidos' title='Ingrese su nombre completo' name='name' required='')
 					.styled-input.agile-styled-input-top
 						span.fa.fa-address-card(aria-hidden='true')
-						select.category2(required='' name='Doc_Type')
+						select.category2(required='' name='doc_type')
 							option(value='') Tipo de documento
 							option(value='DNI') DNI: Documento Nacional de Identidad
 							option(value='CI') CI: Cédula de Identidad
@@ -59,7 +59,7 @@ head
 							option(value='LE') LC: Libreta Cívica
 					.styled-input
 						span.fa.fa-address-card(aria-hidden='true')
-						input(type='number' placeholder='Nro. de documento' title='Ingrese su Nro. de documento' name='dni' min='6000' required='')
+						input(type='number' placeholder='Nro. de documento' title='Ingrese su Nro. de documento' name='dni' min='10000' required='')
 					.styled-input
 						span.fa.fa-calendar(aria-hidden='true')
 						input(placeholder='Día de nacimiento' name='birth' type='date' value='' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd/mm/aaaa';}" required='' title='Ingrese su fecha de nacimiento')
@@ -87,19 +87,19 @@ head
 							option(value='Tec. Superior en Análisis Funcional de Sistemas Informáticos') Tec. Superior en Análisis Funcional de Sistemas Informáticos
 							option(value='Tec. Superior en Infraestructura de Tecnología de la Información') Tec. Superior en Infraestructura de Tecnología de la Información
 					.custom-control.custom-radio.custom-control-inline
-						input#place_career.custom-control-input(type='radio', name='place_career')
+						input#place_career.custom-control-input(type='radio' value='Cursar en Oroño 690 (Centro)' name='place_career')
 						label.custom-control-label(for='place_career' style='color: white') Cursar en Oroño 690 (Centro)
 					.custom-control.custom-radio.custom-control-inline
-						input#place_career_ext.custom-control-input(type='radio', name='place_career')
+						input#place_career_ext.custom-control-input(type='radio' name='place_career' value='Cursar en la extensión áulica (Sur)')
 						label.custom-control-label(for='place_career_ext' style='color: white') Cursar en la extensión áulica (Sur)
 					.styled-input-2
 						label.header Dirección
 						.styled-input
 							input(type='text' name='address' placeholder='Domicilio' title='ingrese su domicilio' required='')
 						.styled-input
-							input(type='number' min='0' name='floor' placeholder='Piso' title='ingrese su piso')
+							input(type='number' min='0' name='floor' placeholder='Piso' title='Si vive en un edificio indicar su piso')
 						.styled-input
-							input(type='text' name='dpt' placeholder='Departamento' title='ingrese su departamento')
+							input(type='text' name='dpt' placeholder='Departamento' title='Si vive en un edificio indicar indicar su departamento')
 						.styled-input
 							input(type='text' name='city' placeholder='Localidad de residencia' title='Ingrese su localidad de residencia' required='')
 						.styled-input
