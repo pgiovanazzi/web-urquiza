@@ -1,1 +1,51 @@
 extends layoutAdmin
+
+block content
+	section#main
+		.container
+			.row
+				.col-md-3
+					.list-group
+						a.list-group-item.active.main-color-bg.list-group-item-action.d-flex.justify-content-between.align-items-center(href='/user/mainAdmin')
+							i.fa.fa-cog(aria-hidden='true') 
+								| Panel
+						a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href='/user/pages')
+							i.fas.fa-newspaper(aria-hidden='true') 
+								| Paginas
+							span.badge.badge-secondary.badge-pill 3
+						a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href='/user/post')
+							i.fas.fa-pen(aria-hidden='true') 
+								| Articulos
+							span.badge.badge-secondary.badge-pill 12
+						a.list-group-item.list-group-item-action.d-flex.justify-content-between.align-items-center(href='/user/users')
+							i.fas.fa-users(aria-hidden='true') 
+								| Usuarios 
+							span.badge.badge-secondary.badge-pill 1
+
+				.col-md-9
+					.card.bg-light.text-center.mb-3.mb-3
+						.card-header.main-color-bg
+							b Vista general del sitio web
+						.card-body
+							.row
+								.col-md-4
+									.card
+										.card-body
+											h2.card-title
+												span.fas.fa-users(aria-hidden='true') 
+													| 1
+											p.card-text  Usuarios
+								.col-md-4
+									.card
+										.card-body
+											h2.card-title
+												span.fas.fa-newspaper(aria-hidden='true') 
+													| 3
+											p.card-text  Paginas
+								.col-md-4
+									.card
+										.card-body
+											h2.card-title
+												span.fas.fa-pen(aria-hidden='true') 
+													| 12
+											p.card-text  Articulos
