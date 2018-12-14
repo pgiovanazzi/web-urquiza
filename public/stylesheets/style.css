@@ -184,6 +184,7 @@ body {
 }
 
 #carouselExampleIndicators {
+	overflow: hidden;
 	margin-bottom: -5%;
 	position: relative;
 	z-index: 0;
