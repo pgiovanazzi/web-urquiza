@@ -184,8 +184,13 @@ body {
 }
 
 #carouselExampleIndicators {
-	overflow: hidden;
 	margin-bottom: -5%;
 	position: relative;
 	z-index: 0;
+}
+
+@media(max-width: 354px){
+    #icono.img-responsive{
+      	width: 200px;
+    }
 }
