@@ -1,58 +1,69 @@
 doctype html
 html
-	head
-		title Ingresar
-		meta(name='viewport', content='width=device-width, initial-scale=1')
-		meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
-		meta(name='keywords' content='Ingreso, Ingresar, Ingresar en escuela Urquiza, Urquiza Ingreso, escuela Urquiza')
-		script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
+   head
+      title Ingresar
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
+      meta(name='keywords' content='Ingreso, Ingresar, Ingresar en escuela Urquiza, Urquiza Ingreso, escuela Urquiza')
 
-		link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
-		
-		include head
-		
-		script.
-			addEventListener("load", function () {
-				setTimeout(hideURLbar, 0);
-			}, false);
-			function hideURLbar() {
-				window.scrollTo(0, 1);
-				}
-		
-		style
-			include ../public/stylesheets/signIn-upStyle.css
-		//Custom Theme files
-		style
-			include ../public/stylesheets/font-awesome.css
-		// Font-Awesome-Icons-CSS
-		// web font
-		link(href='//fonts.googleapis.com/css?family=Acme' rel='stylesheet')
-		link(href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' rel='stylesheet')
-		link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css' integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU' crossorigin='anonymous')
+      include head
+
+      script.
+         addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+         }, false);
+         function hideURLbar() {
+            window.scrollTo(0, 1);
+         }
+
+         $(document).ready(function () {
+            $(".toggle-password").click(function () {
+               $(this).toggleClass("fa-eye fa-eye-slash");
+               var input = $($(this).attr("toggle"));
+               if (input.attr("type") == "password") {
+                  input.attr("type", "text");
+               } else {
+                  input.attr("type", "password");
+               }
+            });
+         })
+
+      style
+         include ../public/stylesheets/signIn-upStyle.css
+      //Custom Theme files
+      style
+         include ../public/stylesheets/font-awesome.css
+      // Font-Awesome-Icons-CSS
+      // web font
+      link(href='//fonts.googleapis.com/css?family=Acme' rel='stylesheet')
+      link(href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' rel='stylesheet')
+      link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css' integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU' crossorigin='anonymous')
+
 //main
 .main-agileits
-	.navbar.bg-dark.sticky-top
-		.navbar-header.pull-left
-			a.fa.fa-angle-left.navbar-brand(href='#')
-			a.navbar-link(href='/') Volver al inicio 
-		.navbar-header.pull-right
-			a.btn.navbar-btn.rounded-0(href='/signup') Registrarse		
-	center
-		img.img-responsive(src='../images/Urquiza Icon.png' alt='')
-	.register-form
-		form(action='#' method='post')
-			.fields-grid
-				.styled-input-2
-					label.header Login
-					.styled-input
-						span.fa.fa-user(aria-hidden='true')
-						input(type='text' name='DNI' placeholder='DNI' title='Ingrese su nro. de documento' required='')
-					.styled-input
-						span.fa.fa-lock(aria-hidden='true')
-						input(type='text' name='city' placeholder='Contraseña' title='Ingrese su contraseña' required='')
-				.clear
-			.container
-				input(type='submit' value='Ingresar')
-				p: a#crear-y-restaurar(href='#') Restaurar contraseña
-				p: a#crear-y-restaurar(href='/signup') Crear cuenta
+   .navbar.bg-dark.sticky-top
+      .navbar-header.pull-left
+         a.fa.fa-angle-left.navbar-brand(href='#')
+         a.navbar-link(href='/') Volver al inicio
+      .navbar-header.pull-right
+         a.btn.navbar-btn.rounded-0(href='/signup') Registrarse
+   center
+      img.img-responsive(src='../images/Urquiza Icon.png' alt='')
+   .register-form
+      form(action='#' method='post')
+         .fields-grid
+            .styled-input-2
+               label.header Login
+               .styled-input
+                  span.fa.fa-user(aria-hidden='true')
+                  input(type='text' name='DNI' placeholder='DNI' title='Ingrese su nro. de documento' required='')
+               .styled-input
+                  span.fa.fa-lock(aria-hidden='true')
+                  input#password-field(type='password' name='password' placeholder='Contraseña' title='Ingrese su contraseña' required='')
+                  span.fa.fa-fw.fa-eye.field-icon.toggle-password(toggle='#password-field')
+            .clear
+         .container
+            input(type='submit' value='Ingresar')
+            p: a#crear-y-restaurar(href='#') Restaurar contraseña
+            p: a#crear-y-restaurar(href='/signup') Crear cuenta
 // copyright
