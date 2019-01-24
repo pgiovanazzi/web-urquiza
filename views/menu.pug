@@ -1,0 +1,51 @@
+nav.navbar.navbar-expand-lg.navbar-dark.fixed-top
+	.container-fluid
+		.navbar-header
+			a.navbar-brand(href='/')
+				img#icono.img-responsive(src="../images/Urquiza_Icon.png",  alt="Responsive image")
+				
+		button#toggle-color-navbar.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent')
+			span.navbar-toggler-icon
+
+		div#navbarSupportedContent.collapse.navbar-collapse.justify-content-between
+			ul.nav.navbar-nav.mr-2
+				li.nav-item
+					a.nav-link(href='/') Inicio
+				li.nav-item.dropdown
+					a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Institucional
+					.dropdown-menu.rounded-0
+						a.dropdown-item(href='/nuestraHistoria') Nuestra Historia
+						a.dropdown-item(href='/sedes') Sedes
+						a.dropdown-item(href='/autoridades') Autoridades
+						a.dropdown-item(href='/biblioteca') Biblioteca
+						a.dropdown-item(href='/asociacionCooperadora') Asociación Cooperadora
+				li.nav-item.dropdown
+					a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Ingresantes
+					.dropdown-menu.rounded-0
+						a.dropdown-item(href='/informacionIngresantes') Información para ingresantes
+						a.dropdown-item(href='/cursosIngresos') Cursos de ingreso
+						a.dropdown-item(href='#') ¿Por qué estudiar nuestras carreras?
+				li.nav-item.dropdown
+					a.nav-link.dropdown-toggle(href='#',data-toggle='dropdown') Carreras
+					div.dropdown-menu.rounded-0
+						a.dropdown-item(href='/analisisFuncional') Análisis Funcional de Sistemas Informáticos
+						a.dropdown-item(href='/iti') Infraestructura de Tecnología de la Información
+						a.dropdown-item(href='/desarrolloSoftware') Desarrollo de Software
+				//- li.nav-item.dropdown
+				//- 	a.nav-link.dropdown-toggle(href='#', data-toggle='dropdown') Alumnado
+				//- 	div.dropdown-menu.rounded-0
+				//- 		a.dropdown-item(href='#') Calendario Academico
+				//- 		a.dropdown-item(href='#') Turnos de Exámenes
+				//- 		a.dropdown-item(href='#') Horarios
+				//- 		a.dropdown-item(href='#') Trámites
+				//- li.nav-item
+				//- 	a.nav-link(href='#') Docentes
+				//- li.nav-item
+				//- 	a.nav-link(href='#') Graduados
+				li.nav-item
+					a.nav-link(href='#consultas') Contacto
+
+			form.form-inline(action='', method='get')
+				input.search.mr-2.mt-2(type='text', name='search', placeholder='Buscar...')
+				a.btn.btn-outline-light.rounded-0.mr-2.mt-2(href='/login') Ingresar
+				a.btn.btn-primary.rounded-0.mt-2(href='/signup') Registrarse
