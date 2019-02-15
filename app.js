@@ -1,3 +1,5 @@
+'use strict'
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,6 +8,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+const nodemailer = require('nodemailer');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -59,6 +62,40 @@ app.use('/iti', itiRoutes);
 app.use('/desarrolloSoftware', softwareDevelopmentRoutes);
 app.use('/user/mainAdmin', mainAdminRoutes);
 
+app.post("/send", (req, res) => {
+  let user = req.body.name;
+  contactUs(user, info => {
+    console.log(` The email has been send and the id is ${info.messageId}`);
+    res.send(info)
+  });
+});
+
+async function contactUs(user, callback) {
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "ramuggeador@gmail.com", // generated ethereal user
+      pass: "kNtP,jv>"// generated ethereal password
+    }
+  });
+
+  // setup email data with unicode symbols
+  let mailOptions = {
+    from: '"Urquiza web contacto 👻" <ramuggeador@gmail.com>', // sender address
+    to: "ivanog@pm.me", // list of receivers
+    subject: "Hello ✔", // Subject line
+    text: "Hello world?", // plain text body
+    html: `<p> hola ${user}</p>`// html body
+  };
+  // send mail with defined transport object
+  let info = await transporter.sendMail(mailOptions)
+
+  callback(info);
+}
+//contactUs().catch(console.error);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

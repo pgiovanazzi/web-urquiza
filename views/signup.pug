@@ -11,35 +11,42 @@ head
 		function hideURLbar() {
 		window.scrollTo(0, 1);
 		}
-	// Custom Theme files
+	//- Custom Theme files
 	style
 		include ../public/stylesheets/signIn-upStyle.css
-	// Font-Awesome-Icons-CSS
+	//- Font-Awesome-Icons-CSS
 	link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css' integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU' crossorigin='anonymous')
 
-	// web font
+	//- web font
 	link(href='//fonts.googleapis.com/css?family=Acme' rel='stylesheet')
 	link(href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' rel='stylesheet')
+
+	//- bootstrap
 	
-	link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css', integrity='sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB', crossorigin='anonymous')
-	script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js', integrity='sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T', crossorigin='anonymous')
-// main
+	style
+		include ../public/bootstrap/bootstrap.min.css
+	script
+		include ../public/bootstrap/bootstrap.min.js
+		include ../public/bootstrap/popper.min.js
+		include ../public/js/jquery.min.js
+
+//- main
 .main-agileits
 	.navbar.bg-dark.sticky-top
 		.navbar-header.pull-left
 			a.fa.fa-angle-left.navbar-brand(href='#')
 			a.navbar-link(href='/') Volver al inicio 
 		.navbar-header.pull-right
-			a.btn.navbar-btn.rounded-0(href='/login') Ingresar
-	
+			a.btn.btn-primary.rounded-0(href='/login') Ingresar
+
 
 	center
-		img.img-responsive(src='../images/Urquiza Icon.png' alt='')
+		img.img-responsive(src='../images/Urquiza_Icon.svg' alt='Esc. Urquiza')
 		.row.justify-content-center
-				if hasErrors
-					.alert.alert-danger
-						each error in messages
-							p= error
+			if hasErrors
+				.alert.alert-danger
+					each error in messages
+						p= error
 
 	.register-form
 		form(action='/signup' method='POST')

@@ -77,11 +77,11 @@ block content
 							p Rellena el formulario, escribí tu duda y nos podremos en contacto vía e-mail. ¡Estamos encantados de ayudarte!
 						.col-md-7.col-sm-10
 							// CONTACT FORM HERE
-							form(action='#', method='get')
+							form(action='send'  method='POST')
 								.col-md-6.col-sm-6
 									input.form-control(name='name', placeholder='Nombre', required='', type='text')
 								.col-md-6.col-sm-6
-									input.form-control(name='email', placeholder='Email', required='', type='email')
+									input.form-control(name='email', placeholder='Email', required='' type='email')
 								.col-md-12.col-sm-12
 									textarea.form-control(rows='5', name='message', placeholder='Escribe aquí', required='')
 								.col-md-offset-8.col-md-4.col-sm-offset-6.col-sm-6

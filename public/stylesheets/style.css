@@ -83,23 +83,7 @@ hr {
 	border-color: #6096cc;
 }
 
-.search{
-  width: 120px;
-  height: 40px;
-  border: 1px solid slategrey;
-  background: #f9feff url('../images/search.png') no-repeat;
-  background-position: 3px 7px;
-  background-size: 30px;
-  padding: 14px 20px 14px 42px;
-  font-size: 14px;
-  outline: none;
-  -webkit-transition: width 0.5s ease-in-out;
-  transition: width 0.5s ease-in-out;
-}
 
-.search:focus{
-  width: 250px;
-}
 .navbar{
 	background: #12334e00;
 	margin-bottom: 0;
