@@ -63,10 +63,11 @@ app.use('/desarrolloSoftware', softwareDevelopmentRoutes);
 app.use('/user/mainAdmin', mainAdminRoutes);
 
 app.post("/send", (req, res) => {
-  let user = req.body.name;
+  let user = req.body;
   contactUs(user, info => {
-    console.log(` The email has been send and the id is ${info.messageId}`);
-    res.send(info)
+    console.log(` The email has been send and the id is ${info.messageId}, ${JSON.stringify(info.envelope)}`);
+    //res.send(info);
+    res.redirect('/');
   });
 });
 
@@ -88,7 +89,12 @@ async function contactUs(user, callback) {
     to: "ivanog@pm.me", // list of receivers
     subject: "Hello ✔", // Subject line
     text: "Hello world?", // plain text body
-    html: `<p> hola ${user}</p>`// html body
+    html: `<h3> Consulta enviada desde urquiza web.<h3><br>
+    <p>     Informacion <br>
+            nombre: ${user.name},<br> 
+            Email:  ${user.email},<br>
+            Mensaje: ${user.message}
+    </p>`// html body
   };
   // send mail with defined transport object
   let info = await transporter.sendMail(mailOptions)
