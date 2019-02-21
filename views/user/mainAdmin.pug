@@ -22,7 +22,16 @@ block content
 								| Usuarios 
 							span.badge.badge-secondary.badge-pill 1
 
-				.col-md-9
+					.card.mt-3.mb-3
+						.card-header
+							.card-title: b Espacio de disco utilizado
+						.card-body
+							.progress
+								.progress-bar(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%;')
+									| 60%
+
+
+				.col-md-9.mb-3
 					.card.bg-light.text-center.mb-3.mb-3
 						.card-header.main-color-bg
 							b Vista general del sitio web
@@ -49,3 +58,35 @@ block content
 												span.fas.fa-pen(aria-hidden='true') 
 													| 12
 											p.card-text  Articulos
+
+					.card
+						.card-header.text-center
+							.card-title: b Ultimos Usuarios Registrados
+						.card-body
+							table.table.table-hover
+								thead
+									tr
+										th Nombre
+										th Email
+										th Se registró
+								tbody
+									tr
+										td Jill Smith
+										td jillsmith@gmail.com
+										td Dec 12, 2016
+									tr
+										td Eve Jackson
+										td ejackson@yahoo.com
+										td Dec 13, 2016
+									tr
+										td John Doe
+										td jdoe@gmail.com
+										td Dec 13, 2016
+									tr
+										td Stephanie Landon
+										td landon@yahoo.com
+										td Dec 14, 2016
+									tr
+										td Mike Johnson
+										td mjohnson@gmail.com
+										td Dec 15, 2016
