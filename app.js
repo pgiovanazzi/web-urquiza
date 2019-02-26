@@ -24,6 +24,9 @@ var functionalAnalysisRoutes = require('./routes/functionalAnalysis');
 var itiRoutes = require('./routes/iti');
 var softwareDevelopmentRoutes = require('./routes/softwareDevelopment');
 var mainAdminRoutes = require('./routes/user/mainAdmin');
+var pagesAdminRoutes = require('./routes/user/pagesAdmin');
+var postsAdminRoutes = require('./routes/user/postsAdmin');
+var usersAdminRoutes = require('./routes/user/usersAdmin');
 
 
 var app = express();
@@ -61,6 +64,9 @@ app.use('/analisisFuncional', functionalAnalysisRoutes);
 app.use('/iti', itiRoutes);
 app.use('/desarrolloSoftware', softwareDevelopmentRoutes);
 app.use('/user/mainAdmin', mainAdminRoutes);
+app.use('/user/pagesAdmin', pagesAdminRoutes);
+app.use('/user/postsAdmin', postsAdminRoutes);
+app.use('/user/usersAdmin', usersAdminRoutes);
 
 app.post("/send", (req, res) => {
   let user = req.body;

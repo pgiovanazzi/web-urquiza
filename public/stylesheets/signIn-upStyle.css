@@ -39,10 +39,10 @@ h1 {
     font-style: italic;
     font-family: 'Acme', sans-serif;
 }
-img {
+.logo {
     vertical-align: bottom;
     margin-top: 18px; 
-	width: 300px;
+		width: 300px;
 	/* margin-left: 9px; */
     margin-bottom: 36px;
 }
