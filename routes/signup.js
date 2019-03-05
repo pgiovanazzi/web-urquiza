@@ -3,7 +3,7 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
-let mongoose = require('../config/connection');
+var { mongoose } = require('../config/connection');
 require('../config/passport');
 let User = require('../models/user');
 
