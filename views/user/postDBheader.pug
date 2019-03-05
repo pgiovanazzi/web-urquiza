@@ -4,17 +4,22 @@ header#header
 			.col-md-10
 				h1
 					span.fa.fa-cog(aria-hidden='true')
-					|  Panel 
+					|  #{currentPanel} 
 					small Administración del sitio
 			.col-md-2
-				.dropdown.create.mr-3
-					button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+				.btn-group.mt-2
+					button.btn.btn-secondary.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
 						| Crear contenido
-					.dropdown-menu(aria-labelledby='dropdownMenuButton')
-						a.dropdown-item(href='#') Agregar articulo
-						a.dropdown-item(href='#') Agregar alumno
+					.dropdown-menu.dropdown-menu-right
+						button.dropdown-item(type='button' data-toggle="modal" data-target="#addPost") Agregar articulo
+						button.dropdown-item(type='button') Agregar alumno
 
-section#breadcrumb
-	.container
+.container
+	nav(aria-label='breadcrumb')
 		ol.breadcrumb
-			li.active Panel
+			li.breadcrumb-item.active(aria-current='page')
+				block panel
+					| Panel
+			block breadcrumb
+
+include addPost
