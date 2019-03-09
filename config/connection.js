@@ -1,9 +1,13 @@
-let mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-//mlab connection
-//mongoose.connect('mongodb://pi.automata:automatasdelsiglo21@ds011228.mlab.com:11228/urquizadb', { useNewUrlParser: true });
+//mlab
+const mlab = 'mongodb://pi.automata:automatasdelsiglo21@ds011228.mlab.com:11228/urquizadb'
 
-//localhost connection
-mongoose.connect('mongodb://localhost:27017/urquiza_db', { useNewUrlParser: true });
+//localhost
+const lh = 'mongodb://localhost:27017/urquiza_db'
 
-module.exports = mongoose;
+mongoose.connect(lh, { useNewUrlParser: true })
+   .then(db => console.log("DB is connected"))
+   .catch(err => console.error(err));
+
+module.exports = mongoose
