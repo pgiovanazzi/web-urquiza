@@ -40,7 +40,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ 
-	secret: 'mysupresecret',
+	secret: 'mysupresecret', // Hay que poner un secret mas furte
 	resave: false,
 	saveUninitialized: false
 }))
@@ -111,7 +111,7 @@ async function contactUs(user, callback) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+	next(createError(404));
 });
 
 // error handler

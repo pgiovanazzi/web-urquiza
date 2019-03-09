@@ -6,7 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 //function random psswrd
 function make_pwd() {
   var text = "";
-  var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+  const possible = "abcdefghijklmnopqrstuvwxyz0123456789";
 
   for (var i = 0; i < 6; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));

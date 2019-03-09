@@ -6,24 +6,34 @@
 				button.close(type='button', data-dismiss='modal', aria-label='Close')
 					span(aria-hidden='true') ×
 			.modal-body
-				form
+				form(action='/user/postsAdmin', method='POST')
 					.form-group
 						label.col-form-label(for="col-form-label") Título del Articulo:
-						input.form-control(placeholder='Título', type='text')
+						input.form-control(placeholder='Título', type='text', name='title')
 					.form-group
 						label Contenido del articulo:
-						textarea.form-control#editor(placeholder='Contenido')
+						textarea.form-control#editor(placeholder='Contenido', name='content')
 					.checkbox
 						label
-							input(type='checkbox')
+							input(type='checkbox', name='published')
 							|  Publicado
 					.form-group
 						label Meta etiquetas:
-						input.form-control(placeholder='Agregar meta etiquetas...', type='text')
+						input.form-control(placeholder='Agregar meta etiquetas...', type='text', name='metaLabel')
 					.form-group
 						label Meta descripción:
-						input.form-control(placeholder='Agregar meta descripcion...', type='text')
-				.modal-footer
-					button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
-					button.btn.btn-primary(type='submit') Guardar articulo
+						input.form-control(placeholder='Agregar meta descripcion...', type='text', name='metaDescription')
+					.modal-footer
+						button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+						button.btn.btn-primary#enviar(type='submit') Guardar articulo
 
+script.
+
+	//- $(document).ready(() => {
+	//- 	var $postsTitle = $().value();
+	//- 	var $postsContent = '';
+
+	//- 	$('#enviar').click(() => {
+	//- 		$postsContent = $('#editor').summernote('code');
+	//- 	});
+	//- });
