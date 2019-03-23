@@ -5,7 +5,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 //function random psswrd
 function make_pwd() {
-  var text = "";
+  let text = "";
   const possible = "abcdefghijklmnopqrstuvwxyz0123456789";
 
   for (var i = 0; i < 6; i++)
