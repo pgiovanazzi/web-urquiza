@@ -1,110 +1,111 @@
 extends layout
 
 block content
-	div.container.content
-		div.row.mb-4
-			div.col-sm-12.col-md-4.mt-3
-				div.card.shadow-sm
-					img.card-img-top(src="../images/AF.jpg", alt="Card image cap")
-					div.card-body.text-center
-						h5.card-title Análisis Funcional de Sistemas Informáticos 
-						p.card-text El Técnico Superior en Análisis Funcional de Sistemas Informáticos estará capacitado para comprender e interpretar fines, negocios o actividades ...
-						.d-flex.justify-content-around.align-items-center
-							a.btn.btn-primary.btn-sm.rounded-0(href='/analisisFuncional') Ver detalles »
-							a.btn.btn-primary.btn-sm.rounded-0(href='/analisisFuncional', style="display: none") Editar
-			div.col-md-4.mt-3
-				div.card.shadow-sm
-					img.card-img-top(src="../images/ITI.jpg", alt="Card image cap")
-					div.card-body.text-center
-						h5.card-title Infraestructura de Tecnología de la Información
-						p.card-text El Técnico Superior en Infraestructura de Tecnología de la Información estará capacitado para implementar, mantener, actualizar, ...
-						.d-flex.justify-content-around.align-items-center
-							a.btn.btn-primary.btn-sm.rounded-0(href='/iti') Ver detalles »
-							a.btn.btn-primary.btn-sm.rounded-0(href='/iti', style="display: none") Editar
-			div.col-md-4.mt-3
-				div.card.shadow-sm
-					img.card-img-top(src="../images/DS.jpg", alt="Card image cap")
-					div.card-body.text-center
-						h5.card-title Desarrollo de Software
-						p.card-text El Técnico Superior en Desarrollo de Software participa en proyectos de desarrollo de software desempeñando roles que tienen por objeto producir artefactos de software (programas, módulos, objetos). Estos artefactos ...
-						.d-flex.justify-content-around.align-items-center
-							a.btn.btn-primary.btn-sm.rounded-0(href='/desarrolloSoftware') Ver detalles »
-							a.btn.btn-primary.btn-sm.rounded-0(href='/desarrolloSoftware', style="display: none") Editar
+  div.container.content
+    div.row.mb-4
+      div.col-sm-12.col-md-4.mt-3
+        div.card.shadow-sm
+          img.card-img-top(src="../images/AF.jpg", alt="Card image cap")
+          div.card-body.text-center
+            h5.card-title Análisis Funcional de Sistemas Informáticos 
+            p.card-text El Técnico Superior en Análisis Funcional de Sistemas Informáticos estará capacitado para comprender e interpretar fines, negocios o actividades ...
+            .d-flex.justify-content-around.align-items-center
+              a.btn.btn-primary.btn-sm.rounded-0(href='/analisisFuncional') Ver detalles »
+              a.btn.btn-primary.btn-sm.rounded-0(href='/analisisFuncional', style="display: none") Editar
+      div.col-md-4.mt-3
+        div.card.shadow-sm
+          img.card-img-top(src="../images/ITI.jpg", alt="Card image cap")
+          div.card-body.text-center
+            h5.card-title Infraestructura de Tecnología de la Información
+            p.card-text El Técnico Superior en Infraestructura de Tecnología de la Información estará capacitado para implementar, mantener, actualizar, ...
+            .d-flex.justify-content-around.align-items-center
+              a.btn.btn-primary.btn-sm.rounded-0(href='/iti') Ver detalles »
+              a.btn.btn-primary.btn-sm.rounded-0(href='/iti', style="display: none") Editar
+      div.col-md-4.mt-3
+        div.card.shadow-sm
+          img.card-img-top(src="../images/DS.jpg", alt="Card image cap")
+          div.card-body.text-center
+            h5.card-title Desarrollo de Software
+            p.card-text El Técnico Superior en Desarrollo de Software participa en proyectos de desarrollo de software desempeñando roles que tienen por objeto producir artefactos de software (programas, módulos, objetos). Estos artefactos ...
+            .d-flex.justify-content-around.align-items-center
+              a.btn.btn-primary.btn-sm.rounded-0(href='/desarrolloSoftware') Ver detalles »
+              a.btn.btn-primary.btn-sm.rounded-0(href='/desarrolloSoftware', style="display: none") Editar
 
-		div.row.mt-sm-4
-			div.col-sm-12.col-md-8.text-sm-center.text-md-left
-				hr
-				!= posts[1].content
+    div.row.mt-sm-4
+      div.col-sm-12.col-md-8.text-sm-center.text-md-left
+        hr
+        if posts.length
+          != posts[posts.length - 1].content
 
-			.col-sm-12.col-md-4.sidenav
-				hr
-				h5 Ultimas novedades
-				.list-group.list-group-flush
-					a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
-						.d-flex.w-100.justify-content-between
-							h5.mb-1 List group item heading
-							small.text-muted 3 days ago
-						p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-						small.text-muted Donec id elit non mi porta
-					a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
-						.d-flex.w-100.justify-content-between
-							h5.mb-1 List group item heading
-							small.text-muted 3 days ago
-						p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-						small.text-muted Donec id elit non mi porta
-					a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
-						.d-flex.w-100.justify-content-between
-							h5.mb-1 List group item heading
-							small.text-muted 3 days ago
-						p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-						small.text-muted Donec id elit non mi porta
-					a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
-						.d-flex.w-100.justify-content-between
-							h5.mb-1 List group item heading
-							small.text-muted 3 days ago
-						p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-						small.text-muted Donec id elit non mi porta
-		hr
-		.row
-			a(name='consultas')
-			section#contact
-				.container
-					.row
-						.col-md-12.col-sm-12
-							// SECTION TITLE
-							h2 Contáctanos
-							p Rellena el formulario, escribí tu duda y nos podremos en contacto vía e-mail. ¡Estamos encantados de ayudarte!
-						.col-md-7.col-sm-10
-							// CONTACT FORM HERE
-							form(action='send'  method='POST')
-								.col-md-6.col-sm-6
-									input.form-control(name='name', placeholder='Nombre', required='', type='text')
-								.col-md-6.col-sm-6
-									input.form-control(name='email', placeholder='Email', required='' type='email')
-								.col-md-12.col-sm-12
-									textarea.form-control(rows='5', name='message', placeholder='Escribe aquí', required='')
-								.col-md-offset-8.col-md-4.col-sm-offset-6.col-sm-6
-									button.btn.btn-primary.form-control(type='submit', name='submit') Enviar
-						.col-md-5.col-sm-8
-							// CONTACT INFO
-							.section-title
-								h3 Información de contacto
-								p
-									| Esc. Superior Nº 49  "Cap. Gral. J.J. Urquiza" - Nivel Terciario
-								p
-									i.fa.fa-map-marker
-									|  Bv. Oroño 690 - Rosario, Santa Fe, Argentina
-								p
-									i.fa.fa-comment
-									| 
-									a(href='#') info@terciariourquiza.edu.ar
-								p
-									i.fa.fa-phone
-									|  (0341) 4721430
-									br
-									i.fa.fa-phone
-									|  (0341) 4721431
-								p
-									i.fab.fa-telegram.fa-2x 
+      .col-sm-12.col-md-4.sidenav
+        hr
+        h5 Ultimas novedades
+        .list-group.list-group-flush
+          a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 List group item heading
+              small.text-muted 3 days ago
+            p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+            small.text-muted Donec id elit non mi porta
+          a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 List group item heading
+              small.text-muted 3 days ago
+            p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+            small.text-muted Donec id elit non mi porta
+          a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 List group item heading
+              small.text-muted 3 days ago
+            p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+            small.text-muted Donec id elit non mi porta
+          a.list-group-item.list-group-item-action.flex-column.align-items-start(href="#")
+            .d-flex.w-100.justify-content-between
+              h5.mb-1 List group item heading
+              small.text-muted 3 days ago
+            p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+            small.text-muted Donec id elit non mi porta
+    hr
+    .row
+      a(name='consultas')
+      section#contact
+        .container
+          .row
+            .col-md-12.col-sm-12
+              // SECTION TITLE
+              h2 Contáctanos
+              p Rellena el formulario, escribí tu duda y nos podremos en contacto vía e-mail. ¡Estamos encantados de ayudarte!
+            .col-md-7.col-sm-10
+              // CONTACT FORM HERE
+              form(action='send'  method='POST')
+                .col-md-6.col-sm-6
+                  input.form-control(name='name', placeholder='Nombre', required='', type='text')
+                .col-md-6.col-sm-6
+                  input.form-control(name='email', placeholder='Email', required='' type='email')
+                .col-md-12.col-sm-12
+                  textarea.form-control(rows='5', name='message', placeholder='Escribe aquí', required='')
+                .col-md-offset-8.col-md-4.col-sm-offset-6.col-sm-6
+                  button.btn.btn-primary.form-control(type='submit', name='submit') Enviar
+            .col-md-5.col-sm-8
+              // CONTACT INFO
+              .section-title
+                h3 Información de contacto
+                p
+                  | Esc. Superior Nº 49  "Cap. Gral. J.J. Urquiza" - Nivel Terciario
+                p
+                  i.fa.fa-map-marker
+                  |  Bv. Oroño 690 - Rosario, Santa Fe, Argentina
+                p
+                  i.fa.fa-comment
+                  | 
+                  a(href='#') info@terciariourquiza.edu.ar
+                p
+                  i.fa.fa-phone
+                  |  (0341) 4721430
+                  br
+                  i.fa.fa-phone
+                  |  (0341) 4721431
+                p
+                  i.fab.fa-telegram.fa-2x
 
-	#map
+  #map

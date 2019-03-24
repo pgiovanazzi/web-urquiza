@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-let mongoose = require('../config/connection');
-let Posts = require('../models/posts');
+var mongoose = require('../config/connection');
+var Posts = require('../models/posts');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
