@@ -8,7 +8,6 @@ let Posts = require('../models/posts');
 router.get('/', function (req, res, next) {
 	Posts.find((err, posts) => {
 		if (err) throw err;
-		console.log(posts);
 		res.render('index', { posts: posts });
 	})
 	// res.render('index', {
