@@ -43,7 +43,6 @@ h1 {
     vertical-align: bottom;
     margin-top: 18px; 
 		width: 300px;
-	/* margin-left: 9px; */
     margin-bottom: 36px;
 }
 
@@ -80,7 +79,7 @@ p {
     font-size: 15px;
     color: #fff;
     border: 0;
-    width: 96%;
+    width: 94%;
     letter-spacing: 1px;
     background: transparent;
     outline: none;
@@ -179,6 +178,9 @@ label.header {
     margin-right: 12px
 }
 
+select.category2 {
+    width: 94%;
+}
 
 /*--placeholder-color--*/
 
@@ -258,7 +260,7 @@ label.custom-control-label {
     .styled-input span {
         padding-right: 5px;
     }
-    .register-form input[type="text"], #carrerComp,.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, label.custom-control-label {
+    .register-form input[type="text"], #carrerComp,.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, label.custom-control-label, input[type="password"] {
         width: 95%;
     }
 }
@@ -276,8 +278,8 @@ label.custom-control-label {
     h1 img {
         width: 12%;
     }
-    .register-form input[type="text"], #carrerComp,.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, label.custom-control-label {
-        width: 94%;
+    .register-form input[type="text"], #carrerComp,.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, label.custom-control-label, input[type="password"] {
+        width: 93%;
         font-size: 14px;
     }
     .register-form input[type="submit"] {
@@ -297,6 +299,10 @@ label.custom-control-label {
 
 }
 @media(max-width: 568px){
+     .register-form {
+        width: 100%;
+        padding: 0%;
+    }
     .styled-input span {
         padding-right: 4px;
     }
@@ -305,13 +311,19 @@ label.custom-control-label {
     h1 img {
         width: 14%;
     }
-    .register-form input[type="text"],.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, p, #carrerComp {
-        width: 92%;
+    .register-form input[type="text"],.register-form input[type="number"], .register-form input[type="date"], .register-form input[type="email"], select.category2, p, #carrerComp, input[type="password"] {
+        width: 91%;
         font-size: 13px;
     }
+      .register-form {
+        width: 100%;
+        padding: 0%;
+    }
+  
     .register-form input[type="submit"] {
-        font-size: 15px;
-        padding: 11px 32px;
+    font-size: 15px;
+    padding: auto;
+    margin-left: 2%;  
     }
 }
 @media(max-width: 440px){
@@ -321,6 +333,11 @@ label.custom-control-label {
     .styled-input {
         padding: 12px;
     }
+    .register-form input[type="submit"] {
+    font-size: 15px;
+    padding: auto;
+    margin-left: 2%;  
+    }
 }
 @media(max-width: 414px){
     h1 {
@@ -328,7 +345,12 @@ label.custom-control-label {
         letter-spacing: 2px;
         margin: 14px 0;
     }
-    .register-form input[type="text"], #carrerComp ,.register-form input[type="email"],.register-form input[type="number"], .register-form input[type="date"] select.category2, label.custom-control-label {
+    .register-form {
+        width: 100%;
+        padding: 0%;
+    }
+
+    .register-form input[type="text"], #carrerComp , .register-form input[type="email"],.register-form input[type="number"], .register-form input[type="date"] select.category2, label.custom-control-label, input[type="password"] {
         width: 91%;
     }
 }
@@ -341,8 +363,8 @@ label.custom-control-label {
         width: 15%;
     }
     .register-form {
-        padding: 20px;
-        width: 82%;
+        padding: 0%;
+        width: 100%;
     }
 }
 @media(max-width: 320px){
@@ -356,7 +378,7 @@ label.custom-control-label {
         padding: 10px;
         margin-bottom: 11px;
     }
-    .register-form input[type="text"], #carrerComp, .register-form input[type="number"], .register-form input[type="date"],.register-form input[type="email"], select.category2, label.custom-control-label {
+    .register-form input[type="text"], #carrerComp, .register-form input[type="number"], .register-form input[type="date"],.register-form input[type="email"], select.category2, label.custom-control-label, input[type="password"] {
         width: 89%;
         font-size: 12px;
     }
