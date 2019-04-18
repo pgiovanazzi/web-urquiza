@@ -1,0 +1,9 @@
+extends layout
+
+block append current_page
+	- current_page = "Biblioteca"
+	
+block content
+	.container.content
+		h2 #{titleLibrary}
+		p #{libraries}

@@ -1,0 +1,31 @@
+doctype html
+html
+	block current_page
+		- var current_page = "Inicio"
+
+	head
+		title= current_page + " | Esc. Urquiza"
+
+		block head
+			include head
+
+		style
+			include ../public/stylesheets/style.css
+
+	body
+		block menu
+			include menu
+		block header
+			include header
+
+		block content
+
+		block prefooter
+			include prefooter
+		block footer
+			include footer
+
+		script
+			include ../public/js/jq.js
+			include ../public/js/jquery.waypoints.min.js
+			include ../public/js/map.js

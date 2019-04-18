@@ -1,0 +1,28 @@
+.modal.fade#addPost(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+   .modal-dialog.modal-lg(role="document")
+      .modal-content
+         .modal-header
+            h4#myModalLabel.modal-title Agregar Noticia
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+               span(aria-hidden='true') ×
+         .modal-body
+            form(action='/user/postsAdmin', method='POST')
+               .form-group
+                  label.col-form-label(for="col-form-label") Título del la noticia para el administrador.
+                  input.form-control(placeholder='Título', type='text', name='title', required="")
+               .form-group
+                  label Contenido del la noticia:
+                  textarea.form-control#editor(placeholder='Contenido', name='content', required="")
+               .checkbox
+                  label
+                     input(type='checkbox', name='published', checked)
+                     |  Publicar
+               .form-group
+                  label Meta etiquetas:
+                  input.form-control(placeholder='Agregar meta etiquetas...', type='text', name='metaLabel')
+               .form-group
+                  label Meta descripción:
+                  input.form-control(placeholder='Agregar meta descripcion...', type='text', name='metaDescription')
+               .modal-footer
+                  button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
+                  button.btn.btn-primary#enviar(type='submit') Guardar noticia

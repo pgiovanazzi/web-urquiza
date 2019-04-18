@@ -1,0 +1,56 @@
+extends layoutAdmin
+
+block current_page
+	- activePanel = ''
+	- activePages = ''
+	- activePosts = 'active'
+	- activeUsers = ''
+	- currentPanel = 'Noticias'
+
+block panel
+	a(href='/user/mainAdmin') Panel
+
+append breadcrumb
+	li.breadcrumb-item.active(aria-current='page') Noticias
+
+block content
+	.col-md-9.mb-3
+		.card.bg-light.text-center.mb-3.mb-3
+			.card-header.main-color-bg
+				b #{currentPanel}
+			.card-body
+				.row
+					.col-md-12
+						input.form-control(placeholder="Filtrar articulos...", type='text')
+				br
+				table.table.table-hover
+					tbody
+						tr
+							th Titulo
+							th Publicado
+							th Creado
+							th
+						tr
+							td Novedade n
+							td
+								i.fas.fa-check(aria-hidden="ture")
+							td 9 de Marzo de 2019
+							td
+								button.btn.btn-outline-info.btn-sm.mr-1(type="button") Editar
+								button.btn.btn-outline-danger.btn-sm(type="button") Eliminar
+						tr
+							td Novedad n-1
+							td
+								i.fas.fa-check(aria-hidden="ture")
+							td 9 de Marzo de 2019
+							td
+								button.btn.btn-outline-info.btn-sm.mr-1(type="button") Editar
+								button.btn.btn-outline-danger.btn-sm(type="button") Eliminar
+						tr
+							td Novedad n-...
+							td
+								i.fas.fa-check(aria-hidden="ture")
+							td 9 de Marzo de 2019
+							td
+								button.btn.btn-outline-info.btn-sm.mr-1(type="button") Editar
+								button.btn.btn-outline-danger.btn-sm(type="button") Eliminar

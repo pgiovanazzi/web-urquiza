@@ -1,0 +1,131 @@
+doctype html
+head
+	title  Registro Urquiza 
+	meta(name='viewport' content='width=device-width, initial-scale=1')
+	meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
+	meta(name='keywords' content='Registro, Registrarse, Registrarse en escuela Urquiza, Urquiza registro, escuela Urquiza')
+	script.
+		addEventListener("load", function () {
+		setTimeout(hideURLbar, 0);
+		}, false);
+		function hideURLbar() {
+		window.scrollTo(0, 1);
+		}
+	//- Custom Theme files
+	style
+		include ../public/stylesheets/signIn-upStyle.css
+	//- Font-Awesome-Icons-CSS
+	link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css' integrity='sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU' crossorigin='anonymous')
+
+	//- web font
+	link(href='https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei', rel='stylesheet')
+	link(href='//fonts.googleapis.com/css?family=Acme' rel='stylesheet')
+	link(href='//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese' rel='stylesheet')
+
+	//- bootstrap
+	
+	style
+		include ../public/bootstrap/bootstrap.min.css
+	script
+		include ../public/bootstrap/bootstrap.min.js
+		include ../public/bootstrap/popper.min.js
+		include ../public/js/jquery.min.js
+
+//- main
+.main-agileits
+	.navbar.bg-dark.sticky-top
+		.navbar-header.pull-left
+			a.fa.fa-angle-left.navbar-brand(href='#')
+			a.navbar-link(href='/') Volver al inicio 
+		.navbar-header.pull-right
+			a.btn.btn-primary.rounded-0(href='/login') Ingresar
+
+
+	center
+		object.logo(data="../images/Urquiza_Icon.svg", type="image/svg+xml")
+		.row.justify-content-center
+			if hasErrors
+				.alert.alert-danger
+					each error in messages
+						p= error
+
+	.register-form
+		form(action='/signup' method='POST')
+			.fields-grid
+				.styled-input-2
+					label.header Cree su cuenta para la pre-inscripción
+					.styled-input
+						span.fa.fa-user(aria-hidden='true')
+						input(type='text' placeholder='Ingrese sus nombres y apellidos' title='Ingrese su nombre completo' name='name' required='')
+					.styled-input.agile-styled-input-top
+						span.fa.fa-address-card(aria-hidden='true')
+						select.category2(required='' name='doc_type')
+							option(value='') Tipo de documento
+							option(value='DNI') DNI: Documento Nacional de Identidad
+							option(value='CI') CI: Cédula de Identidad
+							option(value='LE') LE: Libreta de Enrolamiento
+							option(value='LE') LC: Libreta Cívica
+					.styled-input
+						span.fa.fa-address-card(aria-hidden='true')
+						input(type='number' placeholder='Nro. de documento' title='Ingrese su Nro. de documento' name='dni' min='10000' required='')
+					.styled-input
+						span.fa.fa-calendar(aria-hidden='true')
+						input(placeholder='Día de nacimiento' name='birth' type='date' value='' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'dd/mm/aaaa';}" required='' title='Ingrese su fecha de nacimiento')
+					.styled-input.agile-styled-input-top
+						span.fa.fa-transgender(aria-hidden='true')
+						select.category2(required='' name='gender')
+							option(value='') Genero
+							option(value='Femenino') Femenino
+							option(value='Masculino') Masculino
+							option(value='Otro') Otro
+					.styled-input
+						span.fa.fa-envelope(aria-hidden='true')
+						input(type='email' placeholder='Correo electrónico' title='Ingrese su correo electrónico' name='email' required='')
+					.styled-input
+						span.fa.fa-phone(aria-hidden='true')
+						input(type='number' min='0' placeholder='Numero de teléfono' title='Ingrese su numero de teléfono o numero de celular' name='phone_number' required='')
+					.styled-input
+						span.fa.fa-book-reader(aria-hidden='true')
+						input(type='number' placeholder='Año de Inscripción' min='2019' max='3000' title='Ingrese el año de inscripción' name='year_ins' required='')
+					.styled-input.agile-styled-input-top
+						span.fa.fa-book(aria-hidden='true')
+						select.category2(required='' name='careers')
+							option(value='') Seleccione carrera
+							option(value=' Tec. Superior en Desarrollo de Software') Tec. Superior en Desarrollo de Software
+							option(value='Tec. Superior en Análisis Funcional de Sistemas Informáticos') Tec. Superior en Análisis Funcional de Sistemas Informáticos
+							option(value='Tec. Superior en Infraestructura de Tecnología de la Información') Tec. Superior en Infraestructura de Tecnología de la Información
+					.custom-control.custom-radio.custom-control-inline
+						input#place_career.custom-control-input(type='radio' value='Cursar en Oroño 690 (Centro)' name='place_career')
+						label.custom-control-label(for='place_career' style='color: white') Cursar en Oroño 690 (Centro)
+					.custom-control.custom-radio.custom-control-inline
+						input#place_career_ext.custom-control-input(type='radio' name='place_career' value='Cursar en la extensión áulica (Sur)')
+						label.custom-control-label(for='place_career_ext' style='color: white') Cursar en la extensión áulica (Sur)
+					.styled-input-2
+						label.header Dirección
+						.styled-input
+							input(type='text' name='address' placeholder='Domicilio' title='ingrese su domicilio' required='')
+						.styled-input
+							input(type='number' min='0' name='floor' placeholder='Piso' title='Si vive en un edificio indicar su piso')
+						.styled-input
+							input(type='text' name='dpt' placeholder='Departamento' title='Si vive en un edificio indicar indicar su departamento')
+						.styled-input
+							input(type='text' name='city' placeholder='Localidad de residencia' title='Ingrese su localidad de residencia' required='')
+						.styled-input
+							input(type='text' name='zip_code' placeholder='Código postal' title='Ingrese el código postal' required='')
+				.styled-input-2
+					label.header Otros estudios superiores
+					.styled-input
+						input(type='text' name='estudios_sup' placeholder='Carrera: Indicar aquella con mayor cantidad de años cursados' title='Indicar aquella con mayor cantidad de años cursados')
+					.styled-input
+						input(type='number' name='last_year_c' min='1' max='6' placeholder='Ultimo año cursado' title='Indicar el ultimo año cursado de la carrera')
+					label#carrerComp(style='color: white') Carrera completa?
+					.custom-control.custom-radio.custom-control-inline
+						input#carrer_comp.custom-control-input(type='radio' name='carrer_comp' value='SI')
+						label.custom-control-label(for='carrer_comp' style='color: white') SI
+					.custom-control.custom-radio.custom-control-inline
+						input#carrer_comp_NO.custom-control-input(type='radio' name='carrer_comp' value='NO')
+						label.custom-control-label(for='carrer_comp_NO' style='color: white') NO
+					.clear
+			input(type='hidden' name='_csrf' value=csrfToken)
+			input(type='submit' value='Enviar')
+// copyright
