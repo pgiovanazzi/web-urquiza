@@ -1,14 +1,13 @@
 'use strict'
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
-var passport = require('passport');
-var flash = require('connect-flash');
-const nodemailer = require('nodemailer');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -68,46 +67,6 @@ app.use('/user/pagesAdmin', pagesAdminRoutes);
 app.use('/user/postsAdmin', postsAdminRoutes);
 app.use('/user/usersAdmin', usersAdminRoutes);
 
-app.post("/send", (req, res) => {
-  let user = req.body;
-  contactUs(user, info => {
-    console.log(` The email has been send and the id is ${info.messageId}, ${JSON.stringify(info.envelope)}`);
-    //res.send(info);
-    res.redirect('/');
-  });
-});
-
-async function contactUs(user, callback) {
-
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: "ramuggeador@gmail.com", // generated ethereal user
-      pass: "kNtP,jv>"// generated ethereal password
-    }
-  });
-
-  // setup email data with unicode symbols
-  let mailOptions = {
-    from: '"Urquiza web contacto 👻" <ramuggeador@gmail.com>', // sender address
-    to: "ivanog@pm.me", // list of receivers
-    subject: "Hello ✔", // Subject line
-    text: "Hello world?", // plain text body
-    html: `<h3> Consulta enviada desde urquiza web.<h3><br>
-    <p>     Informacion <br>
-            nombre: ${user.name},<br> 
-            Email:  ${user.email},<br>
-            Mensaje: ${user.message}
-    </p>`// html body
-  };
-  // send mail with defined transport object
-  let info = await transporter.sendMail(mailOptions)
-
-  callback(info);
-}
-//contactUs().catch(console.error);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

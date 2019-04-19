@@ -1,8 +1,10 @@
-var express = require('express');
-var router = express.Router();
+'use strict'
 
-var mongoose = require('../config/connection');
-var Posts = require('../models/posts');
+const express = require('express');
+const router = express.Router();
+const Posts = require('../models/posts');
+const { contactUs } = require('../controllers/contactUS')
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -10,16 +12,15 @@ router.get('/', function (req, res, next) {
 		if (err) throw err;
 		res.render('index', { posts: posts });
 	})
-	// res.render('index', {
-	// 	news: 'Noticias',
-	// 	newSummary: 'Resumen de las noticias',
-	// 	textNews: 'Texto de la noticia',
-	// 	text1: 'texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 texto1 ',
-	// 	text2: 'texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 texto2 ',
-	// 	text3: 'texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 texto3 ',
-	// 	text4: 'texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 texto4 ',
-	// 	text5: 'texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 texto5 '
-	// });
 });
+
+
+router.post('/', (req, res, next) => {
+	let user = req.body;
+	contactUs(user, info => {
+		console.log(` The email has been send and the id is ${info.messageId}, ${JSON.stringify(info.envelope)}`);
+	})
+	res.redirect('/')
+})
 
 module.exports = router;

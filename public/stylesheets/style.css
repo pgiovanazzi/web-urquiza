@@ -174,7 +174,13 @@ body {
 }
 
 @media(max-width: 354px){
-    #icono.img-responsive{
+    #icono{
+      	width: 220px;
+    }
+}
+
+@media(max-width: 324px){
+    #icono{
       	width: 200px;
     }
 }

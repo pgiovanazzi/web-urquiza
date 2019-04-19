@@ -66,18 +66,21 @@ block content
             p.mb-1 Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
             small.text-muted Donec id elit non mi porta
     hr
+    script
+      include ../public/js/angApp.js
     .row
       a(name='consultas')
       section#contact
-        .container
-          .row
+        .container(ng-app="AlertMessages")
+          .row(ng-controller="ControllerMasssage")
             .col-md-12.col-sm-12
+              alert-message(alert="alertMessage")
               // SECTION TITLE
               h2 Contáctanos
               p Rellena el formulario, escribí tu duda y nos podremos en contacto vía e-mail. ¡Estamos encantados de ayudarte!
             .col-md-7.col-sm-10
               // CONTACT FORM HERE
-              form(action='send'  method='POST')
+              form(action='/'  method='POST')
                 .col-md-6.col-sm-6
                   input.form-control(name='name', placeholder='Nombre', required='', type='text')
                 .col-md-6.col-sm-6
@@ -85,7 +88,7 @@ block content
                 .col-md-12.col-sm-12
                   textarea.form-control(rows='5', name='message', placeholder='Escribe aquí', required='')
                 .col-md-offset-8.col-md-4.col-sm-offset-6.col-sm-6
-                  button.btn.btn-primary.form-control(type='submit', name='submit') Enviar
+                  button.btn.btn-primary.form-control(type='submit', ng-click="showAlert()", name='send') Enviar
             .col-md-5.col-sm-8
               // CONTACT INFO
               .section-title
