@@ -67,7 +67,6 @@ app.use('/user/pagesAdmin', pagesAdminRoutes);
 app.use('/user/postsAdmin', postsAdminRoutes);
 app.use('/user/usersAdmin', usersAdminRoutes);
 
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	next(createError(404));

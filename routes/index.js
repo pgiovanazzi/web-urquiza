@@ -14,7 +14,6 @@ router.get('/', function (req, res, next) {
 	})
 });
 
-
 router.post('/', (req, res, next) => {
 	let user = req.body;
 	contactUs(user, info => {
