@@ -1,3 +1,6 @@
 'use strict'
 
-const app = angular.module("AlertMessages", []);
+const moduleMainController = angular.module("MainController", []);
+const moduleMassage = angular.module("AlertMessages", []);
+
+const app = angular.module("app", ["MainController", "AlertMessages"]);

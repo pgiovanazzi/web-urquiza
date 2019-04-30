@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div.container.content
+  div.container.content(ng-app="app", ng-controller="MainController")
     div.row.mb-4
       div.col-sm-12.col-md-4.mt-3
         div.card.shadow-sm
@@ -69,7 +69,7 @@ block content
     .row
       a(name='consultas')
       section#contact
-        .container(ng-app="AlertMessages")
+        .container
           .row(ng-controller="ControllerMasssage")
             .col-md-12.col-sm-12
               alert-message(alert="alertMessage")
@@ -80,14 +80,14 @@ block content
               // CONTACT FORM HERE
               form(action='/'  method='POST')
                 .col-md-6.col-sm-6
-                  input.form-control(name='name', placeholder='Nombre', required='', type='text')
+                  input.form-control(name='name', placeholder='Nombre', required='', type='text', ng-model='name')
                 .col-md-6.col-sm-6
-                  input.form-control(name='email', placeholder='Email', required='' type='email')
+                  input.form-control(name='email', placeholder='Email', required='' type='email', ng-model='email')
                 .col-md-12.col-sm-12
-                  textarea.form-control(rows='5', name='message', placeholder='Escribe aquí', required='')
+                  textarea.form-control(rows='5', name='message', placeholder='Escribe aquí', required='', ng-model='message')
                 .col-md-offset-8.col-md-4.col-sm-offset-6.col-sm-6
 
-                  button.btn.btn-primary.form-control(type='submit', ng-click="showAlert()", name='send') Enviar
+                  button.btn.btn-primary.form-control(type='submit', ng-click="showAlert()") Enviar
             .col-md-5.col-sm-8
               // CONTACT INFO
               .section-title

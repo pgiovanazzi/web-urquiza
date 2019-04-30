@@ -15,9 +15,9 @@ const contactUs = async (user, callback) => {
       });
 
       // setup email data with unicode symbols
-      var mailOptions = {
+      let mailOptions = {
          from: '"Urquiza web contacto 👻" <ramuggeador@gmail.com>', // sender address
-         to: "vschaden_231c@theroyalweb.club", // list of receivers
+         to: "ihilpert_392u@theroyalweb.club", // list of receivers
          subject: "Nueva consulta desde la web Urquiza ✔", // Subject line
          text: "Hello world?", // plain text body
          html: `<h3> Consulta enviada desde urquiza web.<h3><br>

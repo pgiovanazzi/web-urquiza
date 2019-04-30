@@ -1,4 +1,4 @@
-app.controller("ControllerMasssage", function ($scope) {
+moduleMassage.controller("ControllerMasssage", function ($scope) {
    $scope.showAlert = function () {
       $scope.alertMessage = {
          type: "success",

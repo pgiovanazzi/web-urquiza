@@ -18,8 +18,9 @@ router.post('/', (req, res, next) => {
 	let user = req.body;
 	contactUs(user, info => {
 		console.log(` The email has been send and the id is ${info.messageId}, ${JSON.stringify(info.envelope)}`);
-	})
-	res.redirect('/')
-})
+		res.redirect('/');
+	});
+	// res.status(200).send();
+});
 
 module.exports = router;

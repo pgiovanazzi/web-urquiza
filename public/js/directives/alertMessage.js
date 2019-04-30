@@ -1,4 +1,4 @@
-app.directive("alertMessage", function ($compile) {
+moduleMassage.directive("alertMessage", function ($compile) {
   return {
      restrict: "E",
      scope: {
