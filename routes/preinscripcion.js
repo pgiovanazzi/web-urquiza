@@ -1,8 +1,9 @@
 'use strict'
-var express = require('express');
-var router = express.Router();
-var csrf = require('csurf');
-var passport = require('passport');
+
+const express = require('express');
+const router = express.Router();
+const csrf = require('csurf');
+const passport = require('passport');
 
 var { mongoose } = require('../config/connection');
 require('../config/passport');
