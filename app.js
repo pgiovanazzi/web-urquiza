@@ -10,8 +10,8 @@ const passport = require('passport');
 const flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var signupRouter = require('./routes/signup');
+var loginRouter = require('./routes/loginSu');
+var preinscripcionRouter = require('./routes/preinscripcion');
 var historyInstituteRouter = require('./routes/historyInstitute');
 var authoritiesRouter = require('./routes/authorities');
 var headquartersRoutes = require('./routes/headquarters');
@@ -50,8 +50,8 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
+app.use('/su', loginRouter);
+app.use('/preinscripcion', preinscripcionRouter);
 app.use('/nuestraHistoria', historyInstituteRouter);
 app.use('/autoridades', authoritiesRouter);
 app.use('/sedes', headquartersRoutes);

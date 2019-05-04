@@ -7,7 +7,7 @@ var postsSchema = new Schema({
 	published: String,
 	metaLabel: { type: String, required: false},
 	metaDescription: {type: String, required: false},
-	date: { type: Date, required: true},
+	date: { type: Date, default: Date.now() }
 });
 
 let Posts = mongoose.model('Posts', postsSchema);

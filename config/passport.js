@@ -1,18 +1,6 @@
-var passport = require('passport');
-var User = require('../models/user');
-var LocalStrategy = require('passport-local').Strategy;
-
-
-//function random psswrd
-function make_pwd() {
-  let text = "";
-  const possible = "abcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 6; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-  return text;
-}
+const passport = require('passport');
+const User = require('../models/user');
+const LocalStrategy = require('passport-local').Strategy;
 
 
 passport.serializeUser(function (user, done) {
@@ -40,7 +28,6 @@ passport.use('local.signup', new LocalStrategy({
       newUser.name = req.body.name;
       newUser.doc_type = req.body.doc_type;
       newUser.dni = dni;
-      newUser.pwd = newUser.encryptPassword(make_pwd());
       newUser.birth = req.body.birth;
       newUser.gender = req.body.gender;
       newUser.email = email;

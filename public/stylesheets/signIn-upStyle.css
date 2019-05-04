@@ -205,6 +205,13 @@ label.custom-control-label {
     margin-bottom: 10px;
 }
 
+#radioLocationCurse {
+    display: none;
+}
+#radioLocationCurse-ext {
+    display: none;
+}
+
 
 /*--//placeholder-color--*/
 

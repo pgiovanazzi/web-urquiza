@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt-nodejs');
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const bcrypt = require('bcrypt-nodejs')
 
 var userSchema = new Schema({
 	name: { type: String, required: true },
@@ -21,8 +21,22 @@ var userSchema = new Schema({
 	zipCode: { type: Number, required: true },
 	estudios_sup: { type: String },
 	last_year_c: { type: Number },
-	career_comp: { type: String }
+	career_comp: { type: String },
+	signupDate: { type: Date, default: Date.now() }
 });
+
+
+//function random psswrd
+function make_pwd() {
+	let text = "";
+	const possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+	for (var i = 0; i < 6; i++)
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	return text;
+}
+
 
 //method for encrypt password
 userSchema.methods.encryptPassword = function (pwd) {

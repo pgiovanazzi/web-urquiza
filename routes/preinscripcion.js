@@ -19,12 +19,12 @@ router.use(csrfProtection);
 
 router.get('/', function (req, res, next) {
   var messages = req.flash('error');
-  res.render('signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+  res.render('preinscripcion', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
 
 router.post('/', passport.authenticate('local.signup', {
   successRedirect: '/',
-  failureRedirect: '/signup',
+  failureRedirect: '/preinscripcion',
   failureFlash: true
 }));
 

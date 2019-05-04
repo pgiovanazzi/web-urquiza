@@ -15,8 +15,7 @@ router.post('/', (req, res, next) => {
 		content: req.body.content,
 		published: req.body.published,
 		metaLabel: req.body.metaLabel,
-		metaDescription: req.body.metaDescription,
-		date: Date()
+		metaDescription: req.body.metaDescription
 	});
 	newPost.save();
 
