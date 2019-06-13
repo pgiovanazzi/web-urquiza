@@ -3,15 +3,15 @@ extends layoutAdmin
 block current_page
 	- activePanel = ''
 	- activePages = ''
-	- activePosts = 'active'
-	- activeUsers = ''
-	- currentPanel = 'Noticias'
+	- activePosts = ''
+	- activeUsers = 'Active'
+	- currentPanel = 'Registro de usuarios'
 
 block panel
 	a(href='/user/mainAdmin') Panel
 
 append breadcrumb
-	li.breadcrumb-item.active(aria-current='page') Noticias
+	li.breadcrumb-item.active(aria-current='page') Registro de usuarios
 
 block content
 	.col-md-9.mb-3
@@ -21,36 +21,33 @@ block content
 			.card-body
 				.row
 					.col-md-12
-						input.form-control(placeholder="Filtrar articulos...", type='text')
+						input.form-control(placeholder="Filtrar registro de usuarios...", type='text')
 				br
 				table.table.table-hover
 					tbody
 						tr
-							th Titulo
-							th Publicado
-							th Creado
+							th Nombre
+							th Email
+							th Ingresó
 							th
 						tr
-							td Novedade n
-							td
-								i.fas.fa-check(aria-hidden="ture")
+							td Juan Perez
+							td juanperes@gmail.com
 							td 9 de Marzo de 2019
 							td
-								button.btn.btn-outline-info.btn-sm.mr-1(type="button") Editar
+								button.btn.btn-outline-info.btn-sm.mr-1(href='#' type="button") Editar
 								button.btn.btn-outline-danger.btn-sm(type="button") Eliminar
 						tr
-							td Novedad n-1
-							td
-								i.fas.fa-check(aria-hidden="ture")
+							td Alberto Sanchez
+							td albertozanchez@hotmail.com
 							td 9 de Marzo de 2019
 							td
-								button.btn.btn-outline-info.btn-sm.mr-1(type="button") Editar
+								button.btn.btn-outline-info.btn-sm.mr-1(href='#' type="button") Editar
 								button.btn.btn-outline-danger.btn-sm(type="button") Eliminar
 						tr
-							td Novedad n-...
-							td
-								i.fas.fa-check(aria-hidden="ture")
+							td Julieta Ortega
+							td julietaortega@outlook.com
 							td 9 de Marzo de 2019
 							td
-								button.btn.btn-outline-info.btn-sm.mr-1(type="button") Editar
+								button.btn.btn-outline-info.btn-sm.mr-1(href='#' type="button") Editar
 								button.btn.btn-outline-danger.btn-sm(type="button") Eliminar

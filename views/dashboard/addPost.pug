@@ -2,16 +2,16 @@
    .modal-dialog.modal-lg(role="document")
       .modal-content
          .modal-header
-            h4#myModalLabel.modal-title Agregar Noticia
+            h4#myModalLabel.modal-title Agregar Publicacion
             button.close(type='button', data-dismiss='modal', aria-label='Close')
                span(aria-hidden='true') ×
          .modal-body
-            form(action='/user/postsAdmin', method='POST')
+            form(action='/su/panel/nueva-publicacion', method='POST')
                .form-group
-                  label.col-form-label(for="col-form-label") Título del la noticia para el administrador.
-                  input.form-control(placeholder='Título', type='text', name='title', required="")
+                  label.col-form-label(for="col-form-label") Título del la publicacion para el administrador.
+                  input.form-control(placeholder='Título para el administrador', type='text', name='title', required="")
                .form-group
-                  label Contenido del la noticia:
+                  label Contenido del la publicacion:
                   textarea.form-control#editor(placeholder='Contenido', name='content', required="")
                .checkbox
                   label
@@ -25,4 +25,4 @@
                   input.form-control(placeholder='Agregar meta descripcion...', type='text', name='metaDescription')
                .modal-footer
                   button.btn.btn-default(type='button', data-dismiss='modal') Cerrar
-                  button.btn.btn-primary#enviar(type='submit') Guardar noticia
+                  button.btn.btn-primary#enviar(type='submit') Guardar publicacion
