@@ -12,10 +12,6 @@ const flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/loginSu');
 var dashboardRouter = require('./routes/dashboard');
-// var mainAdminRoutes = require('./routes/user/mainAdmin');
-// var pagesAdminRoutes = require('./routes/user/pagesAdmin');
-// var postsAdminRoutes = require('./routes/user/postsAdmin');
-// var usersAdminRoutes = require('./routes/user/usersAdmin');
 
 var app = express();
 
@@ -41,10 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/su', loginRouter);
 app.use('/su/panel', dashboardRouter);
-// app.use('/user/mainAdmin', mainAdminRoutes);
-// app.use('/user/pagesAdmin', pagesAdminRoutes);
-// app.use('/user/postsAdmin', postsAdminRoutes);
-// app.use('/user/usersAdmin', usersAdminRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
