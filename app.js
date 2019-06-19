@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/loginSu');
 var dashboardRouter = require('./routes/dashboard');
+var aspirantRouter = require('./routes/aspirant');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/aspirante', aspirantRouter);
 app.use('/su', loginRouter);
 app.use('/su/panel', dashboardRouter);
 

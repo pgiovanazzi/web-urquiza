@@ -60,7 +60,7 @@ head
       });  
 
 //- main
-.main-agileits#app
+.main-agileits
    .navbar.bg-dark.sticky-top
       .navbar-header.pull-left
          a.fa.fa-angle-left.navbar-brand(href='#')
@@ -75,7 +75,7 @@ head
 
    .register-form
       //- ver action aqui <<<<<<<<<<<<<<<<<<<<<<
-      form(action='/signup' method='POST')
+      form(action='/aspirante/preinscripcion/aspirante-registrado' method='POST')
          .fields-grid
             .styled-input-2
                label.header Pre-inscripción
@@ -95,7 +95,7 @@ head
                   input(type='number' placeholder='Nro. de documento' title='Ingrese su nro. de documento' name='dni' min='10000' required='')
                .styled-input
                   span.fa.fa-calendar(aria-hidden='true')
-                  <input class="datepicker" type="text" data-provide="datepicker" placeholder="Fecha de nacimiento" requiered>
+                  <input class="datepicker" type="text" name="birth" data-provide="datepicker" placeholder="Fecha de nacimiento" requiered>
                .styled-input.agile-styled-input-top
                   span.fa.fa-transgender(aria-hidden='true')
                   select.category2(required='' name='gender')
@@ -145,13 +145,13 @@ head
                   input(type='number' name='last_year_c' min='1' max='6' placeholder='Ultimo año cursado' title='Indicar el ultimo año cursado de la carrera')
                label#carrerComp(style='color: white') ¿Carrera completa?
                .custom-control.custom-radio.custom-control-inline
-                  input#carrer_comp.custom-control-input(type='radio' name='carrer_comp' value='SI')
-                  label.custom-control-label(for='carrer_comp' style='color: white') SI
+                  input#career_comp.custom-control-input(type='radio' name='career_comp' value='SI')
+                  label.custom-control-label(for='career_comp' style='color: white') SI
                .custom-control.custom-radio.custom-control-inline
-                  input#carrer_comp_NO.custom-control-input(type='radio' name='carrer_comp' value='NO')
-                  label.custom-control-label(for='carrer_comp_NO' style='color: white') NO
+                  input#career_comp_NO.custom-control-input(type='radio' name='career_comp' value='NO')
+                  label.custom-control-label(for='career_comp_NO' style='color: white') NO
                .clear
-         input(type='hidden' name='_csrf' value=csrfToken)
+         //- input(type='hidden' name='_csrf' value=csrfToken)
          input(type='submit' value='Enviar')
    //- copyright footer
    <div style="margin-top: 3%; background-color: #1a1e23; color: #777777;" class="card rounded-0">
@@ -169,5 +169,5 @@ head
    </div>
 
 //- Vue instance
-script
+//- script
    include ../../public/js/controllerPreinscripcion.js
