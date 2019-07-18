@@ -6,7 +6,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
-const passport = require('passport');
 const flash = require('connect-flash');
 
 var indexRouter = require('./routes/index');
@@ -17,21 +16,39 @@ var aspirantRouter = require('./routes/aspirant');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
-app.use(session({ 
-	secret: 'mysupresecret', // Hay que poner un secret mas furte
-	resave: false,
-	saveUninitialized: false
+app.use(session({
+  secret: 'mysupresecret', // Hay que poner un secret mas furte
+  resave: false,
+  saveUninitialized: false
 }))
 app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
+
+// CORS
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  next();
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -40,13 +57,21 @@ app.use('/aspirante', aspirantRouter);
 app.use('/su', loginRouter);
 app.use('/su/panel', dashboardRouter);
 
+// Handle production
+if (process.env.NODE_ENV === 'production') {
+  // Static folder
+  app.use(express.static(__dirname +' /public/'));
+  // Handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+}
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-	next(createError(404));
+app.use(function (req, res, next) {
+  next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

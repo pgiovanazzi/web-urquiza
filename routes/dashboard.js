@@ -5,7 +5,8 @@ var router = express.Router();
 const { mongose } = require('../config/connection');
 
 const Users = require('../models/user')
-var Posts = require('../models/posts');
+const Posts = require('../models/posts')
+const Careers = require('../models/careers')
 
 router.get('/principal', (req, res, next) => {
    res.render('dashboard/mainAdmin');
@@ -30,7 +31,7 @@ router.get('/registros', (req, res, next) => {
 router.get('/registros/aspirantes', async (req, res, next) => {
    try {
       const aspirantes = await Users.find()
-      res.json(aspirantes);
+      res.send(aspirantes);
    } catch (error) {
       res.status(500).send(error)
    }
@@ -53,5 +54,33 @@ router.post('/nueva-publicacion', async (req, res, next) => {
       res.status(500).send(error)
    }
 });
+
+router.post('/carrera/nueva', async (req, res) => {
+   try {
+      const newCarrer = new Careers(req.body)
+      await newCarrer.save()
+      res.status(201).json({ message: "Nueva carrera creada." })
+   } catch (error) {
+      res.status(500).json({ message: "Ocurrio un error inesperado."})
+   }
+})
+
+router.get('/carreras', async (req, res) => {
+   try {
+      const careers = await Careers.find()
+      res.status(200).send(careers)
+   } catch (error) {
+      res.status(500).json({ message: "Ocurrio un error inesperado." })
+   }
+})
+
+router.put('/carrera/editar/:id', async (req, res) => {
+   try {
+      await Careers.findByIdAndUpdate(req.params.id, req.body)
+      res.status(200).json({ message: "La carrera ha sido actualizada." })
+   } catch (error) {
+      res.status(500).json({ message: "Ocurrio un error inesperado." })
+   }
+})
 
 module.exports = router;
