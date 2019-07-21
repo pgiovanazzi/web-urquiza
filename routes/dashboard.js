@@ -16,8 +16,13 @@ router.get('/paginas', (req, res, next) => {
    res.render('dashboard/pagesAdmin');
 });
 
-router.get('/publicaciones', (req, res, next) => {
-   res.render('dashboard/postsAdmin');
+router.get('/publicaciones', async (req, res, next) => {
+   try {
+      const publicaciones = await Posts.find()
+      res.send(publicaciones)
+   } catch (error) {
+      res.status(500).send(error)
+   }
 });
 
 router.get('/registros', (req, res, next) => {
@@ -49,7 +54,7 @@ router.post('/nueva-publicacion', async (req, res, next) => {
 
       await newPost.save();
 
-      res.redirect('/su/panel/principal');
+      res.status(200).json({ message: "Publicacion creada." })
    } catch (error) {
       res.status(500).send(error)
    }

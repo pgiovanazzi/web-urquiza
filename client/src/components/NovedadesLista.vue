@@ -20,10 +20,10 @@
       <!--Excerpt-->
       <div class="col-md-9">
         <p class="dark-grey-text">
-          <strong>19/08/2018</strong>
+          <small>{{ post.date | formatDate }}</small>
         </p>
         <a>
-          Lorem ipsum dolor sit amet
+          <strong>{{ post.title }}</strong>
           <i class="fas fa-angle-right float-right"></i>
         </a>
       </div>
@@ -34,7 +34,10 @@
 
 <script>
 export default {
-  name: "novedadesLista"
+  name: "novedadesLista",
+  props: {
+    post: Object
+  }
 };
 </script>
 

@@ -31,9 +31,6 @@ export default {
     Map,
     Footer
   },
-  mounted() {
-    // require("../../public/js/map.js");
-  }
 };
 </script>
 
