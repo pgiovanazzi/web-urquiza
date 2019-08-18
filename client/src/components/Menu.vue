@@ -59,13 +59,8 @@
             </li>
           </ul>
           <div class="left">
-            <a
-              class="btn btn-outline-light waves-effect mt-2"
-              href="/preinscribirse"
-            >
-              Preinscribirse
-              <i class="fas fa-sign-in-alt"></i>
-            </a>
+            <router-link class="btn btn-outline-light waves-effect mt-2" to="/preinscribirse">Preinscribirse
+              <i class="fas fa-sign-in-alt"></i></router-link>
           </div>
         </div>
       </div>

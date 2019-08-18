@@ -16,9 +16,7 @@
               <h4
                 class="subtext-header mt-2 mb-4"
               >Las nuevas carreras que dicta la institución, con alta demanda laboral y altamente cualificadas.</h4>
-              <a href="/preinscribirse" class="btn btn-rounded btn-outline-white">
-                <i class="fas fa-home"></i> Inscribite
-              </a>
+              <router-link to="/preinscribirse" class="btn btn-rounded btn-outline-white"><i class="fas fa-home"></i> Inscribite</router-link>
             </div>
           </div>
         </div>
