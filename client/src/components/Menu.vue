@@ -59,13 +59,13 @@
             </li>
           </ul>
           <div class="left">
-            <router-link
+            <a
               class="btn btn-outline-light waves-effect mt-2"
-              to="/aspirante/preinscripcion"
+              href="/preinscribirse"
             >
               Preinscribirse
               <i class="fas fa-sign-in-alt"></i>
-            </router-link>
+            </a>
           </div>
         </div>
       </div>

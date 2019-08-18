@@ -5,8 +5,8 @@ const router = express.Router();
 
 /* GET home page. */
 
-router.get('/aspirante/preinscripcion', function (req, res, next) {
-   res.render('aspirant-register/preinscripcion', {});
+router.get('/preinscribirse', function (req, res, next) {
+   res.render('',{});
 });
 
 router.post('/mensaje/enviado', (req, res) => {

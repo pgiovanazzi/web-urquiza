@@ -11,6 +11,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    layout: 'Main',
+    compsForm: 'Preinscribirse',
     careers: [],
     posts: [{
       _id: '',
@@ -23,11 +25,17 @@ export default new Vuex.Store({
     }]
   },
   mutations: {
-    updateCareers(state, careersFromAction) {
+    SET_LAYOUT(state, newLayout) {
+      state.layout = newLayout
+    },
+    UPDATE_CAREERS(state, careersFromAction) {
       state.careers = careersFromAction
     },
-    updatePosts(state, postsFromAction) {
+    UPDATE_POSTS(state, postsFromAction) {
       state.posts = postsFromAction
+    },
+    SUCCESS_PRE_INS(state) {
+      state.compsForm = 'PreInsSuccessComponent'
     }
   },
   actions: {
@@ -42,7 +50,7 @@ export default new Vuex.Store({
         method: 'GET'
       })
       const careersData = await data.json()
-      commit('updateCareers', careersData)
+      commit('UPDATE_CAREERS', careersData)
     },
     async getPosts({
       commit
@@ -55,7 +63,7 @@ export default new Vuex.Store({
         method: 'GET'
       })
       const postsData = await data.json()
-      commit('updatePosts', postsData)
+      commit('UPDATE_POSTS', postsData)
     }
   }
 })

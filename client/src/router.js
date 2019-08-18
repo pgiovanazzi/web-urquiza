@@ -9,57 +9,62 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'inicio',
-      component: () => import( /* webpackChunkName: "inicio" */ './views/Inicio.vue')
+      component: () => import( /* webpackChunkName: "inicio" */ './views/main/Inicio.vue')
     },
     {
       path: '/nuestra-historia',
       name: 'historia',
-      component: () => import( /* webpackChunkName: "historia" */ './views/Historia.vue')
+      component: () => import( /* webpackChunkName: "historia" */ './views/main/Historia.vue')
     },
     {
       path: '/sedes',
       name: 'sedes',
-      component: () => import( /* webpackChunkName: "sedes" */ './views/Sedes.vue')
+      component: () => import( /* webpackChunkName: "sedes" */ './views/main/Sedes.vue')
     },
     {
       path: '/autoridades',
       name: 'autoridades',
-      component: () => import( /* webpackChunkName: "autoridades" */ './views/Autoridades.vue')
+      component: () => import( /* webpackChunkName: "autoridades" */ './views/main/Autoridades.vue')
     },
     {
       path: '/biblioteca',
       name: 'biblioteca',
-      component: () => import( /* webpackChunkName: "biblioteca" */ './views/Biblioteca.vue')
+      component: () => import( /* webpackChunkName: "biblioteca" */ './views/main/Biblioteca.vue')
     },
     {
       path: '/asociacion-cooperadora',
       name: 'cooperadora',
-      component: () => import( /* webpackChunkName: "cooperadora" */ './views/Cooperadora.vue')
+      component: () => import( /* webpackChunkName: "cooperadora" */ './views/main/Cooperadora.vue')
     },
     {
       path: '/informacion-ingresantes',
       name: 'ingresantes',
-      component: () => import( /* webpackChunkName: "history" */ './views/Ingresantes.vue')
+      component: () => import( /* webpackChunkName: "history" */ './views/main/Ingresantes.vue')
     },
     {
       path: '/cursos-ingreso',
       name: 'cursoIngreso',
-      component: () => import( /* webpackChunkName: "history" */ './views/CursoIngreso.vue')
+      component: () => import( /* webpackChunkName: "history" */ './views/main/CursoIngreso.vue')
     },
     {
       path: '/analisis-funcional',
       name: 'analisisFuncional',
-      component: () => import( /* webpackChunkName: "history" */ './views/AnalisisFuncional.vue')
+      component: () => import( /* webpackChunkName: "history" */ './views/main/AnalisisFuncional.vue')
     },
     {
       path: '/infraestructura-de-tecnologia-de-la-informacion',
       name: 'iti',
-      component: () => import( /* webpackChunkName: "iti" */ './views/ITI.vue')
+      component: () => import( /* webpackChunkName: "iti" */ './views/main/ITI.vue')
     },
     {
       path: '/desarrollo-de-software',
       name: 'desarrolloSoftware',
-      component: () => import( /* webpackChunkName: "iti" */ './views/DesarrolloSoftware.vue')
+      component: () => import( /* webpackChunkName: "desarrollo de softare" */ './views/main/DesarrolloSoftware.vue')
+    },
+    {
+      path: '/preinscribirse',
+      name: 'preinscribirse',
+      component: () => import(/* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
     },
     {
       path: '*',

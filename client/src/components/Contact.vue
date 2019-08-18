@@ -18,6 +18,7 @@
                 id="form3"
                 v-model="newQuery.name"
                 class="form-control form-control-sm"
+                required
               />
               <label for="form3">Nombre</label>
             </div>
@@ -28,6 +29,7 @@
                 id="form2"
                 v-model="newQuery.email"
                 class="form-control form-control-sm"
+                required
               />
               <label for="form2">Email</label>
             </div>
@@ -38,6 +40,7 @@
                 id="form32"
                 v-model="newQuery.subject"
                 class="form-control form-control-sm"
+                required
               />
               <label for="form32">Asunto</label>
             </div>
@@ -49,6 +52,7 @@
                 v-model="newQuery.message"
                 class="md-textarea form-control form-control-sm"
                 rows="4"
+                required
               ></textarea>
               <label for="form8">Mensaje</label>
             </div>

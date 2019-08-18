@@ -11,12 +11,12 @@
             <div class="col-md-12 mb-4 white-text text-center">
               <h3
                 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5"
-              >DF <i class="fas fa-grip-lines-vertical"></i> AF <i class="fas fa-grip-lines-vertical"></i> ITI</h3>
+              >DS <i class="fas fa-grip-lines-vertical"></i> AF <i class="fas fa-grip-lines-vertical"></i> ITI</h3>
               <hr class="hr-light my-4 w-85" />
               <h4
                 class="subtext-header mt-2 mb-4"
               >Las nuevas carreras que dicta la institución, con alta demanda laboral y altamente cualificadas.</h4>
-              <a href="#!" class="btn btn-rounded btn-outline-white">
+              <a href="/preinscribirse" class="btn btn-rounded btn-outline-white">
                 <i class="fas fa-home"></i> Inscribite
               </a>
             </div>
