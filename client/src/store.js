@@ -22,7 +22,7 @@ export default new Vuex.Store({
       published: '',
       metaLabel: '',
       metaDescription: ''
-    }]
+    }],
   },
   mutations: {
     SET_LAYOUT(state, newLayout) {
@@ -34,8 +34,8 @@ export default new Vuex.Store({
     UPDATE_POSTS(state, postsFromAction) {
       state.posts = postsFromAction
     },
-    SUCCESS_PRE_INS(state) {
-      state.compsForm = 'PreInsSuccessComponent'
+    SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
+      state.compsForm = preinscriptionSuccessComponent
     }
   },
   actions: {

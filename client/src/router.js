@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { throwStatement } from 'babel-types';
+import {
+  throwStatement
+} from 'babel-types';
 
 Vue.use(Router)
 
@@ -10,7 +12,15 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'inicio',
-      component: () => import( /* webpackChunkName: "inicio" */ './views/main/Inicio.vue')
+      component: () => import( /* webpackChunkName: "inicio" */ './views/main/Inicio.vue'),
+    children: [{
+      path: '/novedades',
+      name: 'novedad',
+      component: () => import( /* webpackChunkName: "inicio/novedades" */ './views/main/Novedades.vue'),
+        path: '/novedades/:id',
+        name: 'novedades',
+        component: () => import( /* webpackChunkName: "inicio/novedades" */ './views/main/Novedades.vue')
+      }]
     },
     {
       path: '/nuestra-historia',
@@ -65,25 +75,25 @@ export default new Router({
     {
       path: '/preinscribirse',
       name: 'preinscribirse',
-      component: () => import(/* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
+      component: () => import( /* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
     },
     {
       path: '*',
       redirect: '/'
     }
   ],
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition)
-      return savedPosition
-    if (to.hash) {
-      return window.scrollTo({
-        top: document.querySelector(to.hash).offsetTop,
-        behavior: 'smooth'
-      });
-    }
-    return window.scrollTo({
-      top: 500,
-      behavior: 'smooth'
-    })
-  }
+  // scrollBehavior(to, from, savedPosition) {
+  //   if (savedPosition)
+  //     return savedPosition
+  //   if (to.hash) {
+  //     return window.scrollTo({
+  //       top: document.querySelector(to.hash).offsetTop,
+  //       behavior: 'smooth'
+  //     });
+  //   }
+  //   return window.scrollTo({
+  //     top: 500,
+  //     behavior: 'smooth'
+  //   })
+  // }
 })

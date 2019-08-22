@@ -344,6 +344,7 @@
 import { mapState } from "vuex";
 import Datepicker from "vuejs-datepicker";
 import PreinscriptionService from "../../PrescriptionService";
+import PreInsSuccessComponent from "@/components/PreInsSuccessComponent.vue"
 
 class Preinscripcion {
   constructor(
@@ -422,7 +423,7 @@ export default {
         this.sending = true;
         const data = await PreinscriptionService.send(this.formPreinscribirse);
         const resMsg = await data.json();
-        if (resMsg.success) this.$store.commit("SUCCESS_PRE_INS");
+        if (resMsg.success) this.$store.commit("SUCCESS_PRE_INS", "PreInsSuccessComponent");
         else toastr.error(resMsg.message, this.configToastr);
         this.formPreinscribirse = new Preinscripcion();
       } catch (error) {

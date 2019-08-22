@@ -22,10 +22,11 @@
         <p class="dark-grey-text">
           <small>{{ post.date | formatDate }}</small>
         </p>
-        <a>
+
+        <router-link :to="'/novedades/' + post.title">
           <strong>{{ post.title }}</strong>
           <i class="fas fa-angle-right float-right"></i>
-        </a>
+        </router-link>
       </div>
     </div>
     <!--/Small news-->
@@ -44,15 +45,22 @@ export default {
 
 <style scoped>
 hr {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-	margin-left: 0rem;
-	margin-right: 1rem;
-	border: 0;
-	border-top: 1px solid rgba(0,0,0,.1);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 0rem;
+  margin-right: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .col-md-3 {
-	padding: 0px;
+  padding: 0px;
+}
+
+a {
+  color: #212529
+}
+a:hover {
+  color: #6096cc
 }
 </style>
