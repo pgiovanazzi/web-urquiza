@@ -6,6 +6,7 @@ import {
 
 const apiCareers = "/su/panel/carreras"
 const apiPosts = "/su/panel/publicaciones"
+const apiPages = "/su/panel/paginas"
 
 Vue.use(Vuex)
 
@@ -16,8 +17,20 @@ export default new Vuex.Store({
     careers: [],
     posts: [{
       _id: '',
-      title: '',
+      description: '',
+      alias: '',
       content: '',
+      date: '',
+      published: '',
+      metaLabel: '',
+      metaDescription: ''
+    }],
+    pages: [{
+      _id: '',
+      description: '',
+      alias: '',
+      content: '',
+      url: '',
       date: '',
       published: '',
       metaLabel: '',
@@ -33,6 +46,9 @@ export default new Vuex.Store({
     },
     UPDATE_POSTS(state, postsFromAction) {
       state.posts = postsFromAction
+    },
+    UPDATE_PAGES(state, pagesFromAction) {
+      state.pages = pagesFromAction
     },
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
       state.compsForm = preinscriptionSuccessComponent
@@ -64,6 +80,20 @@ export default new Vuex.Store({
       })
       const postsData = await data.json()
       commit('UPDATE_POSTS', postsData)
+    },
+    async getPages({
+      commit
+    }) {
+      const data = await fetch(apiPages, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'GET'
+      })
+      const pagesData = await data.json()
+      commit('UPDATE_PAGES', pagesData)
     }
-  }
+  },
+
 })

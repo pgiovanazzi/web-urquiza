@@ -29,10 +29,10 @@ export default {
     getId() {
       return this.$route.params.id;
     },
-    findPost(titleId) {
+    findPost(aliasID) {
       var post = {};
       for (let index = 0; index < this.posts.length; index++) {
-        if (this.posts[index].title == titleId) {
+        if (this.posts[index].alias == aliasID) {
           post = this.posts[index];
           break;
         }

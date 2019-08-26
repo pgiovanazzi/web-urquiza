@@ -13,7 +13,6 @@ Vue.filter('formatDate', function (value) {
   }
 })
 
-
 Vue.filter('formatDate2', function (value) {
   if (value) {
     moment.locale('es')

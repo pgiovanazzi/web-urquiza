@@ -23,8 +23,8 @@
           <small>{{ post.date | formatDate }}</small>
         </p>
 
-        <router-link :to="'/novedades/' + post.title">
-          <strong>{{ post.title }}</strong>
+        <router-link :to="'/novedades/' + post.alias">
+          <strong>{{ post.description }}</strong>
           <i class="fas fa-angle-right float-right"></i>
         </router-link>
       </div>

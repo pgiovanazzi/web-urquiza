@@ -19,7 +19,7 @@
     </div>
     <!-- Link -->
     <div class="card-footer">
-      <router-link :to="careerRoute" class="black-text d-flex justify-content-end">
+      <router-link :to="{ name: 'Careers', params: { careersPage: careerRoute }}" class="black-text d-flex justify-content-end">
         <h5>
           mas detalles
           <i class="fas fa-angle-double-right"></i>

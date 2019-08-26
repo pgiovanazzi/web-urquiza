@@ -1,15 +1,37 @@
 const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 var postsSchema = new Schema({
-	title: { type: String, required: true },
-	content: {type: String, required: true},
-	published: String,
-	metaLabel: { type: String, required: false},
-	metaDescription: {type: String, required: false},
-	date: { type: Date, default: Date.now() }
+	description: {
+		type: String,
+		required: true
+	},
+	alias: {
+		type: String,
+		required: true
+	},
+	content: {
+		type: String,
+		required: true
+	},
+	published: {
+		type: String,
+		required: true
+	},
+	metaLabel: {
+		type: String,
+		required: false
+	},
+	metaDescription: {
+		type: String,
+		required: false
+	},
+	date: {
+		type: Date,
+		default: Date.now()
+	}
 });
 
-let Posts = mongoose.model('Posts', postsSchema);
+var Posts = mongoose.model('Posts', postsSchema);
 
 module.exports = Posts;

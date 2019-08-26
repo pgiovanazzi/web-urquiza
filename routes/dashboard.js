@@ -8,37 +8,24 @@ const {
 
 const Users = require('../models/user')
 const Posts = require('../models/posts')
+const Pages = require('../models/pages')
 const Careers = require('../models/careers')
-
-router.get('/principal', (req, res, next) => {
-   res.render('dashboard/mainAdmin');
-});
-
-router.get('/paginas', (req, res, next) => {
-   res.render('dashboard/pagesAdmin');
-});
-
-router.get('/registros', (req, res, next) => {
-   res.render('dashboard/usersAdmin');
-});
-
-router.get('/registros', (req, res, next) => {
-   res.render('dashboard/usersAdmin');
-});
 
 router.get('/registros/aspirantes', async (req, res, next) => {
    try {
       const aspirantes = await Users.find()
-      res.send(aspirantes);
+      res.status(200).send(aspirantes);
    } catch (error) {
       res.status(500).send(error)
    }
 });
 
+
+// API Posts
 router.get('/publicaciones', async (req, res, next) => {
    try {
       const publicaciones = await Posts.find()
-      res.send(publicaciones)
+      res.status(200).send(publicaciones)
    } catch (error) {
       res.status(500).send(error)
    }
@@ -46,13 +33,7 @@ router.get('/publicaciones', async (req, res, next) => {
 
 router.post('/nueva-publicacion', async (req, res, next) => {
    try {
-      let newPost = new Posts({
-         title: req.body.title,
-         content: req.body.content,
-         published: req.body.published,
-         metaLabel: req.body.metaLabel,
-         metaDescription: req.body.metaDescription
-      });
+      const newPost = new Posts(req.body);
 
       await newPost.save();
 
@@ -79,16 +60,78 @@ router.delete('/publicaciones/eliminar/:id', async (req, res) => {
    }
 });
 
+// API Pages
+router.get('/paginas', async (req, res) => {
+   try {
+      const pages = await Pages.find()
+      res.status(200).send(pages)
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: "Ocurrió un error inesperado al cargar páginas."
+      })
+   }
+})
+
+router.post('/nueva-pagina', async (req, res) => {
+   try {
+      const newPage = new Pages(req.body)
+      await newPage.save()
+      res.status(201).json({
+         success: true,
+         message: 'Página creada correctamente.'
+      })
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: 'Ocurrió un error al crear la página.'
+      })
+   }
+})
+
+router.put('/pagina/editar/:id', async (req, res) => {
+   try {
+      await Pages.findByIdAndUpdate(req.params.id, req.body)
+      res.status(200).json({
+         success: true,
+         message: 'Página actualizada correctamente.'
+      })
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: 'Ocurrió un error al editar la página.'
+      })
+   }
+})
+
+router.delete('/pagina/eliminar/:id', async (req, res) => {
+   try {
+      await Pages.findByIdAndRemove(req.params.id)
+      res.status(200).json({
+         success: true,
+         message: 'Página eliminada correctamente.'
+      })
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: 'Ocurrió un error al eliminar la página.'
+      })
+   }
+})
+
+// API Careers
 router.post('/carrera/nueva', async (req, res) => {
    try {
       const newCarrer = new Careers(req.body)
       await newCarrer.save()
       res.status(201).json({
+         success: true,
          message: "Nueva carrera creada."
       })
    } catch (error) {
       res.status(500).json({
-         message: "Ocurrio un error inesperado."
+         success: false,
+         message: "Ocurrió un error inesperado."
       })
    }
 })
@@ -99,7 +142,8 @@ router.get('/carreras', async (req, res) => {
       res.status(200).send(careers)
    } catch (error) {
       res.status(500).json({
-         message: "Ocurrio un error inesperado."
+         success: false,
+         message: "Ocurrió un error inesperado."
       })
    }
 })
@@ -108,11 +152,13 @@ router.put('/carrera/editar/:id', async (req, res) => {
    try {
       await Careers.findByIdAndUpdate(req.params.id, req.body)
       res.status(200).json({
+         success: true,
          message: "La carrera ha sido actualizada."
       })
    } catch (error) {
       res.status(500).json({
-         message: "Ocurrio un error inesperado."
+         success: false,
+         message: "Ocurrió un error inesperado."
       })
    }
 })
