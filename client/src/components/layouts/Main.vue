@@ -2,11 +2,11 @@
   <div>
     <Menu />
     <VideoHeader />
-    <div class="container p-5" id="container">
+    <div class="container p-md-3 p-lg-4">
       <router-view />
     </div>
     <Parallax />
-    <div class="container p-5" id="consultas">
+    <div class="container p-md-3 p-lg-4" id="consultas">
       <Contact />
     </div>
     <Map />
@@ -39,6 +39,7 @@ body {
   margin: 0px;
 }
 .container {
+  padding-top: 30px;
   background-color: #fff;
   box-shadow: 0px 0px 18px rgba(32, 32, 32, 0.369);
   position: relative;

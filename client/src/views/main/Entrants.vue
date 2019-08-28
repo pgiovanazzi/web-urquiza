@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-html="findPageByParams(id)"></div>
+    <div class="pb-5 p-sm-1 p-md-4" v-html="findPageByParams(id)"></div>
   </div>
 </template>
 

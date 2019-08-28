@@ -14,18 +14,19 @@
         />
       </div>
     </div>
-    <hr />
+    <hr class="mt-3 mb-4"/>
     <div class="row">
-      <div class="col-lg-8 col-md-12">
+      <div class="col-lg-8 col-md-12 mt-4 mb-5">
         <router-view></router-view>
         <UltimaNovedad
           v-show="$route.path == '/' ? true : false"
           :lastPost="getLastPost(posts)"
         />
       </div>
-      <div class="col-lg-4 col-md-12">
-        <h4>Ultimas Novedades</h4>
-        <ul>
+      <div class="col-lg-4 col-md-12 mt-4 mb-5">
+        <h4 class="mb-n3">Ultimas Novedades</h4>
+        <ul style="list-style-type: none;
+        display: inline;">
           <li v-for="post of reverseArr(posts)" :key="post._id">
             <NovedadesLista :post="post" />
           </li>

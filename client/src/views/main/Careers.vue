@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1><div v-html="findTitlePageByParams(id)"></div></h1>
+    <h1><div class="pb-5 p-sm-1 p-md-4" v-html="findTitlePageByParams(id)"></div></h1>
     <img :src="findImagePageByParams(id)" class="mx-auto d-block img-thumbnail m-4" :alt="findTitlePageByParams(id)">
-    <div v-html="findPageByParams(id)"></div>
+    <div class="pb-5 p-sm-1 p-md-4" v-html="findPageByParams(id)"></div>
   </div>
 </template>
 

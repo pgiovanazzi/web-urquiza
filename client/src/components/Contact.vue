@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--Section: Contact-->
-    <section>
+    <section class="m-md-2">
       <!-- Heading -->
       <h2 class="mb-5 font-weight-bold text-center">Contactanos</h2>
       <p

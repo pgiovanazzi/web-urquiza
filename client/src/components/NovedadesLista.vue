@@ -11,9 +11,9 @@
             class="img-fluid"
             alt="Minor sample post image"
           />
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
+          <router-link :to="'/novedades/' + post.alias">
+            <div class="mask rgba-white-light"></div>
+          </router-link>
         </div>
       </div>
 
@@ -63,4 +63,18 @@ a {
 a:hover {
   color: #6096cc
 }
+
+@media only screen and (max-width: 991px) {
+  .view {
+    margin-left: 20px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .view {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
 </style>

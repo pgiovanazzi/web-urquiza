@@ -10,7 +10,28 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   fallback: false,
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: to => {
+    if (to.hash)
+      return window.scrollTo({
+        top: document.querySelector(to.hash).offsetTop,
+        behavior: 'smooth'
+      });
+    if (to.name === "novedades")
+    return window.scrollTo({
+      top: 1500,
+      behavior: 'smooth'
+    })
+    if (to.path != "/preinscribirse")
+      return window.scrollTo({
+        top: 500,
+        behavior: 'smooth'
+      })
+    else
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+  },
   routes: [{
       path: '/',
       name: 'inicio',
