@@ -17,20 +17,19 @@ export default new Router({
         behavior: 'smooth'
       });
     if (to.name === "novedades")
-    return window.scrollTo({
-      top: 1500,
-      behavior: 'smooth'
-    })
+      return window.scrollTo({
+        top: 1500,
+        behavior: 'smooth'
+      })
     if (to.path != "/preinscribirse")
       return window.scrollTo({
         top: 500,
         behavior: 'smooth'
       })
-    else
-      return window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      })
+    return window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
   },
   routes: [{
       path: '/',
