@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
+var history = require('connect-history-api-fallback');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/loginSu');
@@ -18,6 +19,11 @@ var app = express();
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'pug');
+app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(__dirname + '/public'));
+// app.set('view engine', 'html');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -50,7 +56,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.set('view engine', 'html');
 
 app.use('/', indexRouter);
 app.use('/aspirante', aspirantRouter);
