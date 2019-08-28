@@ -6,6 +6,14 @@ import {
 
 Vue.use(Router)
 
+const Home = () => import( /* webpackChunkName: "inicio" */ './views/main/Inicio.vue')
+const News = () => import( /* webpackChunkName: "inicio/novedades" */ './views/main/Novedades.vue')
+const Institutional = () => import( /* webpackChunkName: "institutional" */ './views/main/Institutional.vue')
+const Entrants = () => import( /* webpackChunkName: "entrants" */ './views/main/Entrants.vue')
+const Careers = () => import( /* webpackChunkName: "careers" */ './views/main/Careers.vue')
+const Preinscription = () => import( /* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
+const SuperUserSignIn = () => import( /* webpackChunkName: "preinscribirse" */ './views/SU/SuperUserSignIn.vue')
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -34,53 +42,44 @@ export default new Router({
   routes: [{
       path: '/',
       name: 'inicio',
-      component: () => import( /* webpackChunkName: "inicio" */ './views/main/Inicio.vue'),
+      component: Home,
       children: [{
         path: '/novedades',
         name: 'novedad',
-        component: () => import( /* webpackChunkName: "inicio/novedades" */ './views/main/Novedades.vue'),
+        component: News,
         path: '/novedades/:id',
         name: 'novedades',
-        component: () => import( /* webpackChunkName: "inicio/novedades" */ './views/main/Novedades.vue')
+        component: News
       }]
     },
     {
       path: '/institucional/:instPage',
       name: 'Institutional',
-      component: () => import( /* webpackChunkName: "institutional" */ './views/main/Institutional.vue'),
+      component: Institutional,
     },
     {
       path: '/ingresantes/:entrantsPage',
       name: 'Entrants',
-      component: () => import( /* webpackChunkName: "entrants" */ './views/main/Entrants.vue'),
+      component: Entrants,
     },
     {
       path: '/carreras/:careersPage',
       name: 'Careers',
-      component: () => import( /* webpackChunkName: "careers" */ './views/main/Careers.vue'),
+      component: Careers,
     },
     {
       path: '/preinscribirse',
       name: 'preinscribirse',
-      component: () => import( /* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
+      component: Preinscription
+    },
+    {
+      path: '/su',
+      name: 'su',
+      component: SuperUserSignIn
     },
     {
       path: '*',
       redirect: '/'
     }
   ],
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition)
-  //     return savedPosition
-  //   if (to.hash) {
-  //     return window.scrollTo({
-  //       top: document.querySelector(to.hash).offsetTop,
-  //       behavior: 'smooth'
-  //     });
-  //   }
-  //   return window.scrollTo({
-  //     top: 500,
-  //     behavior: 'smooth'
-  //   })
-  // }
 })

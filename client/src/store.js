@@ -13,7 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     layout: 'Main',
-    compsForm: 'Preinscribirse',
+    setComponentInSimpleLayout: 'Preinscribirse',
     careers: [],
     posts: [{
       _id: '',
@@ -41,6 +41,9 @@ export default new Vuex.Store({
     SET_LAYOUT(state, newLayout) {
       state.layout = newLayout
     },
+    SET_LAYOUT_SU(state, newLayout) {
+      state.setComponentInSimpleLayout = newLayout
+    },
     UPDATE_CAREERS(state, careersFromAction) {
       state.careers = careersFromAction
     },
@@ -51,8 +54,8 @@ export default new Vuex.Store({
       state.pages = pagesFromAction
     },
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
-      state.compsForm = preinscriptionSuccessComponent
-    }
+      state.setComponentInSimpleLayout = preinscriptionSuccessComponent
+    },
   },
   actions: {
     async getCareers({

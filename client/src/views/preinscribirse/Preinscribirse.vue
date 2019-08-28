@@ -1,12 +1,6 @@
 <template>
   <div>
     <section class="mb-4">
-      <!-- <div class="row m-5">
-        <div class="col-md-12 d-flex justify-content-center">
-          <object id="iconPreIns" :data="urquizaSvg" type="image/svg+xml"></object>
-        </div>
-      </div> -->
-      <!--Section description-->
       <div class="card text-center z-depth-2 p-4">
         <div class="card-body white-text">
           <h4 class="text-center w-responsive mx-auto mb-5">Formulario de Preinscripción</h4>
@@ -73,7 +67,6 @@
                         :language="es"
                         placeholder="Fecha de Nacimiento"
                       ></datepicker>
-                      <!-- <label class>Fecha de nacimiento</label> -->
                     </div>
                   </div>
                 </div>
@@ -394,7 +387,7 @@ export default {
     Datepicker
   },
   created() {
-    this.$store.commit("SET_LAYOUT", "LayoutPreinscribirse");
+    this.$store.commit("SET_LAYOUT", "SimpleLayout");
   },
   computed: {
     ...mapState(["careers"])
@@ -455,10 +448,6 @@ export default {
 </script>
 
 <style scoped>
-#iconPreIns {
-  width: 25rem;
-}
-
 hr {
   background-color: aliceblue !important;
   margin: 0px;

@@ -1,7 +1,7 @@
 <template>
-  <div id="layoutPreIns">
+  <div id="simpleLayout">
     <nav class="navbar navbar-dark">
-      <a class="navbar-brand" href="/">Volver al inicio</a>
+      <a class="navbar-brand" href="/"><i class="fas fa-angle-left"></i> Volver al inicio</a>
     </nav>
     <div class="container">
       <div class="row m-5">
@@ -9,7 +9,7 @@
           <object id="iconPreIns" :data="urqzSvg" type="image/svg+xml"></object>
         </div>
       </div>
-      <component :is="compsForm"></component>
+      <component :is="setComponentInSimpleLayout"></component>
     </div>
     <Footer />
   </div>
@@ -19,17 +19,19 @@
 import Footer from "@/components/Footer.vue";
 import Preinscribirse from "@/views/preinscribirse/Preinscribirse.vue";
 import PreInsSuccessComponent from "@/components/PreInsSuccessComponent.vue";
+import SuperUserSignIn from "@/views/SU/SuperUserSignIn.vue"
 import { mapState } from "vuex";
 
 export default {
-  name: "LayoutPreinscribirse",
+  name: "SimpleLayout",
   components: {
     Footer,
     Preinscribirse,
-    PreInsSuccessComponent
+    PreInsSuccessComponent,
+    SuperUserSignIn
   },
   computed: {
-    ...mapState(["compsForm"])
+    ...mapState(["setComponentInSimpleLayout"])
   },
   data() {
     return {
@@ -44,7 +46,7 @@ export default {
   width: 25rem;
 }
 
-#layoutPreIns {
+#simpleLayout {
   background: url("../../assets/urquiza-img-background.png") no-repeat center
     center/cover fixed;
   background-size: 100%;

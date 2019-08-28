@@ -6,13 +6,13 @@
 
 <script>
 import Main from "@/components/layouts/Main.vue"
-import LayoutPreinscribirse from "@/components/layouts/Preinscribirse.vue"
+import SimpleLayout from "@/components/layouts/SimpleLayout.vue"
 import { mapState } from "vuex"
 
 export default {
   components: {
     Main,
-    LayoutPreinscribirse
+    SimpleLayout
   },
   computed: {
     ...mapState(['layout'])
