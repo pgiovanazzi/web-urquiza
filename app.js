@@ -22,7 +22,6 @@ var app = express();
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(express.static(__dirname + '/public'));
-// app.set('view engine', 'html');
 
 
 app.use(logger('dev'));

@@ -7,12 +7,6 @@ a {
   color: #00B7FF;
 } */
 
-/* Map section */
-
-
-.navbar {
-	background: #222222;
-}
 
 .nav-item::after {
 	content: '';
@@ -51,7 +45,7 @@ a {
 	background: #6096cc;
 }
 
-
+/* MAP */
 #map {
 	height: 500px;
 	z-index: 1;
@@ -59,38 +53,6 @@ a {
 	margin-top: -6%;
 }
 
-
-/*---------------------------------------
-  Contact section              
------------------------------------------*/
-
-.contact-info .fa {
-	padding-right: 5px;
-}
-
-#contact .form-control {
-	border: none;
-	border-bottom: 2px solid #f0f0f0;
-	border-radius: 0px;
-	box-shadow: none;
-	font-size: 18px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	-webkit-transition: all ease-in-out 0.6s;
-	transition: all ease-in-out 0.6s;
-}
-
-hr {
-	margin: 50px;
-}
-
-#contact .form-control:focus {
-	border-bottom-color: #999999;
-}
-
-#contact input {
-	height: 55px;
-}
 
 /* Main page */
 .content {
@@ -162,7 +124,7 @@ nav .nav-link:hover {
 }
 
 body {
-	background-color: #f9feff;
+	background-color: #f6f6f6;
 }
 
 .footer {

@@ -12,7 +12,8 @@ const Institutional = () => import( /* webpackChunkName: "institutional" */ './v
 const Entrants = () => import( /* webpackChunkName: "entrants" */ './views/main/Entrants.vue')
 const Careers = () => import( /* webpackChunkName: "careers" */ './views/main/Careers.vue')
 const Preinscription = () => import( /* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
-const SuperUserSignIn = () => import( /* webpackChunkName: "preinscribirse" */ './views/SU/SuperUserSignIn.vue')
+const SuperUserSignIn = () => import( /* webpackChunkName: "SuperUserSignIn" */ './views/SU/SuperUserSignIn.vue')
+const Dashboard = () => import(/* webpackChunkName: "SuperUserSignIn" */ './views/dashboard/Dashboard.vue')
 
 export default new Router({
   mode: 'history',
@@ -74,8 +75,20 @@ export default new Router({
     },
     {
       path: '/su',
-      name: 'su',
-      component: SuperUserSignIn
+      name: 'SU',
+      component: SuperUserSignIn,
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/panel',
+      name: 'Panel',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true,
+        is_admin : true
+      }
     },
     {
       path: '*',
