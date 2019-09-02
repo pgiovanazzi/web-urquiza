@@ -47,7 +47,7 @@ export default {
 }
 
 #simpleLayout {
-  background: url("../../assets/urquiza-img-background.png") no-repeat center
+  background: url("https://source.unsplash.com/user/iroot/4160x2336") no-repeat center
     center/cover fixed;
   background-size: 100%;
   -webkit-background-size: cover;

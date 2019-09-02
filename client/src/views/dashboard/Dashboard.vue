@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 col-sm-12 mb-3">
         <!-- Card -->
-        <div class="card">
+        <div class="card hoverable">
           <router-link to="#">
             <!-- Card content -->
             <div class="card-body">
@@ -26,7 +26,7 @@
       <div class="col-md-6 col-sm-12">
         <!-- Card -->
         <!-- Card content -->
-        <div class="card">
+        <div class="card hoverable">
           <router-link to="#">
             <div class="card-body">
               <!-- Title -->
@@ -49,7 +49,7 @@
     <div class="row mt-4">
       <div class="col-md-6 col-sm-12 mb-3">
         <!-- Card -->
-        <div class="card">
+        <div class="card hoverable">
           <router-link to="#">
             <!-- Card content -->
             <div class="card-body">
@@ -70,7 +70,7 @@
       </div>
       <div class="col-md-6 col-sm-12">
         <!-- Card -->
-        <div class="card">
+        <div class="card hoverable">
           <router-link to="#">
             <!-- Card content -->
             <div class="card-body">
