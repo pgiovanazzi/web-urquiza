@@ -13,7 +13,19 @@ const Entrants = () => import( /* webpackChunkName: "entrants" */ './views/main/
 const Careers = () => import( /* webpackChunkName: "careers" */ './views/main/Careers.vue')
 const Preinscription = () => import( /* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
 const SuperUserSignIn = () => import( /* webpackChunkName: "SuperUserSignIn" */ './views/SU/SuperUserSignIn.vue')
-const Dashboard = () => import(/* webpackChunkName: "SuperUserSignIn" */ './views/dashboard/Dashboard.vue')
+const Dashboard = () => import(/* webpackChunkName: "Dashboard" */ './views/dashboard/Dashboard.vue')
+const Pages = () => import(/* webpackChunkName: "Pages" */ './views/dashboard/Pages.vue')
+const NewsInDashboard = () => import(/* webpackChunkName: "NewsInDashboard" */ './views/dashboard/NewsInDashboard.vue')
+const EntrantsInDashboard = () => import(/* webpackChunkName: "EntrantsInDashboard" */ './views/dashboard/EntrantsInDashboard.vue')
+const Students = () => import(/* webpackChuckName: "Studenet" */ './views/dashboard/Students.vue')
+const Page = () => import(/* webpackChuckName: "Page" */ './views/dashboard/Page.vue')
+const PageEdit = () => import(/* webpackChuckName: "PageEdit" */ './views/dashboard/EditPageAndNews.vue')
+const NewInDashboard = () => import(/* webpackChuckName: "NewInDashboard" */ './views/dashboard/NewInDashboard.vue')
+const NewEdit = () => import(/* webpackChuckName: "NewEdit" */ './views/dashboard/EditPageAndNews.vue')
+const Entrant = () => import(/* webpackChuckName: "Entrant" */ './views/dashboard/Entrant.vue')
+const EntrantEdit = () => import(/* webpackChuckName: "EntrantEdit" */ './views/dashboard/EditEntrantsAndStudents.vue')
+const Student = () => import(/* webpackChuckName: "Student" */ './views/dashboard/Student.vue')
+const StudentEdit = () => import(/* webpackChuckName: "StudentEdit" */ './views/dashboard/EditEntrantsAndStudents.vue')
 
 export default new Router({
   mode: 'history',
@@ -40,18 +52,17 @@ export default new Router({
       behavior: 'smooth'
     })
   },
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'inicio',
       component: Home,
-      children: [{
-        path: '/novedades',
-        name: 'novedad',
-        component: News,
-        path: '/novedades/:id',
-        name: 'novedades',
-        component: News
-      }]
+      children: [
+        {
+          path: '/novedades/:id',
+          name: 'novedades',
+          component: News
+        }]
     },
     {
       path: '/institucional/:instPage',
@@ -87,8 +98,79 @@ export default new Router({
       component: Dashboard,
       meta: {
         requiresAuth: true,
-        is_admin : true
+        is_admin: true
       }
+      ,
+      children: [
+        {
+          path: '/paginas',
+          name: 'Pages',
+          component: Pages
+        },
+        {
+          path: '/paginas/:id',
+          name: 'Page',
+          component: Page,
+          children: [
+            {
+              path: '/modificar',
+              name: 'PageEdit',
+              component: PageEdit
+            }
+          ]
+        },
+        {
+          path: '/novedades',
+          name: 'NewsInDashboard',
+          component: NewsInDashboard
+        },
+        {
+          path: '/novedades/:id',
+          name: 'NewInDashboard',
+          component: NewInDashboard,
+          children: [
+            {
+              path: '/modificar',
+              name: 'NewEdit',
+              component: NewEdit
+            }
+          ]
+        },
+        {
+          path: '/aspirantes',
+          name: 'EntrantsInDashboard',
+          component: EntrantsInDashboard
+        },
+        {
+          path: '/aspirante/:id',
+          name: 'Entrant',
+          component: Entrant,
+          children: [
+            {
+              path: '/modificar',
+              name: 'EntrantEdit',
+              component: EntrantEdit
+            }
+          ]
+        },
+        {
+          path: '/alumnos',
+          name: 'Students',
+          component: Students
+        },
+        {
+          path: '/alumno/:id',
+          name: 'Student',
+          component: Student,
+          children: [
+            {
+              path: '/modificar',
+              name: 'StudentEdit',
+              component: StudentEdit
+            }
+          ]
+        }
+      ]
     },
     {
       path: '*',
