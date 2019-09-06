@@ -15,27 +15,8 @@ export default new Vuex.Store({
     layout: 'Main',
     setComponentInSimpleLayout: 'Preinscribirse',
     careers: [],
-    posts: [{
-      _id: '',
-      description: '',
-      alias: '',
-      content: '',
-      date: '',
-      published: '',
-      metaLabel: '',
-      metaDescription: ''
-    }],
-    pages: [{
-      _id: '',
-      description: '',
-      alias: '',
-      content: '',
-      url: '',
-      date: '',
-      published: '',
-      metaLabel: '',
-      metaDescription: ''
-    }],
+    posts: [],
+    pages: [],
   },
   mutations: {
     SET_LAYOUT(state, newLayout) {
@@ -44,13 +25,19 @@ export default new Vuex.Store({
     SET_LAYOUT_SU(state, newLayout) {
       state.setComponentInSimpleLayout = newLayout
     },
-    UPDATE_CAREERS(state, careersFromAction) {
+    UPDATE_CAREERS(state, {
+      careersFromAction
+    }) {
       state.careers = careersFromAction
     },
-    UPDATE_POSTS(state, postsFromAction) {
+    UPDATE_POSTS(state, {
+      postsFromAction
+    }) {
       state.posts = postsFromAction
     },
-    UPDATE_PAGES(state, pagesFromAction) {
+    UPDATE_PAGES(state, {
+      pagesFromAction
+    }) {
       state.pages = pagesFromAction
     },
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
@@ -61,41 +48,44 @@ export default new Vuex.Store({
     async getCareers({
       commit
     }) {
-      const data = await fetch(apiCareers, {
+      const careersData = await fetch(apiCareers, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         method: 'GET'
       })
-      const careersData = await data.json()
-      commit('UPDATE_CAREERS', careersData)
+      commit('UPDATE_CAREERS', {
+        careersFromAction: await careersData.json()
+      })
     },
     async getPosts({
       commit
     }) {
-      const data = await fetch(apiPosts, {
+      const postsData = await fetch(apiPosts, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         method: 'GET'
       })
-      const postsData = await data.json()
-      commit('UPDATE_POSTS', postsData)
+      commit('UPDATE_POSTS', {
+        postsFromAction: await postsData.json()
+      })
     },
     async getPages({
       commit
     }) {
-      const data = await fetch(apiPages, {
+      const pagesData = await fetch(apiPages, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         method: 'GET'
       })
-      const pagesData = await data.json()
-      commit('UPDATE_PAGES', pagesData)
+      commit('UPDATE_PAGES', {
+        pagesFromAction: await pagesData.json()
+      })
     }
   },
 

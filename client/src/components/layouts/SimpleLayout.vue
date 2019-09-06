@@ -47,7 +47,7 @@ export default {
 }
 
 #simpleLayout {
-  background: url("https://source.unsplash.com/user/iroot/4160x2336") no-repeat center
+  background: url("https://source.unsplash.com/user/iroot/2560x1440") no-repeat center
     center/cover fixed;
   background-size: 100%;
   -webkit-background-size: cover;

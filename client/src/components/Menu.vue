@@ -79,8 +79,8 @@ export default {
   computed: {
     ...mapState(["pages", "careers"])
   },
-  created() {
-    this.getPages();
+  async created() {
+    await this.getPages();
   },
   data() {
     return {
@@ -89,11 +89,13 @@ export default {
   },
   methods: {
     ...mapActions(["getPages"]),
+
     getInstitutionalPages(pages) {
       return pages.filter(page => {
         return page.section === "INSTITUCIONAL";
       });
     },
+    
     getEntrantsPages(pages) {
       return pages.filter(page => {
         return page.section === "INGRESANTES";

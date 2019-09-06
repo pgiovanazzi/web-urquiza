@@ -55,7 +55,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'inicio',
+      name: 'Inicio',
       component: Home,
       children: [
         {
