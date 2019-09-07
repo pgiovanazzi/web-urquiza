@@ -103,68 +103,68 @@ export default new Router({
       ,
       children: [
         {
-          path: '/paginas',
+          path: '/panel/paginas',
           name: 'Pages',
           component: Pages
         },
         {
-          path: '/paginas/:id',
+          path: '/panel/paginas/:id',
           name: 'Page',
           component: Page,
           children: [
             {
-              path: '/modificar',
+              path: '/panel/paginas/:id/modificar',
               name: 'PageEdit',
               component: PageEdit
             }
           ]
         },
         {
-          path: '/novedades',
+          path: '/panel/novedades',
           name: 'NewsInDashboard',
           component: NewsInDashboard
         },
         {
-          path: '/novedades/:id',
+          path: '/panel/novedades/:id',
           name: 'NewInDashboard',
           component: NewInDashboard,
           children: [
             {
-              path: '/modificar',
+              path: '/panel/novedades/:id/modificar',
               name: 'NewEdit',
               component: NewEdit
             }
           ]
         },
         {
-          path: '/aspirantes',
+          path: '/panel/aspirantes',
           name: 'EntrantsInDashboard',
           component: EntrantsInDashboard
         },
         {
-          path: '/aspirante/:id',
+          path: '/panel/aspirante/:id',
           name: 'Entrant',
           component: Entrant,
           children: [
             {
-              path: '/modificar',
+              path: '/panel/aspirante/:id/modificar',
               name: 'EntrantEdit',
               component: EntrantEdit
             }
           ]
         },
         {
-          path: '/alumnos',
+          path: '/panel/alumnos',
           name: 'Students',
           component: Students
         },
         {
-          path: '/alumno/:id',
+          path: '/panel/alumno/:id',
           name: 'Student',
           component: Student,
           children: [
             {
-              path: '/modificar',
+              path: '/panel/alumno/:id/modificar',
               name: 'StudentEdit',
               component: StudentEdit
             }
