@@ -1,11 +1,25 @@
 <template>
-   <div>
-      <h1>Lista de paginas y secciones</h1>
-   </div>
+  <div>
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <Breadcrumb/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Lista de paginas y secciones</h1>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+const Breadcrumb = () => import("@/components/dashboard/Breadcrumb.vue");
+
 export default {
-   name: 'Pages'
-}
+  name: "Pages",
+  components: {
+    Breadcrumb
+  }
+};
 </script>

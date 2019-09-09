@@ -7,6 +7,7 @@ import {
 const apiCareers = "/su/panel/carreras"
 const apiPosts = "/su/panel/publicaciones"
 const apiPages = "/su/panel/paginas"
+const apiAspirants = "/su/panel/registros/aspirantes"
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     careers: [],
     posts: [],
     pages: [],
+    aspirants: []
   },
   mutations: {
     SET_LAYOUT(state, newLayout) {
@@ -39,6 +41,11 @@ export default new Vuex.Store({
       pagesFromAction
     }) {
       state.pages = pagesFromAction
+    },
+    UPDATE_ASPIRANTS(state, {
+      aspirantsFromActions
+    }) {
+      state.aspirants = aspirantsFromActions
     },
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
       state.setComponentInSimpleLayout = preinscriptionSuccessComponent
@@ -86,7 +93,20 @@ export default new Vuex.Store({
       commit('UPDATE_PAGES', {
         pagesFromAction: await pagesData.json()
       })
+    },
+    async getAspirants({
+      commit
+    }) {
+      const aspirantsData = await fetch(apiAspirants, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'GET'
+      })
+      commit('UPDATE_ASPIRANTS', {
+        aspirantsFromActions: await aspirantsData.json()
+      })
     }
   },
-
 })

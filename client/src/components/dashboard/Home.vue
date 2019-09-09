@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div class="row mb-3">
+      <div class="col-md-12">
+        <Breadcrumb :paths="getSetPath" />
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6 col-sm-12 mb-3">
         <!-- Card -->
@@ -13,7 +18,7 @@
                   <a>Páginas</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="far fa-file-alt"></i> 10
+                  <i class="far fa-file-alt"></i> {{ getPagesAmount }}
                 </span>
                 <!-- Text -->
                 <p class="card-text">Vea, cree, modifique y elimine Páginas.</p>
@@ -27,7 +32,7 @@
         <!-- Card -->
         <!-- Card content -->
         <div class="card hoverable">
-          <router-link to="#">
+          <router-link to="/panel/novedades">
             <div class="card-body">
               <!-- Title -->
               <center>
@@ -35,7 +40,7 @@
                   <a>Novedades</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="far fa-newspaper"></i> 5
+                  <i class="far fa-newspaper"></i> {{ getPostsAmount }}
                 </span>
                 <!-- Text -->
                 <p class="card-text">Vea, cree, modifique y elimine las novedades.</p>
@@ -50,7 +55,7 @@
       <div class="col-md-6 col-sm-12 mb-3">
         <!-- Card -->
         <div class="card hoverable">
-          <router-link to="#">
+          <router-link to="/panel/aspirantes">
             <!-- Card content -->
             <div class="card-body">
               <!-- Title -->
@@ -59,7 +64,7 @@
                   <a>Aspirantes</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="fas fa-users"></i> 103
+                  <i class="fas fa-users"></i> {{ getAspirantsAmount }}
                 </span>
                 <p class="card-text">Vea, modifique, elimine y dé de alta a los Aspirantes.</p>
               </center>
@@ -71,7 +76,7 @@
       <div class="col-md-6 col-sm-12">
         <!-- Card -->
         <div class="card hoverable">
-          <router-link to="#">
+          <router-link to="/panel/alumnos">
             <!-- Card content -->
             <div class="card-body">
               <!-- Title -->
@@ -95,7 +100,47 @@
 </template>
 
 <script>
+const Breadcrumb = () =>
+  import(
+    /* webpackChunkName: "Breadcrumb" */ "@/components/dashboard/Breadcrumb.vue"
+  );
+import { mapState, mapActions } from 'vuex'
+
 export default {
-  name: "Home"
+  name: "Home",
+  components: {
+    Breadcrumb
+  },
+  created() {
+    this.getPosts()
+    this.getAspirants()
+  },
+  computed: {
+    ...mapState(['pages', 'careers', 'posts','aspirants']),
+    getSetPath() {
+      return (this.$route.path).split("/").slice(1,);
+    },
+    getPagesAmount() {
+      return this.pages.length + this.careers.length
+    },
+    getPostsAmount() {
+      return this.posts.length
+    },
+    getAspirantsAmount() {
+      return this.aspirants.length
+    }
+  },
+  methods: {
+    ...mapActions(['getPosts', 'getAspirants'])
+  },
 };
 </script>
+
+<style scoped>
+a {
+  color: rgb(31, 64, 92);
+}
+a:hover {
+  color: #6096cc;
+}
+</style>

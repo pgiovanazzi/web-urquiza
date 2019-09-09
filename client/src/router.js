@@ -13,19 +13,19 @@ const Entrants = () => import( /* webpackChunkName: "entrants" */ './views/main/
 const Careers = () => import( /* webpackChunkName: "careers" */ './views/main/Careers.vue')
 const Preinscription = () => import( /* webpackChunkName: "preinscribirse" */ './views/preinscribirse/Preinscribirse.vue')
 const SuperUserSignIn = () => import( /* webpackChunkName: "SuperUserSignIn" */ './views/SU/SuperUserSignIn.vue')
-const Dashboard = () => import(/* webpackChunkName: "Dashboard" */ './views/dashboard/Dashboard.vue')
-const Pages = () => import(/* webpackChunkName: "Pages" */ './views/dashboard/Pages.vue')
-const NewsInDashboard = () => import(/* webpackChunkName: "NewsInDashboard" */ './views/dashboard/NewsInDashboard.vue')
-const EntrantsInDashboard = () => import(/* webpackChunkName: "EntrantsInDashboard" */ './views/dashboard/EntrantsInDashboard.vue')
-const Students = () => import(/* webpackChuckName: "Studenet" */ './views/dashboard/Students.vue')
-const Page = () => import(/* webpackChuckName: "Page" */ './views/dashboard/Page.vue')
-const PageEdit = () => import(/* webpackChuckName: "PageEdit" */ './views/dashboard/EditPageAndNews.vue')
-const NewInDashboard = () => import(/* webpackChuckName: "NewInDashboard" */ './views/dashboard/NewInDashboard.vue')
-const NewEdit = () => import(/* webpackChuckName: "NewEdit" */ './views/dashboard/EditPageAndNews.vue')
-const Entrant = () => import(/* webpackChuckName: "Entrant" */ './views/dashboard/Entrant.vue')
-const EntrantEdit = () => import(/* webpackChuckName: "EntrantEdit" */ './views/dashboard/EditEntrantsAndStudents.vue')
-const Student = () => import(/* webpackChuckName: "Student" */ './views/dashboard/Student.vue')
-const StudentEdit = () => import(/* webpackChuckName: "StudentEdit" */ './views/dashboard/EditEntrantsAndStudents.vue')
+const Dashboard = () => import( /* webpackChunkName: "Dashboard" */ './views/dashboard/Dashboard.vue')
+const Pages = () => import( /* webpackChunkName: "Pages" */ './views/dashboard/Pages.vue')
+const NewsInDashboard = () => import( /* webpackChunkName: "NewsInDashboard" */ './views/dashboard/NewsInDashboard.vue')
+const EntrantsInDashboard = () => import( /* webpackChunkName: "EntrantsInDashboard" */ './views/dashboard/EntrantsInDashboard.vue')
+const Students = () => import( /* webpackChuckName: "Studenet" */ './views/dashboard/Students.vue')
+const Page = () => import( /* webpackChuckName: "Page" */ './views/dashboard/Page.vue')
+const PageEdit = () => import( /* webpackChuckName: "PageEdit" */ './views/dashboard/EditPageAndNews.vue')
+const NewInDashboard = () => import( /* webpackChuckName: "NewInDashboard" */ './views/dashboard/NewInDashboard.vue')
+const NewEdit = () => import( /* webpackChuckName: "NewEdit" */ './views/dashboard/EditPageAndNews.vue')
+const Entrant = () => import( /* webpackChuckName: "Entrant" */ './views/dashboard/Entrant.vue')
+const EntrantEdit = () => import( /* webpackChuckName: "EntrantEdit" */ './views/dashboard/EditEntrantsAndStudents.vue')
+const Student = () => import( /* webpackChuckName: "Student" */ './views/dashboard/Student.vue')
+const StudentEdit = () => import( /* webpackChuckName: "StudentEdit" */ './views/dashboard/EditEntrantsAndStudents.vue')
 
 export default new Router({
   mode: 'history',
@@ -42,6 +42,11 @@ export default new Router({
         top: 1500,
         behavior: 'smooth'
       })
+    if (to.name === "Panel")
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     if (to.path != "/preinscribirse")
       return window.scrollTo({
         top: 500,
@@ -52,17 +57,15 @@ export default new Router({
       behavior: 'smooth'
     })
   },
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'Inicio',
       component: Home,
-      children: [
-        {
-          path: '/novedades/:id',
-          name: 'novedades',
-          component: News
-        }]
+      children: [{
+        path: '/novedades/:id',
+        name: 'novedades',
+        component: News
+      }]
     },
     {
       path: '/institucional/:instPage',
@@ -99,10 +102,8 @@ export default new Router({
       meta: {
         requiresAuth: true,
         is_admin: true
-      }
-      ,
-      children: [
-        {
+      },
+      children: [{
           path: '/panel/paginas',
           name: 'Pages',
           component: Pages
@@ -111,13 +112,11 @@ export default new Router({
           path: '/panel/paginas/:id',
           name: 'Page',
           component: Page,
-          children: [
-            {
-              path: '/panel/paginas/:id/modificar',
-              name: 'PageEdit',
-              component: PageEdit
-            }
-          ]
+          children: [{
+            path: '/panel/paginas/:id/modificar',
+            name: 'PageEdit',
+            component: PageEdit
+          }]
         },
         {
           path: '/panel/novedades',
@@ -128,13 +127,11 @@ export default new Router({
           path: '/panel/novedades/:id',
           name: 'NewInDashboard',
           component: NewInDashboard,
-          children: [
-            {
-              path: '/panel/novedades/:id/modificar',
-              name: 'NewEdit',
-              component: NewEdit
-            }
-          ]
+          children: [{
+            path: '/panel/novedades/:id/modificar',
+            name: 'NewEdit',
+            component: NewEdit
+          }]
         },
         {
           path: '/panel/aspirantes',
@@ -145,13 +142,11 @@ export default new Router({
           path: '/panel/aspirante/:id',
           name: 'Entrant',
           component: Entrant,
-          children: [
-            {
-              path: '/panel/aspirante/:id/modificar',
-              name: 'EntrantEdit',
-              component: EntrantEdit
-            }
-          ]
+          children: [{
+            path: '/panel/aspirante/:id/modificar',
+            name: 'EntrantEdit',
+            component: EntrantEdit
+          }]
         },
         {
           path: '/panel/alumnos',
@@ -162,13 +157,11 @@ export default new Router({
           path: '/panel/alumno/:id',
           name: 'Student',
           component: Student,
-          children: [
-            {
-              path: '/panel/alumno/:id/modificar',
-              name: 'StudentEdit',
-              component: StudentEdit
-            }
-          ]
+          children: [{
+            path: '/panel/alumno/:id/modificar',
+            name: 'StudentEdit',
+            component: StudentEdit
+          }]
         }
       ]
     },
