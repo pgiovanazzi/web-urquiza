@@ -42,7 +42,7 @@ export default new Router({
         top: 1500,
         behavior: 'smooth'
       })
-    if (to.name === "Panel")
+    if (to.path === "/panel/*?")
       return window.scrollTo({
         top: 0,
         behavior: 'smooth'

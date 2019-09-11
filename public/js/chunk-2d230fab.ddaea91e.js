@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d230fab"],{ef1e:function(n,e,a){"use strict";a.r(e);var t=function(){var n=this,e=n.$createElement,a=n._self._c||e;return a("div",[a("h1",[n._v("\n   "+n._s(n.$route.params.id)+"\n\n   ")])])},r=[],s={name:"NewInDashboard"},u=s,c=a("2877"),l=Object(c["a"])(u,t,r,!1,null,null,null);e["default"]=l.exports}}]);

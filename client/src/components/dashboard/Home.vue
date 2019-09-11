@@ -1,10 +1,5 @@
 <template>
   <div>
-    <div class="row mb-3">
-      <div class="col-md-12">
-        <Breadcrumb :paths="getSetPath" />
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-6 col-sm-12 mb-3">
         <!-- Card -->
@@ -117,9 +112,6 @@ export default {
   },
   computed: {
     ...mapState(['pages', 'careers', 'posts','aspirants']),
-    getSetPath() {
-      return (this.$route.path).split("/").slice(1,);
-    },
     getPagesAmount() {
       return this.pages.length + this.careers.length
     },

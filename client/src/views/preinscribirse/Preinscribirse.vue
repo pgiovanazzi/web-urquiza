@@ -413,14 +413,20 @@ export default {
     async sendForm() {
       this.selectAFCareer();
       try {
+
         this.sending = true;
         const data = await PreinscriptionService.send(this.formPreinscribirse);
         const resMsg = await data.json();
+
         if (resMsg.success) this.$store.commit("SUCCESS_PRE_INS", "PreInsSuccessComponent");
         else toastr.error(resMsg.message, this.configToastr);
+        
         this.formPreinscribirse = new Preinscripcion();
+
       } catch (error) {
+
         toastr.error("Ha ocurrido un error inesperado.", this.configToastr);
+
       } finally {
         this.sending = false;
       }

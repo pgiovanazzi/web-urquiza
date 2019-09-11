@@ -1,10 +1,5 @@
 <template>
   <div>
-    <div class="row mb-3">
-      <div class="col-md-12">
-        <Breadcrumb/>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-12">
         <h1>Lista de paginas y secciones</h1>

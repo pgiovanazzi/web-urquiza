@@ -33,15 +33,21 @@ router.get('/publicaciones', async (req, res, next) => {
 
 router.post('/nueva-publicacion', async (req, res, next) => {
    try {
+      req.body.alias = req.body.description.toLowerCase().replace(/ /, '-')
+      
       const newPost = new Posts(req.body);
 
       await newPost.save();
 
       res.status(200).json({
+         success: true,
          message: "Publicacion creada."
       })
    } catch (error) {
-      res.status(500).send(error)
+      res.status(500).json({
+         success: false,
+         message: error
+      })
    }
 });
 
