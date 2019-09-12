@@ -16,7 +16,7 @@
                   <i class="far fa-file-alt"></i> {{ getPagesAmount }}
                 </span>
                 <!-- Text -->
-                <p class="card-text">Vea, cree, modifique y elimine Páginas.</p>
+                <p class="card-text">Vea, cree, modifique y elimine páginas.</p>
               </center>
             </div>
           </router-link>
@@ -61,7 +61,7 @@
                 <span style="font-size: 5rem">
                   <i class="fas fa-users"></i> {{ getAspirantsAmount }}
                 </span>
-                <p class="card-text">Vea, modifique, elimine y dé de alta a los Aspirantes.</p>
+                <p class="card-text">Vea, modifique, elimine y dé de alta a los aspirantes.</p>
               </center>
             </div>
           </router-link>
@@ -80,10 +80,10 @@
                   <a>Alumnos</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="fas fa-user-graduate"></i> 301
+                  <i class="fas fa-user-graduate"></i> 0
                 </span>
                 <!-- Text -->
-                <p class="card-text">Vea, modifique, elimine Alumnos.</p>
+                <p class="card-text">Vea, modifique y elimine a alumnos.</p>
               </center>
             </div>
           </router-link>

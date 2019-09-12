@@ -2,11 +2,14 @@
   <div>
     <div class="row mx-0">
       <!-- Grid column -->
+      <CreateContent />
       <div class="col-sm-2 px-1 blue-grey lighten-5 z-depth-1-half">
         <div class="py-2 sticky-top flex-grow-1">
           <div class="nav flex-sm-column mx-4">
             <router-link to="/" class="nav-link d-none d-sm-inline">TERCIARIO URQUIZA</router-link>
             <hr class="m-1 mb-4" />
+            <CreateContent />
+            <router-link class="nav-link" data-target="#createContent" data-toggle="modal" to=""><i class="fas fa-external-link-alt"></i> Crear nueva novedad</router-link>
             <router-link
               class="nav-link"
               v-for="(option, idx) of quickAccessOptios 
@@ -50,7 +53,7 @@
         </nav>
         <!--/.Navbar -->
 
-        <div class="container mb-5">
+        <div class="container views">
           <div class="row">
             <div class="col-md-12">
               <router-view></router-view>
@@ -64,30 +67,28 @@
 </template>
 
 <script>
+import CreateContent from "@/components/dashboard/CreateContent.vue"
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "DashboardLayout",
   components: {
-    Footer
+    Footer,
+    CreateContent
   },
   data() {
     return {
       quickAccessOptios: [
         {
-          name: "Crear nueva Novedad",
-          path: "/panel/nueva-novedad"
-        },
-        {
-          name: "Crear nueva Página",
+          name: "Crear nueva página",
           path: "/panel/nueva-pagina"
         },
         {
-          name: "Buscar Aspirantes",
+          name: "Buscar aspirantes",
           path: "/panel/buscar-aspirantes"
         },
         {
-          name: "Buscar Alumnos",
+          name: "Buscar alumnos",
           path: "/panel/buscar-alumnos"
         }
       ]
@@ -112,5 +113,8 @@ a {
 }
 a:hover {
   color: #6096cc;
+}
+.views {
+  margin-bottom: 90px;
 }
 </style>

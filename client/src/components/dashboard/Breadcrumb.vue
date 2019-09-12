@@ -37,6 +37,12 @@ export default {
       return this.setPaths;
     }
   },
+  watch: {
+    $route(to, from) {
+      if (this.$route.name === 'Panel')
+        this.setPaths = ['Panel']
+    }
+  },
   data() {
     return {
       setPaths: ["Panel"]

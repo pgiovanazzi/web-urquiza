@@ -6,7 +6,6 @@
   </div>
 </template>
 
-
 <script>
 const Home = () =>
   import(/* webpackChunkName: "HomeDB" */ "@/components/dashboard/Home.vue");

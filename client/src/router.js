@@ -42,7 +42,7 @@ export default new Router({
         top: 1500,
         behavior: 'smooth'
       })
-    if (to.path === "/panel/*?")
+    if (to.path === "/panel")
       return window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -58,116 +58,116 @@ export default new Router({
     })
   },
   routes: [{
-      path: '/',
-      name: 'Inicio',
-      component: Home,
+    path: '/',
+    name: 'Inicio',
+    component: Home,
+    children: [{
+      path: '/novedades/:id',
+      name: 'novedades',
+      component: News
+    }]
+  },
+  {
+    path: '/institucional/:instPage',
+    name: 'Institutional',
+    component: Institutional,
+  },
+  {
+    path: '/ingresantes/:entrantsPage',
+    name: 'Entrants',
+    component: Entrants,
+  },
+  {
+    path: '/carreras/:careersPage',
+    name: 'Careers',
+    component: Careers,
+  },
+  {
+    path: '/preinscribirse',
+    name: 'preinscribirse',
+    component: Preinscription
+  },
+  {
+    path: '/su',
+    name: 'SU',
+    component: SuperUserSignIn,
+    meta: {
+      guest: true
+    }
+  },
+  {
+    path: '/panel',
+    name: 'Panel',
+    component: Dashboard,
+    meta: {
+      requiresAuth: true,
+      is_admin: true
+    },
+    children: [{
+      path: '/panel/paginas',
+      name: 'Pages',
+      component: Pages
+    },
+    {
+      path: '/panel/paginas/:id',
+      name: 'Page',
+      component: Page,
       children: [{
-        path: '/novedades/:id',
-        name: 'novedades',
-        component: News
+        path: '/panel/paginas/:id/modificar',
+        name: 'PageEdit',
+        component: PageEdit
       }]
     },
     {
-      path: '/institucional/:instPage',
-      name: 'Institutional',
-      component: Institutional,
+      path: '/panel/novedades',
+      name: 'NewsInDashboard',
+      component: NewsInDashboard
     },
     {
-      path: '/ingresantes/:entrantsPage',
-      name: 'Entrants',
-      component: Entrants,
-    },
-    {
-      path: '/carreras/:careersPage',
-      name: 'Careers',
-      component: Careers,
-    },
-    {
-      path: '/preinscribirse',
-      name: 'preinscribirse',
-      component: Preinscription
-    },
-    {
-      path: '/su',
-      name: 'SU',
-      component: SuperUserSignIn,
-      meta: {
-        guest: true
-      }
-    },
-    {
-      path: '/panel',
-      name: 'Panel',
-      component: Dashboard,
-      meta: {
-        requiresAuth: true,
-        is_admin: true
-      },
+      path: '/panel/novedades/:id',
+      name: 'NewInDashboard',
+      component: NewInDashboard,
       children: [{
-          path: '/panel/paginas',
-          name: 'Pages',
-          component: Pages
-        },
-        {
-          path: '/panel/paginas/:id',
-          name: 'Page',
-          component: Page,
-          children: [{
-            path: '/panel/paginas/:id/modificar',
-            name: 'PageEdit',
-            component: PageEdit
-          }]
-        },
-        {
-          path: '/panel/novedades',
-          name: 'NewsInDashboard',
-          component: NewsInDashboard
-        },
-        {
-          path: '/panel/novedades/:id',
-          name: 'NewInDashboard',
-          component: NewInDashboard,
-          children: [{
-            path: '/panel/novedades/:id/modificar',
-            name: 'NewEdit',
-            component: NewEdit
-          }]
-        },
-        {
-          path: '/panel/aspirantes',
-          name: 'EntrantsInDashboard',
-          component: EntrantsInDashboard
-        },
-        {
-          path: '/panel/aspirante/:id',
-          name: 'Entrant',
-          component: Entrant,
-          children: [{
-            path: '/panel/aspirante/:id/modificar',
-            name: 'EntrantEdit',
-            component: EntrantEdit
-          }]
-        },
-        {
-          path: '/panel/alumnos',
-          name: 'Students',
-          component: Students
-        },
-        {
-          path: '/panel/alumno/:id',
-          name: 'Student',
-          component: Student,
-          children: [{
-            path: '/panel/alumno/:id/modificar',
-            name: 'StudentEdit',
-            component: StudentEdit
-          }]
-        }
-      ]
+        path: '/panel/novedades/:id/modificar',
+        name: 'NewEdit',
+        component: NewEdit
+      }]
     },
     {
-      path: '*',
-      redirect: '/'
+      path: '/panel/aspirantes',
+      name: 'EntrantsInDashboard',
+      component: EntrantsInDashboard
+    },
+    {
+      path: '/panel/aspirante/:id',
+      name: 'Entrant',
+      component: Entrant,
+      children: [{
+        path: '/panel/aspirante/:id/modificar',
+        name: 'EntrantEdit',
+        component: EntrantEdit
+      }]
+    },
+    {
+      path: '/panel/alumnos',
+      name: 'Students',
+      component: Students
+    },
+    {
+      path: '/panel/alumno/:id',
+      name: 'Student',
+      component: Student,
+      children: [{
+        path: '/panel/alumno/:id/modificar',
+        name: 'StudentEdit',
+        component: StudentEdit
+      }]
     }
+    ]
+  },
+  {
+    path: '*',
+    redirect: '/'
+  }
   ],
 })
