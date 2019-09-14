@@ -16,12 +16,8 @@ var aspirantRouter = require('./routes/aspirant');
 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(express.static(__dirname + '/public'));
 
 
 app.use(logger('dev'));
@@ -55,9 +51,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-// app.use(express.static(path.join(__dirname, 'public')));
-// app.set('view engine', 'html');
-
 app.use('/', indexRouter);
 app.use('/aspirante', aspirantRouter);
 app.use('/su', loginRouter);
@@ -66,9 +59,9 @@ app.use('/su/panel', dashboardRouter);
 // Handle production
 if (process.env.NODE_ENV === 'production') {
   // Static folder
-  app.use(express.static(__dirname +' /public/'));
+  app.use(express.static(__dirname + ' /public/'));
   // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
 // catch 404 and forward to error handler

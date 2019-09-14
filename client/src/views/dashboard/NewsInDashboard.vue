@@ -35,12 +35,12 @@
           <!--Table head-->
           <!--Table body-->
           <tbody>
-            <tr v-for="(post, idx) in posts" :key="idx">
+            <tr v-for="(post, idx) in getReversePosts" :key="idx">
               <th scope="row">{{ idx + 1 }}</th>
               <td>
                 <strong>{{ post.description }}</strong>
               </td>
-              <td>{{ post.published }}</td>
+              <td v-html="setIconPublished(post.published == 'true')"></td>
               <td>{{ post.date | formatDate2 }}</td>
               <td>
                 <router-link :to="'/panel/novedades/' + post.alias">
@@ -50,7 +50,7 @@
                 </router-link>
               </td>
               <td>
-                <router-link :to="'/panel/novedades/' + post.alias">
+                <router-link :to="'/panel/novedades/' + post.alias + '/modificar'">
                   <strong>
                     <i class="far fa-edit"></i>
                   </strong>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import NewPostService from "@/services/NewPostService.js";
 const Breadcrumb = () => import("@/components/dashboard/Breadcrumb.vue");
 const CreateContent = () => import("@/components/dashboard/CreateContent.vue");
@@ -89,10 +89,13 @@ export default {
     this.getPosts();
   },
   computed: {
-    ...mapState(["posts"])
+    ...mapGetters(["getReversePosts"])
   },
   methods: {
     ...mapActions(["getPosts"]),
+    setIconPublished(pub) {
+      return pub ? "<i class='fas fa-check'></i>" : "<i class='fas fa-minus'></i>"
+    },
     async removePost(id) {
       try {
         const data = await NewPostService.remove(id);

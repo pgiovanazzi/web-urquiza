@@ -1,20 +1,19 @@
 <template>
    <div class="col-lg-12 col-md-12">
       <div class="row mb-5">
-         <small>{{ lastPost.date | formatDate2 }}</small>
+         <small>{{ getLastPost.date | formatDate2 }}</small>
       </div>
-      <div v-html="lastPost.content"></div>
+      <div v-html="getLastPost.content"></div>
    </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
    name: 'ultimaNovedad',
-   props: {
-      lastPost: {
-         type: Object,
-         requered: true
-      }
+   computed: {
+      ...mapGetters(['getLastPost'])
    }
 }
 </script>

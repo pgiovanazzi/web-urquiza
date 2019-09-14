@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import moment from 'moment'
+import wysiwyg from "vue-wysiwyg";
+
+Vue.use(wysiwyg, {});
 
 Vue.config.productionTip = false
 

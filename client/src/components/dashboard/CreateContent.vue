@@ -28,7 +28,9 @@
                 />
                 <label data-error="error" data-success="correcto">Descripción o nombre</label>
               </div>
-              <vue-editor v-model="newContent.content"></vue-editor>
+              
+              <wysiwyg v-model="newContent.content" />
+
               <div class="md-from mt-3">
                 <div class="custom-control custom-checkbox">
                   <input
@@ -68,9 +70,9 @@
 </template>
 
 <script>
-import { VueEditor } from "vue2-editor";
 import NewPostService from "@/services/NewPostService.js";
 import { mapActions } from "vuex";
+
 
 class ContentCreated {
   constructor(
@@ -91,11 +93,11 @@ class ContentCreated {
 export default {
   name: "CreateContent",
   components: {
-    VueEditor
+
   },
   data() {
     return {
-      newContent: new ContentCreated()
+      newContent: new ContentCreated(),
     };
   },
   methods: {
@@ -131,3 +133,7 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+  @import "~vue-wysiwyg/dist/vueWysiwyg.css";
+</style>

@@ -47,7 +47,7 @@
             role="tabpanel"
             aria-labelledby="careers-tab"
           >
-            <ul v-for="(career,idx) of careers" :key="idx">
+            <ul v-for="(career,idx) of getCareersInState" :key="idx">
               <li>{{ career.name }}</li>
             </ul>
           </div>
@@ -111,7 +111,7 @@
 
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Footer",
@@ -151,7 +151,7 @@ export default {
     this.getCareers()
   },
   computed: {
-    ...mapState(["careers"])
+    ...mapGetters(["getCareersInState"])
   },
   methods: {
     ...mapActions(["getCareers"])

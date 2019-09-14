@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="row" v-if="careers.length">
+    <div class="row" v-if="getCareersInState.length">
       <div
         class="col-sm-12 col-md-4 d-flex align-items-stretch"
-        v-for="career of careers"
-        :key="career._id"
+        v-for="(career, idx) of getCareersInState"
+        :key="idx"
       >
         <Card :careerObj="career" />
       </div>
@@ -13,31 +13,29 @@
     <div class="row">
       <div class="col-lg-8 col-md-12 mt-4 mb-5">
         <router-view></router-view>
-        <UltimaNovedad
-          v-if="posts.length"
-          v-show="$route.path == '/' ? true : false"
-          :lastPost="getLastPost(posts)"
-        />
+        <UltimaNovedad v-if="getPostsInState.length" v-show="$route.path == '/' ? true : false" />
       </div>
       <div class="col-lg-4 col-md-12 mt-4 mb-5">
         <h4 class="mb-n3">Ultimas Novedades</h4>
         <ul style="list-style-type: none;
-        display: inline;" v-if="posts.length">
-          <li v-for="post of reverseArr(posts)" :key="post._id">
-            <NovedadesLista :post="post" />
+        display: inline;" v-if="getPostsInState.length">
+          <li v-for="(post,idx) of getReversePosts" :key="idx">
+            <div v-if="post.published === 'true'">
+              <NovedadesLista :post="post" />
+            </div>
           </li>
         </ul>
       </div>
     </div>
   </div>
-</template>require
+</template>
 
 <script>
 // @ is an alias to /src
 import Card from "@/components/Card.vue";
 import NovedadesLista from "@/components/NovedadesLista.vue";
 import UltimaNovedad from "@/components/UltimaNovedad.vue";
-import { mapState, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "inicio",
@@ -55,19 +53,11 @@ export default {
   },
 
   computed: {
-    ...mapState(["careers", "posts"])
+    ...mapGetters(["getPostsInState", "getCareersInState", "getReversePosts"])
   },
 
   methods: {
-    ...mapActions(["getCareers", "getPosts"]),
-    reverseArr(arr) {
-      return arr.slice().reverse();
-    },
-    getLastPost(postsIn) {
-      return postsIn[postsIn.length - 1];
-    }
+    ...mapActions(["getCareers", "getPosts"])
   }
 };
 </script>
-
-
