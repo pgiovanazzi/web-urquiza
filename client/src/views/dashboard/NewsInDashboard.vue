@@ -129,10 +129,10 @@ export default {
 
 <style scoped>
 a {
-  color: rgb(31, 64, 92);
+  color: rgb(31, 64, 92) !important;
 }
 a:hover {
-  color: #6096cc;
+  color: #6096cc !important;
 }
 
 .fa-eye,

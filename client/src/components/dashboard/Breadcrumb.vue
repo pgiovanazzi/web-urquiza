@@ -22,6 +22,9 @@
 <script>
 export default {
   name: "Breadcrumb",
+  created() {
+    this.setPostsPath
+  },
   computed: {
     getSetPath() {
       return this.$route.path.split("/").slice(1);
@@ -35,6 +38,10 @@ export default {
     getPaths() {
       this.setPaths.push(this.$route.name);
       return this.setPaths;
+    },
+    setPostsPath() {
+      if(this.$route.name === 'NewInDashboard')
+        this.setPaths = ['Panel', 'NewsInDashboard']
     }
   },
   watch: {

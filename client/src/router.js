@@ -31,143 +31,189 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   fallback: false,
-  scrollBehavior: to => {
+  scrollBehavior: (to, from) => {
     if (to.hash)
       return window.scrollTo({
         top: document.querySelector(to.hash).offsetTop,
         behavior: 'smooth'
       });
+
     if (to.name === "novedades")
       return window.scrollTo({
         top: 1500,
         behavior: 'smooth'
       })
+
     if (to.path === "/panel")
       return window.scrollTo({
         top: 0,
         behavior: 'smooth'
       })
+
+    if (from.path === "/panel/novedades")
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    if (to.path === "/panel/paginas")
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    if (from.path === '/panel/paginas')
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    if (to.path === '/panel/aspirantes')
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    if (from.path === '/panel/aspirantes')
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    if (to.path === '/panel/alumnos')
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
+    if (from.path === '/panel/alumnos')
+      return window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+
     if (to.path != "/preinscribirse")
       return window.scrollTo({
         top: 500,
         behavior: 'smooth'
       })
+
     return window.scrollTo({
       top: 0,
       behavior: 'smooth'
     })
   },
   routes: [{
-    path: '/',
-    name: 'Inicio',
-    component: Home,
-    children: [{
-      path: '/novedades/:id',
-      name: 'novedades',
-      component: News
-    }]
-  },
-  {
-    path: '/institucional/:instPage',
-    name: 'Institutional',
-    component: Institutional,
-  },
-  {
-    path: '/ingresantes/:entrantsPage',
-    name: 'Entrants',
-    component: Entrants,
-  },
-  {
-    path: '/carreras/:careersPage',
-    name: 'Careers',
-    component: Careers,
-  },
-  {
-    path: '/preinscribirse',
-    name: 'preinscribirse',
-    component: Preinscription
-  },
-  {
-    path: '/su',
-    name: 'SU',
-    component: SuperUserSignIn,
-    meta: {
-      guest: true
+      path: '/',
+      name: 'Inicio',
+      component: Home,
+      children: [{
+        path: '/novedades/:id',
+        name: 'novedades',
+        component: News
+      }]
+    },
+    {
+      path: '/institucional/:instPage',
+      name: 'Institutional',
+      component: Institutional,
+    },
+    {
+      path: '/ingresantes/:entrantsPage',
+      name: 'Entrants',
+      component: Entrants,
+    },
+    {
+      path: '/carreras/:careersPage',
+      name: 'Careers',
+      component: Careers,
+    },
+    {
+      path: '/preinscribirse',
+      name: 'preinscribirse',
+      component: Preinscription
+    },
+    {
+      path: '/su',
+      name: 'SU',
+      component: SuperUserSignIn,
+      meta: {
+        guest: true
+      }
+    },
+    {
+      path: '/panel',
+      name: 'Panel',
+      component: Dashboard,
+      meta: {
+        requiresAuth: true,
+        is_admin: true
+      },
+      children: [{
+          path: '/panel/paginas',
+          name: 'Pages',
+          component: Pages
+        },
+        {
+          path: '/panel/paginas/:id',
+          name: 'Page',
+          component: Page,
+          children: [{
+            path: '/panel/paginas/:id/modificar',
+            name: 'PageEdit',
+            component: PageEdit
+          }]
+        },
+        {
+          path: '/panel/novedades',
+          name: 'NewsInDashboard',
+          component: NewsInDashboard
+        },
+        {
+          path: '/panel/novedades/:id',
+          name: 'NewInDashboard',
+          component: NewInDashboard,
+          children: [{
+            path: '/panel/novedades/:id/modificar',
+            name: 'NewEdit',
+            component: NewEdit
+          }]
+        },
+        {
+          path: '/panel/aspirantes',
+          name: 'EntrantsInDashboard',
+          component: EntrantsInDashboard
+        },
+        {
+          path: '/panel/aspirante/:id',
+          name: 'Entrant',
+          component: Entrant,
+          children: [{
+            path: '/panel/aspirante/:id/modificar',
+            name: 'EntrantEdit',
+            component: EntrantEdit
+          }]
+        },
+        {
+          path: '/panel/alumnos',
+          name: 'Students',
+          component: Students
+        },
+        {
+          path: '/panel/alumno/:id',
+          name: 'Student',
+          component: Student,
+          children: [{
+            path: '/panel/alumno/:id/modificar',
+            name: 'StudentEdit',
+            component: StudentEdit
+          }]
+        }
+      ]
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
-  },
-  {
-    path: '/panel',
-    name: 'Panel',
-    component: Dashboard,
-    meta: {
-      requiresAuth: true,
-      is_admin: true
-    },
-    children: [{
-      path: '/panel/paginas',
-      name: 'Pages',
-      component: Pages
-    },
-    {
-      path: '/panel/paginas/:id',
-      name: 'Page',
-      component: Page,
-      children: [{
-        path: '/panel/paginas/:id/modificar',
-        name: 'PageEdit',
-        component: PageEdit
-      }]
-    },
-    {
-      path: '/panel/novedades',
-      name: 'NewsInDashboard',
-      component: NewsInDashboard
-    },
-    {
-      path: '/panel/novedades/:id',
-      name: 'NewInDashboard',
-      component: NewInDashboard,
-      children: [{
-        path: '/panel/novedades/:id/modificar',
-        name: 'NewEdit',
-        component: NewEdit
-      }]
-    },
-    {
-      path: '/panel/aspirantes',
-      name: 'EntrantsInDashboard',
-      component: EntrantsInDashboard
-    },
-    {
-      path: '/panel/aspirante/:id',
-      name: 'Entrant',
-      component: Entrant,
-      children: [{
-        path: '/panel/aspirante/:id/modificar',
-        name: 'EntrantEdit',
-        component: EntrantEdit
-      }]
-    },
-    {
-      path: '/panel/alumnos',
-      name: 'Students',
-      component: Students
-    },
-    {
-      path: '/panel/alumno/:id',
-      name: 'Student',
-      component: Student,
-      children: [{
-        path: '/panel/alumno/:id/modificar',
-        name: 'StudentEdit',
-        component: StudentEdit
-      }]
-    }
-    ]
-  },
-  {
-    path: '*',
-    redirect: '/'
-  }
   ],
 })
