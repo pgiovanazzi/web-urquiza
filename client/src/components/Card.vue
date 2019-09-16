@@ -1,6 +1,6 @@
 <template>
   <!-- Card Light -->
-  <div class="card mb-4 hoverable">
+  <div class="card mb-4">
     <!-- Card image -->
     <div class="view">
       <img class="card-img-top" :src="bgCareersLogo[idx]" :alt="careerObj.name" />
