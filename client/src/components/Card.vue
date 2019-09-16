@@ -2,12 +2,11 @@
   <!-- Card Light -->
   <div class="card mb-4 hoverable">
     <!-- Card image -->
-    <div class="view overlay">
-      <!-- <img class="card-img-top" :src="getImgUrl(careerObj.imageName)" :alt="careerObj.name" /> -->
-      <!-- <object id="icono" :data="urquizaSvg" type="image/svg+xml"></object> -->
-      {{careerObj.imageName}}
+    <div class="view">
+      <img class="card-img-top" :src="bgCareersLogo[idx]" :alt="careerObj.name" />
+      <object id="icono" :data="getImgUrl(removeJpg(careerObj.imageName))" type="image/svg+xml"></object>
       <a>
-        <div class="mask rgba-white-slight"></div>
+        <div class="mask pattern-7"></div>
       </a>
     </div>
 
@@ -21,7 +20,10 @@
     </div>
     <!-- Link -->
     <div class="card-footer">
-      <router-link :to="{ name: 'Careers', params: { careersPage: careerObj.route }}" class="black-text d-flex justify-content-end">
+      <router-link
+        :to="{ name: 'Careers', params: { careersPage: careerObj.route }}"
+        class="black-text d-flex justify-content-end"
+      >
         <div>
           ver más
           <i class="fas fa-angle-double-right"></i>
@@ -37,29 +39,36 @@
 export default {
   name: "Card",
   props: {
-    careerObj: Object
+    careerObj: Object,
+    idx: Number
   },
   methods: {
     getImgUrl(imgIn) {
-      return require(`@/assets/${imgIn}`);
+      return require(`@/assets/${imgIn}.svg`);
+    },
+    removeJpg(nameImage) {
+      return nameImage.split(".jpg")[0];
     }
   },
   data() {
     return {
-      // urquizaSvg: require(`@/assets/DS2.svg`)
-    }
-  },
+      bgCareersLogo: [
+        require(`@/assets/compu.jpeg`) ,
+        require(`@/assets/funcional.jpg`),
+        require(`@/assets/datacenter.jpg`)
+      ]
+    };
+  }
 };
 </script>
 
 <style scoped>
-
 hr {
   margin: 10px;
 }
 
 a {
-  color: #212529 !important
+  color: #212529 !important;
 }
 
 a:hover {
@@ -67,7 +76,12 @@ a:hover {
 }
 
 .card-footer {
-  background-color: #fff !important
+  background-color: #fff !important;
+}
+
+img {
+  position: absolute;
+  z-index: 0;
 }
 
 #icono {
@@ -76,6 +90,9 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
   padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 </style>
 

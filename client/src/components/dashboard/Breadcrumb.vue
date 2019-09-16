@@ -42,6 +42,8 @@ export default {
     setPostsPath() {
       if(this.$route.name === 'NewInDashboard')
         this.setPaths = ['Panel', 'NewsInDashboard']
+      if(this.$route.name === 'NewEdit')
+        this.setPaths = ['Panel', 'NewsInDashboard', 'NewInDashboard']
     }
   },
   watch: {

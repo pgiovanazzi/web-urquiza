@@ -48,6 +48,9 @@ export default {
       }
       return data;
     },
+    removeJpg(nameImage) {
+      return nameImage.split(".jpg")[0];
+    },
     findImagePageByParams(urlIn) {
       let data = "";
       for (let index = 0; index < this.careers.length; index++) {
@@ -56,8 +59,14 @@ export default {
           break;
         }
       }
-      return require('@/assets/' + data);
+      return require('@/assets/' + this.removeJpg(data) + '.svg');
     }
   }
 };
 </script>
+
+<style lang="css">
+  img {
+    width: 12rem;
+  }
+</style>
