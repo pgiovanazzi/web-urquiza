@@ -147,7 +147,10 @@ export default new Router({
       component: Dashboard,
       meta: {
         requiresAuth: true,
-        is_admin: true
+        is_admin: true,
+        breadcrumb: [
+          { name: 'Panel', dynamicParams: false }
+        ]
       },
       children: [{
           path: '/panel/paginas',
@@ -167,16 +170,36 @@ export default new Router({
         {
           path: '/panel/novedades',
           name: 'NewsInDashboard',
-          component: NewsInDashboard
+          component: NewsInDashboard,
+          meta: {
+            breadcrumb: [
+              { name: 'Panel', link: '/panel', dynamicParams: false },
+              { name: 'Novedades', dynamicParams: false }
+            ]
+          }
         },
         {
           path: '/panel/novedades/:id',
           name: 'NewInDashboard',
           component: NewInDashboard,
+          meta: {
+            breadcrumb: [
+              { name: 'Panel', link: '/panel', dynamicParams: false },
+              { name: 'Novedades', link: '/panel/novedades', dynamicParams: false },
+              { name: alias => alias, dynamicParams: true },
+            ]
+          },
           children: [{
             path: '/panel/novedades/:id/modificar',
             name: 'NewEdit',
-            component: NewEdit
+            component: NewEdit,
+            meta: {
+              breadcrumb: [
+                { name: 'Panel', link: '/panel', dynamicParams: false },
+                { name: 'Novedades', link: '/panel/novedades', dynamicParams: false },
+                { name: alias => alias, link: alias => `/panel/novedades/${alias}`,dynamicParams: true },
+              ]
+            }
           }]
         },
         {

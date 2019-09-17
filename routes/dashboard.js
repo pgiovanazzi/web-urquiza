@@ -33,7 +33,7 @@ router.get('/publicaciones', async (req, res, next) => {
 
 router.post('/nueva-publicacion', async (req, res, next) => {
    try {
-      req.body.alias = req.body.description.toLowerCase().replace(/ /, '-').replace(/[¿?¡!*%$#@()_+=<>~]/g, "").replace('á', 'a').replace('é', 'e').replace('í', 'i').replace('ó', 'o').replace('ú', 'u')
+      req.body.alias = req.body.description.toLowerCase().replace(/ /g, '-').replace(/[¿?¡!*%$#@()_+=<>~]/g, "").replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
 
       const newPost = new Posts(req.body);
 
