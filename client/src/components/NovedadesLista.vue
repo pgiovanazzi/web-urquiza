@@ -23,9 +23,13 @@
           <small>{{ post.date | formatDate }}</small>
         </p>
 
-        <router-link :to="'/novedades/' + post.alias">
-          <strong>{{ post.description }}</strong>
-          <i class="fas fa-angle-right float-right"></i>
+        <router-link :to="'/novedades/' + post.alias" exact>
+          <h5>
+            <strong>
+              {{ post.description }}
+              <i class="fas fa-angle-right float-right"></i>
+            </strong>
+          </h5>
         </router-link>
       </div>
     </div>
@@ -34,6 +38,7 @@
 </template>
 
 <script>
+
 export default {
   name: "novedadesLista",
   props: {
@@ -42,8 +47,12 @@ export default {
 };
 </script>
 
-
 <style scoped>
+
+a.router-link-active {
+  color: #6096cc
+}
+
 hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -58,10 +67,10 @@ hr {
 }
 
 a {
-  color: #212529
+  color: #212529;
 }
 a:hover {
-  color: #6096cc
+  color: #6096cc;
 }
 
 @media only screen and (max-width: 991px) {
@@ -76,5 +85,4 @@ a:hover {
     margin-right: 15px;
   }
 }
-
 </style>

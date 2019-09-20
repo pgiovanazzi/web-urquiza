@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
-var history = require('connect-history-api-fallback');
+const history = require('connect-history-api-fallback');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/loginSu');
@@ -16,14 +16,11 @@ var aspirantRouter = require('./routes/aspirant');
 
 var app = express();
 
-app.use(history());
-app.use(express.static(path.join(__dirname, 'public')));
-
-
+// Middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: false
+  extended: true
 }));
 app.use(cookieParser());
 app.use(session({
@@ -51,10 +48,16 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Routes
 app.use('/', indexRouter);
 app.use('/aspirante', aspirantRouter);
 app.use('/su', loginRouter);
 app.use('/su/panel', dashboardRouter);
+
+// Middleware for Vuejs router mode history
+app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Handle production
 if (process.env.NODE_ENV === 'production') {

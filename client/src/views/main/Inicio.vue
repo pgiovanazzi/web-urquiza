@@ -6,7 +6,7 @@
         v-for="(career, idx) of getCareersInState"
         :key="idx"
       >
-        <Card :careerObj="career" :idx='idx' />
+        <Card :careerObj="career" :idx="idx" />
       </div>
     </div>
     <hr class="mt-3 mb-4" />
@@ -19,10 +19,8 @@
         <h4 class="mb-n3">Ultimas Novedades</h4>
         <ul style="list-style-type: none;
         display: inline;" v-if="getPostsInState.length">
-          <li v-for="(post,idx) of getReversePosts" :key="idx">
-            <div v-if="post.published === 'true'">
-              <NovedadesLista :post="post" />
-            </div>
+          <li v-for="(post,idx) of getPostsPublished()" :key="idx">
+            <NovedadesLista :post="post" />
           </li>
         </ul>
       </div>
@@ -57,7 +55,11 @@ export default {
   },
 
   methods: {
-    ...mapActions(["getCareers", "getPosts"])
+    ...mapActions(["getCareers", "getPosts"]),
+
+    getPostsPublished() {
+      return this.getReversePosts.filter(post => post.published === "true");
+    }
   }
 };
 </script>

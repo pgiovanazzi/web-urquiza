@@ -110,7 +110,7 @@ export default new Router({
       children: [{
         path: '/novedades/:id',
         name: 'novedades',
-        component: News
+        component: News,
       }]
     },
     {
@@ -148,23 +148,75 @@ export default new Router({
       meta: {
         requiresAuth: true,
         is_admin: true,
-        breadcrumb: [
-          { name: 'Panel', dynamicParams: false }
-        ]
+        breadcrumb: [{
+          name: 'Panel',
+          isDynamicParam: false
+        }]
       },
       children: [{
           path: '/panel/paginas',
           name: 'Pages',
-          component: Pages
+          component: Pages,
+          meta: {
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Paginas',
+                isDynamicParam: false
+              }
+            ]
+          }
         },
         {
           path: '/panel/paginas/:id',
           name: 'Page',
           component: Page,
+          meta: {
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Paginas',
+                link: '/panel/paginas',
+                isDynamicParam: false
+              },
+              {
+                name: alias => alias,
+                isDynamicParam: true
+              }
+            ]
+          },
           children: [{
             path: '/panel/paginas/:id/modificar',
             name: 'PageEdit',
-            component: PageEdit
+            component: PageEdit,
+            meta: {
+              breadcrumb: [{
+                  name: 'Panel',
+                  link: '/panel',
+                  isDynamicParam: false
+                },
+                {
+                  name: 'Paginas',
+                  link: '/panel/paginas',
+                  isDynamicParam: false
+                },
+                {
+                  name: alias => alias,
+                  link: alias => `/panel/paginas/${alias}`,
+                  isDynamicParam: true
+                },
+                {
+                  name: 'Modificar',
+                  isDynamicParam: false
+                }
+              ]
+            }
           }]
         },
         {
@@ -172,9 +224,15 @@ export default new Router({
           name: 'NewsInDashboard',
           component: NewsInDashboard,
           meta: {
-            breadcrumb: [
-              { name: 'Panel', link: '/panel', dynamicParams: false },
-              { name: 'Novedades', dynamicParams: false }
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Novedades',
+                isDynamicParam: false
+              }
             ]
           }
         },
@@ -183,10 +241,20 @@ export default new Router({
           name: 'NewInDashboard',
           component: NewInDashboard,
           meta: {
-            breadcrumb: [
-              { name: 'Panel', link: '/panel', dynamicParams: false },
-              { name: 'Novedades', link: '/panel/novedades', dynamicParams: false },
-              { name: alias => alias, dynamicParams: true },
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Novedades',
+                link: '/panel/novedades',
+                isDynamicParam: false
+              },
+              {
+                name: alias => alias,
+                isDynamicParam: true
+              },
             ]
           },
           children: [{
@@ -194,10 +262,25 @@ export default new Router({
             name: 'NewEdit',
             component: NewEdit,
             meta: {
-              breadcrumb: [
-                { name: 'Panel', link: '/panel', dynamicParams: false },
-                { name: 'Novedades', link: '/panel/novedades', dynamicParams: false },
-                { name: alias => alias, link: alias => `/panel/novedades/${alias}`,dynamicParams: true },
+              breadcrumb: [{
+                  name: 'Panel',
+                  link: '/panel',
+                  isDynamicParam: false
+                },
+                {
+                  name: 'Novedades',
+                  link: '/panel/novedades',
+                  isDynamicParam: false
+                },
+                {
+                  name: alias => alias,
+                  link: alias => `/panel/novedades/${alias}`,
+                  isDynamicParam: true
+                },
+                {
+                  name: 'Modificar',
+                  isDynamicParam: false
+                },
               ]
             }
           }]
@@ -205,31 +288,133 @@ export default new Router({
         {
           path: '/panel/aspirantes',
           name: 'EntrantsInDashboard',
-          component: EntrantsInDashboard
+          component: EntrantsInDashboard,
+          meta: {
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Aspirantes',
+                isDynamicParam: false
+              }
+            ]
+          }
         },
         {
           path: '/panel/aspirante/:id',
           name: 'Entrant',
           component: Entrant,
+          meta: {
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Aspirantes',
+                link: '/panel/aspirantes',
+                isDynamicParam: false
+              },
+              {
+                name: alias => alias,
+                isDynamicParam: true
+              }
+            ]
+          },
           children: [{
             path: '/panel/aspirante/:id/modificar',
             name: 'EntrantEdit',
-            component: EntrantEdit
+            component: EntrantEdit,
+            meta: {
+              breadcrumb: [{
+                  name: 'Panel',
+                  link: '/panel',
+                  isDynamicParam: false
+                },
+                {
+                  name: 'Aspirantes',
+                  link: '/panel/aspirantes',
+                  isDynamicParam: false
+                },
+                {
+                  name: alias => alias,
+                  link: alias => `/panel/aspirantes/${alias}`,
+                  isDynamicParam: true
+                },
+                {
+                  name: 'Modificar',
+                  isDynamicParam: false
+                }
+              ]
+            }
           }]
         },
         {
           path: '/panel/alumnos',
           name: 'Students',
-          component: Students
+          component: Students,
+          meta: {
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Alumnos',
+                isDynamicParam: false
+              }
+            ]
+          }
         },
         {
           path: '/panel/alumno/:id',
           name: 'Student',
           component: Student,
+          meta: {
+            breadcrumb: [{
+                name: 'Panel',
+                link: '/panel',
+                isDynamicParam: false
+              },
+              {
+                name: 'Alumnos',
+                link: '/panel/alumnos',
+                isDynamicParam: false
+              },
+              {
+                name: alias => alias,
+                isDynamicParam: true
+              }
+            ]
+          },
           children: [{
             path: '/panel/alumno/:id/modificar',
             name: 'StudentEdit',
-            component: StudentEdit
+            component: StudentEdit,
+            meta: {
+              breadcrumb: [{
+                  name: 'Panel',
+                  link: '/panel',
+                  isDynamicParam: false
+                },
+                {
+                  name: 'Alumnos',
+                  link: '/panel/alumnos',
+                  isDynamicParam: false
+                },
+                {
+                  name: alias => alias,
+                  link: alias => `/panel/alumnos/${alias}`,
+                  isDynamicParam: true
+                },
+                {
+                  name: 'Modificar',
+                  isDynamicParam: false
+                }
+              ]
+            }
           }]
         }
       ]

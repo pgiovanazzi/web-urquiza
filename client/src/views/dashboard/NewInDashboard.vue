@@ -1,23 +1,33 @@
 <template>
-  <div class="col-lg-12 col-md-12" v-if="postByAlias(getAlias)">
-    <div class="row mb-5">
-      <small>{{ postByAlias(getAlias).date | formatDate2 }}</small>
+  <div>
+    <div class="row" v-if="$route.path === '/panel/novedades/' + getAlias">
+      <div class="col-lg-8 col-md-12 mt-3" v-if="postByAlias(getAlias)">
+        <div v-html="postByAlias(getAlias).content"></div>
+      </div>
+      <div class="col-lg-4 col-md-12 mt-3">
+        <DBSidebar :data="$store.getters.getPostByAlias(getAlias)" />
+      </div>
     </div>
-    <div v-html="postByAlias(getAlias).content"></div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import DBSidebar from "@/components/dashboard/Sidebar.vue";
 
 export default {
   name: "NewInDashboard",
+  components: {
+    DBSidebar
+  },
   created() {
     this.$store.dispatch("getPosts");
   },
   computed: {
     getAlias() {
-      return this.$route.params.id
+      return this.$route.params.id;
     },
+
     postByAlias() {
       return this.$store.getters.getPostByAlias;
     }

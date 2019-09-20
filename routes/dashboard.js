@@ -20,7 +20,6 @@ router.get('/registros/aspirantes', async (req, res, next) => {
    }
 });
 
-
 // API Posts
 router.get('/publicaciones', async (req, res, next) => {
    try {
@@ -35,6 +34,19 @@ router.post('/nueva-publicacion', async (req, res, next) => {
    try {
       req.body.alias = req.body.description.toLowerCase().replace(/ /g, '-').replace(/[¿?¡!*%$#@()_+=<>~]/g, "").replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
 
+      // If exist alias
+      const posts = await Posts.find()
+
+      for (let index = 0; index < posts.length; index++) {
+         if (posts[index].alias === req.body.alias || posts[index]._id == req.body._id) {
+            return res.status(200).json({
+               success: false,
+               message: 'El nombre de la descripción ya existe, cambie el nombre.'
+            })
+         }
+      }
+
+      // if not exist, next
       const newPost = new Posts(req.body);
 
       await newPost.save();
@@ -50,6 +62,38 @@ router.post('/nueva-publicacion', async (req, res, next) => {
       })
    }
 });
+
+router.put('/publicaciones/editar/:id', async (req, res) => {
+   try {
+      // format alias
+      req.body.alias = req.body.description.toLowerCase().replace(/ /g, '-').replace(/[¿?¡!*%$#@()_+=<>~]/g, "").replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
+
+      // If exist alias
+      const posts = await Posts.find()
+
+      for (let index = 0; index < posts.length; index++) {
+         if (posts[index].alias === req.body.alias && posts[index]._id != req.body._id) {
+            return res.status(200).json({
+               success: false,
+               message: 'El nombre de la descripción ya existe, cambie el nombre.'
+            })
+         }
+      }
+
+      // if not exist alias, next
+      await Posts.findByIdAndUpdate(req.params.id, req.body)
+
+      res.status(200).json({
+         success: true,
+         message: 'Novedad actualizada correctamente.'
+      })
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: 'Ha ocurrido un error, no se pudo editar.'
+      })
+   }
+})
 
 router.delete('/publicaciones/eliminar/:id', async (req, res) => {
    try {

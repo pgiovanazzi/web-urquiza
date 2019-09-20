@@ -3,9 +3,11 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb lighten-4">
         <li v-for="(path, idx) of getBreadcrumbPathsWithLink" :key="idx" class="breadcrumb-item">
-            <router-link :to="isPathDynamicLink(path)">{{ path.name }}</router-link>
+          <router-link :to="isPathDynamicLink(path)">{{ path.name | capitalize }}</router-link>
         </li>
-        <li class="breadcrumb-item active">{{ isPathDynamicName(getLastBreadcrumPath) | capitalize }}</li>
+        <li
+          class="breadcrumb-item active"
+        >{{ isPathDynamicName(getLastBreadcrumPath) | capitalize }}</li>
       </ol>
     </nav>
   </div>
@@ -14,43 +16,39 @@
 <script>
 export default {
   name: "Breadcrumb",
-  created() {
-    console.log(this.getBreadcrumbPathsWithLink)
-  },
   computed: {
     getLastBreadcrumPath() {
-      return this.$route.meta.breadcrumb[this.$route.meta.breadcrumb.length - 1]
+      return this.$route.meta.breadcrumb[
+        this.$route.meta.breadcrumb.length - 1
+      ];
     },
     getBreadcrumbPathsWithLink() {
-      // ver aquí la runta dinamica, usa la funcion definida en route
-      return this.$route.meta.breadcrumb.filter( bc => bc.link )
+      let bcPaths = [];
+      this.$route.meta.breadcrumb.forEach(objPath => {
+        if (objPath.isDynamicParam && objPath.link) {
+          bcPaths.push({
+            name: objPath.name(this.$route.params.id),
+            link: objPath.link(this.$route.params.id),
+            isDynamicParam: false
+          });
+        } else bcPaths.push(objPath);
+      });
+      return bcPaths.filter(bc => bc.link);
     }
-  },
-  watch: {
-    $route(to, from) {
-    }
-  },
-  data() {
-    return {
-      
-    };
   },
   methods: {
     isPathDynamicLink(path) {
-      if (path.dynamicParams) 
-        return path.link(this.$route.params.id)
-      return path.link
+      if (path.isDynamicParam) return path.link(this.$route.params.id);
+      return path.link;
     },
 
     isPathDynamicName(path) {
-      if (path.dynamicParams) 
-        return path.name(this.$route.params.id)
-      return path.name
+      if (path.isDynamicParam) return path.name(this.$route.params.id);
+      return path.name;
     }
-  },
+  }
 };
 </script>
 
 <style scoped>
-
 </style>

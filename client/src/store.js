@@ -24,22 +24,26 @@ export default new Vuex.Store({
     getCareersInState: ({
       careers
     }) => careers,
+
     getPostsInState: ({
       posts
     }) => posts,
+
     getReversePosts: ({
         posts
       }) =>
       posts.slice().reverse(),
+    
     getPostByAlias: (state) => (alias) => {
       return state.posts.find(post => post.alias === alias)
     },
+
     getLastPost: ({
       posts
     }) => {
       let lastPostPublished = {}
       for (let index = posts.length - 1; index > -1; index--) {
-        if (posts[index].published) {
+        if (posts[index].published === 'true') {
           lastPostPublished = posts[index]
           break
         }
@@ -48,6 +52,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    SET_CURRENT_SELECTED_NEWS(state, newSelect) {
+      state.currentSelectedNews = newSelect
+    },
     SET_LAYOUT(state, newLayout) {
       state.layout = newLayout
     },

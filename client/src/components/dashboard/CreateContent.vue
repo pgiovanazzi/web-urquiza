@@ -22,7 +22,7 @@
                 <i class="fas fa-file-alt prefix"></i>
                 <input
                   type="text"
-                  v-model="newContent.description"
+                  v-model.trim="newContent.description"
                   class="form-control validate"
                   required
                 />
@@ -47,7 +47,7 @@
                 <i class="fas fa-pencil-alt prefix"></i>
                 <input
                   type="text"
-                  v-model="newContent.metaDescription"
+                  v-model.trim="newContent.metaDescription"
                   class="form-control validate"
                 />
                 <label data-error="error" data-success="correcto">Meta descripción</label>
@@ -55,7 +55,7 @@
 
               <div class="md-form">
                 <i class="fas fa-tags prefix"></i>
-                <input type="text" v-model="newContent.metaLabel" class="form-control validate" />
+                <input type="text" v-model.trim="newContent.metaLabel" class="form-control validate" />
                 <label data-error="error" data-success="correcto">Meta etiqueta</label>
               </div>
             </div>
@@ -72,7 +72,6 @@
 <script>
 import NewPostService from "@/services/NewPostService.js";
 import { mapActions } from "vuex";
-
 
 class ContentCreated {
   constructor(
@@ -92,13 +91,13 @@ class ContentCreated {
 
 export default {
   name: "CreateContent",
-  components: {
-
-  },
   data() {
     return {
-      newContent: new ContentCreated(),
+      newContent: {}
     };
+  },
+  mounted() {
+    this.newContent = new ContentCreated()
   },
   methods: {
     ...mapActions(["getPosts"]),
@@ -114,6 +113,7 @@ export default {
             positionClass: "toast-bottom-full-width",
             timeOut: "10000"
           });
+          this.newContent = new ContentCreated();
         } else {
           toastr.error(resData.message, {
             preventDuplicates: true,
@@ -121,7 +121,6 @@ export default {
             timeOut: "10000"
           });
         }
-        this.newContent = new ContentCreated();
       } catch (error) {
         toastr.error("Error de servicio de novedades.", {
           preventDuplicates: true,
