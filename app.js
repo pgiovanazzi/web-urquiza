@@ -48,16 +48,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Middleware for Vuejs router mode history
+app.use(history());
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Routes
 app.use('/', indexRouter);
 app.use('/aspirante', aspirantRouter);
 app.use('/su', loginRouter);
 app.use('/su/panel', dashboardRouter);
-
-// Middleware for Vuejs router mode history
-app.use(history());
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 // Handle production
 if (process.env.NODE_ENV === 'production') {

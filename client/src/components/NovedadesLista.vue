@@ -24,12 +24,10 @@
         </p>
 
         <router-link :to="'/novedades/' + post.alias" exact>
-          <h5>
-            <strong>
-              {{ post.description }}
-              <i class="fas fa-angle-right float-right"></i>
-            </strong>
-          </h5>
+          <strong class="lead">
+            {{ post.description }}
+            <i class="fas fa-angle-right float-right"></i>
+          </strong>
         </router-link>
       </div>
     </div>
@@ -38,7 +36,6 @@
 </template>
 
 <script>
-
 export default {
   name: "novedadesLista",
   props: {
@@ -48,9 +45,8 @@ export default {
 </script>
 
 <style scoped>
-
 a.router-link-active {
-  color: #6096cc
+  color: #6096cc;
 }
 
 hr {

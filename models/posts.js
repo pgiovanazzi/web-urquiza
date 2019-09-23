@@ -15,7 +15,7 @@ var postsSchema = new Schema({
 		required: true
 	},
 	published: {
-		type: String,
+		type: Boolean,
 		required: true
 	},
 	metaLabel: {

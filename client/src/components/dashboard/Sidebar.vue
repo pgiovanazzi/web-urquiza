@@ -4,7 +4,7 @@
       <li class="list-group-item active text-center">Información de la publicación</li>
       <li class="list-group-item">Descripción: {{ data.description }}</li>
       <li class="list-group-item">Fecha de creación: {{ data.date | formatDate2 }}</li>
-      <li class="list-group-item">Publicado: {{ data.published === 'true' ? 'Si' : 'No'}}</li>
+      <li class="list-group-item">Publicado: {{ data.published ? 'Si' : 'No'}}</li>
     </ul>
   </div>
 </template>

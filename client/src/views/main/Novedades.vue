@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-12 col-md-12" v-if="findPost.published === 'true'">
+  <div class="col-lg-12 col-md-12" v-if="findPost.published">
     <div class="row mb-5">
       <small>{{ findPost.date | formatDate2 }}</small>
     </div>

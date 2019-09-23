@@ -337,7 +337,7 @@
 import { mapState } from "vuex";
 import Datepicker from "vuejs-datepicker";
 import PreinscriptionService from "../../PrescriptionService";
-import PreInsSuccessComponent from "@/components/PreInsSuccessComponent.vue"
+import PreInsSuccessComponent from "@/components/PreInsSuccessComponent.vue";
 
 class Preinscripcion {
   constructor(
@@ -413,20 +413,16 @@ export default {
     async sendForm() {
       this.selectAFCareer();
       try {
-
         this.sending = true;
         const data = await PreinscriptionService.send(this.formPreinscribirse);
         const resMsg = await data.json();
 
-        if (resMsg.success) this.$store.commit("SUCCESS_PRE_INS", "PreInsSuccessComponent");
-        else toastr.error(resMsg.message, this.configToastr);
-        
-        this.formPreinscribirse = new Preinscripcion();
-
+        if (resMsg.success) {
+          this.$store.commit("SUCCESS_PRE_INS", "PreInsSuccessComponent");
+          this.formPreinscribirse = new Preinscripcion();
+        } else toastr.error(resMsg.message, this.configToastr);
       } catch (error) {
-
         toastr.error("Ha ocurrido un error inesperado.", this.configToastr);
-
       } finally {
         this.sending = false;
       }

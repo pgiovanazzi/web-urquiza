@@ -8,8 +8,24 @@
           <div class="nav flex-sm-column mx-4">
             <router-link to="/" class="nav-link d-none d-sm-inline">TERCIARIO URQUIZA</router-link>
             <hr class="m-1 mb-4" />
-            <CreateContent />
-            <router-link class="nav-link" data-target="#createContent" data-toggle="modal" to=""><i class="fas fa-external-link-alt"></i> Crear nueva novedad</router-link>
+            <router-link
+              class="nav-link"
+              data-target="#createContent"
+              data-toggle="modal"
+              to="/panel/novedades"
+            >
+              <i class="fas fa-external-link-alt"></i> Crear nueva novedad
+            </router-link>
+
+            <router-link
+              class="nav-link"
+              data-target="#createContent"
+              data-toggle="modal"
+              to="/panel/paginas"
+            >
+              <i class="fas fa-external-link-alt"></i> Crear nueva página
+            </router-link>
+
             <router-link
               class="nav-link"
               v-for="(option, idx) of quickAccessOptios 
@@ -67,7 +83,7 @@
 </template>
 
 <script>
-import CreateContent from "@/components/dashboard/CreateContent.vue"
+import CreateContent from "@/components/dashboard/CreateContent.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
@@ -80,10 +96,6 @@ export default {
     return {
       quickAccessOptios: [
         {
-          name: "Crear nueva página",
-          path: "/panel/nueva-pagina"
-        },
-        {
           name: "Buscar aspirantes",
           path: "/panel/buscar-aspirantes"
         },
@@ -93,7 +105,7 @@ export default {
         }
       ]
     };
-  },
+  }
 };
 </script>
 

@@ -33,7 +33,7 @@ export default new Vuex.Store({
         posts
       }) =>
       posts.slice().reverse(),
-    
+
     getPostByAlias: (state) => (alias) => {
       return state.posts.find(post => post.alias === alias)
     },
@@ -43,13 +43,25 @@ export default new Vuex.Store({
     }) => {
       let lastPostPublished = {}
       for (let index = posts.length - 1; index > -1; index--) {
-        if (posts[index].published === 'true') {
+        if (posts[index].published) {
           lastPostPublished = posts[index]
           break
         }
       }
       return lastPostPublished
-    }
+    },
+
+    getPagesInstitutional: ({
+        pages
+      }) => (section) =>
+      pages.filter(page => page.section === section),
+
+    getPagesEntrant: ({
+      pages
+    }) => (section) => {
+      return pages.filter(page => page.section === section)
+    },
+
   },
   mutations: {
     SET_CURRENT_SELECTED_NEWS(state, newSelect) {

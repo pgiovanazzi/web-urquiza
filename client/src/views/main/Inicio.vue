@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-12 mt-4 mb-5">
         <router-view></router-view>
-        <UltimaNovedad v-if="getPostsInState.length" v-show="$route.path == '/' ? true : false" />
+        <UltimaNovedad v-if="getPostsInState.length && showLastNews"/>
       </div>
       <div class="col-lg-4 col-md-12 mt-4 mb-5">
         <h4 class="mb-n3">Ultimas Novedades</h4>
@@ -51,14 +51,17 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getPostsInState", "getCareersInState", "getReversePosts"])
+    ...mapGetters(["getPostsInState", "getCareersInState", "getReversePosts"]),
+    showLastNews() {
+      return (this.$route.path == '/') ? true : false
+    }
   },
 
   methods: {
     ...mapActions(["getCareers", "getPosts"]),
 
     getPostsPublished() {
-      return this.getReversePosts.filter(post => post.published === "true");
+      return this.getReversePosts.filter(post => post.published);
     }
   }
 };

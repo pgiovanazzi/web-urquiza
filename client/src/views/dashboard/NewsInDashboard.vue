@@ -40,7 +40,7 @@
               <td>
                 <strong>{{ post.description }}</strong>
               </td>
-              <td v-html="setIconPublished(post.published == 'true')"></td>
+              <td v-html="setIconPublished(post.published)"></td>
               <td>{{ post.date | formatDate2 }}</td>
               <td>
                 <router-link :to="'/panel/novedades/' + post.alias">
@@ -75,14 +75,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import NewPostService from "@/services/NewPostService.js";
-const Breadcrumb = () => import("@/components/dashboard/Breadcrumb.vue");
+import PostsService from "@/services/PostsService.js";
 const CreateContent = () => import("@/components/dashboard/CreateContent.vue");
 
 export default {
   name: "NewsInDashboard",
   components: {
-    Breadcrumb,
     CreateContent
   },
   created() {
@@ -98,7 +96,7 @@ export default {
     },
     async removePost(id) {
       try {
-        const data = await NewPostService.remove(id);
+        const data = await PostsService.remove(id);
         const resData = await data.json();
 
         if (resData.success) {

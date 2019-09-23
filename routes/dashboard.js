@@ -125,6 +125,9 @@ router.get('/paginas', async (req, res) => {
 
 router.post('/nueva-pagina', async (req, res) => {
    try {
+      req.body.alias = req.body.description.toLowerCase().replace(/ /g, '-').replace(/[¿?¡!*%$#@()_+=<>~]/g, "").replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
+      req.body.url = req.body.alias
+
       const newPage = new Pages(req.body)
       await newPage.save()
       res.status(201).json({

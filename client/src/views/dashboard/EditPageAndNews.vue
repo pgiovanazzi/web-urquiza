@@ -57,19 +57,19 @@
 </template>
 
 <script>
-import NewPostService from "@/services/NewPostService.js";
+import PostsService from "@/services/PostsService.js";
+import PagesService from "@/services/PagesService.js";
 
 export default {
   name: "EditPageAndNews",
   created() {
-    this.$store.dispatch("getPosts");
+    this.$store.dispatch('getPosts')
   },
   mounted() {
     this.focusInput();
     this.contentData = this.$store.getters.getPostByAlias(
       this.$route.params.id
     );
-    this.contentData.published = this.contentData.published === 'true'
   },
   data() {
     return {
@@ -86,21 +86,23 @@ export default {
     },
 
     async sendEditContent() {
-       try {
-        const data = await NewPostService.edit(this.contentData, this.contentData._id);
+      try {
+        const data = await PostsService.edit(
+          this.contentData,
+          this.contentData._id
+        );
         const resData = await data.json();
 
         if (resData.success) {
           this.$store.dispatch("getPosts");
-
+          
           toastr.success(resData.message, {
             preventDuplicates: true,
             positionClass: "toast-bottom-full-width",
             timeOut: "10000"
           });
 
-          this.$router.push('/panel/novedades')
-
+          this.$router.push("/panel/novedades");
         } else {
           toastr.error(resData.message, {
             preventDuplicates: true,
@@ -108,14 +110,12 @@ export default {
             timeOut: "10000"
           });
         }
-
       } catch (error) {
         toastr.error("Error de servicio de novedades.", {
           preventDuplicates: true,
           positionClass: "toast-bottom-full-width",
           timeOut: "10000"
         });
-
       }
     }
   }

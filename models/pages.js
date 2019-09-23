@@ -12,7 +12,7 @@ var pagesSchema = new Schema({
    },
    section: {
       type: String,
-      enum: ['INSTITUCIONAL', 'INGRESANTES', 'CARRERAS'],
+      enum: ['INSTITUCIONAL', 'INGRESANTES'],
       required: true
    },
    content: {
