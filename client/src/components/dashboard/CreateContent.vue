@@ -18,17 +18,18 @@
           </div>
           <form @submit.prevent="sendNewContent">
             <div class="modal-body mx-3">
-              <label data-error="error" data-success="correcto">Seleccione la sección</label>
-              <select
-                class="browser-default custom-select form-control mb-2"
-                v-if="$route.path === '/panel/paginas'"
-                v-model="newContent.section"
-                required
-              >
-                <option value="INSTITUCIONAL">Institucional</option>
-                <option value="INGRESANTES">Ingresantes</option>
-                <option value="CARRERAS">Carreras</option>
-              </select>
+              <div v-if="$route.path === '/panel/paginas'">
+                <label data-error="error" data-success="correcto">Seleccione la sección</label>
+                <select
+                  class="browser-default custom-select form-control mb-2"
+                  v-model="newContent.section"
+                  required
+                >
+                  <option value="INSTITUCIONAL">Institucional</option>
+                  <option value="INGRESANTES">Ingresantes</option>
+                  <option value="CARRERAS">Carreras</option>
+                </select>
+              </div>
               <div class="md-form">
                 <i class="fas fa-file-alt prefix"></i>
                 <input
