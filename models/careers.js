@@ -6,7 +6,11 @@ const careersSchema = new Schema({
       type: String,
       required: true
    },
-   title: {
+   certificName: {
+      type: String,
+      required: true
+   },
+   years: {
       type: String,
       required: true
    },
@@ -22,11 +26,11 @@ const careersSchema = new Schema({
       type: Boolean,
       required: true
    },
-   logotype: {
+   logotypeName: {
       type: String,
       required: true
    },
-   studyProgrameFile: {
+   planFileName: {
       type: String,
       required: true
    },

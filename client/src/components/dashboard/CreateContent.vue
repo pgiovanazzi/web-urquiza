@@ -41,6 +41,33 @@
                 <label data-error="error" data-success="correcto">Descripción o nombre</label>
               </div>
 
+              <div class="md-form" v-if="newContent.section === 'CARRERAS'">
+                <i class="fas fa-file-alt prefix"></i>
+                <input
+                  type="text"
+                  v-model.trim="newContent.title"
+                  class="form-control validate"
+                  required
+                />
+                <label data-error="error" data-success="correcto">Título de la carrera</label>
+              </div>
+
+              <div class="md-form" v-if="newContent.section === 'CARRERAS'">
+                <i class="fas fa-file-alt prefix"></i>
+                <input
+                  type="text"
+                  v-model.trim="newContent.years"
+                  class="form-control validate"
+                  required
+                />
+                <label data-error="error" data-success="correcto">Años de cursado</label>
+              </div>
+
+              <div class="md-form mb-5" v-if="newContent.section === 'CARRERAS'">
+                  <i class="fas fa-file-upload prefix"></i>
+                  <input type="file" @change="onFileSelected"/>
+              </div>
+
               <wysiwyg v-model="newContent.content" />
 
               <div class="md-from mt-3">
@@ -120,6 +147,7 @@ export default {
     ...mapActions(["getPosts", "getPages"]),
     async sendNewContent() {
       try {
+        // { data } ?
         const data =
           this.$route.path === "/panel/novedades"
             ? await PostsService.send(this.newContent)
@@ -154,6 +182,11 @@ export default {
           }
         );
       }
+    },
+
+    onFileSelected(event) {
+      console.log(event.target.files[0])
+      this.newContent.logotype = event.target.files[0]
     }
   }
 };
