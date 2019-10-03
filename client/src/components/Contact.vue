@@ -129,27 +129,25 @@ export default {
     async sendMsg() {
       try {
         this.sending = true;
-        const data = await ContactService.send(this.newQuery)
-        const resMsg = await data.json()
+        const data = await ContactService.send(this.newQuery);
+        const resMsg = await data.json();
+
         if (resMsg.status)
-          toastr.success(resMsg.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.success(resMsg.message, {
+            icon: "check"
           });
         else
-          toastr.error(resMsg.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.error(resMsg.message, {
+            icon: "times"
           });
+
         this.newQuery = new Query();
+
       } catch (error) {
-        toastr.error("Ha ocurrido un error inesperado.", {
-          preventDuplicates: true,
-          positionClass: "toast-bottom-full-width",
-          timeOut: "10000"
-        });
+        this.$toasted.error("Ha ocurrido un error inesperado.", {
+            icon: "times"
+          });
+        
       } finally {
         this.sending = false;
       }

@@ -8,15 +8,35 @@ const logger = require('morgan');
 const session = require('express-session');
 const flash = require('connect-flash');
 const history = require('connect-history-api-fallback');
+const multer = require('multer');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/loginSu');
 var dashboardRouter = require('./routes/dashboard');
 var aspirantRouter = require('./routes/aspirant');
 
-var app = express();
+var storage = multer.diskStorage({
+  destination: path.join(__dirname, 'uploaded-files'),
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+})
+
+const upload = multer({
+  storage,
+  dest: path.join(__dirname, 'uploaded-files')
+}).fields([{
+  name: 'logotype',
+  maxCount: 1
+}, {
+    name: 'studyPlanFile',
+    maxCount: 1
+}])
+
+const app = express();
 
 // Middleware
+app.use(upload)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({
@@ -58,6 +78,22 @@ app.use('/aspirante', aspirantRouter);
 app.use('/su', loginRouter);
 app.use('/su/panel', dashboardRouter);
 
+
+app.post('/uploads', (req, res) => {
+  try {
+    console.log(req.files)
+    res.status(200).json({
+      success: true,
+      message: 'Imagen subida.'
+    })
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error, Imagen no subida.'
+    })
+  }
+})
+
 // Handle production
 if (process.env.NODE_ENV === 'production') {
   // Static folder
@@ -77,9 +113,9 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // send the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.send(err);
 });
 
 module.exports = app;

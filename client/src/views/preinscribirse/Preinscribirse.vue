@@ -401,12 +401,7 @@ export default {
       careerYearValue: [
         this.getCareerYearValue(),
         this.getCareerYearValue() + 1
-      ],
-      configToastr: {
-        preventDuplicates: true,
-        positionClass: "toast-bottom-full-width",
-        timeOut: "10000"
-      }
+      ]
     };
   },
   methods: {
@@ -420,9 +415,18 @@ export default {
         if (resMsg.success) {
           this.$store.commit("SUCCESS_PRE_INS", "PreInsSuccessComponent");
           this.formPreinscribirse = new Preinscripcion();
-        } else toastr.error(resMsg.message, this.configToastr);
+        } else {
+          this.$toasted.error(resMsg.message, {
+            icon: "times"
+          });
+        }
+
       } catch (error) {
-        toastr.error("Ha ocurrido un error inesperado.", this.configToastr);
+
+        this.$toasted.error("Ha ocurrido un error inesperado.", {
+          icon: "times"
+        });
+        
       } finally {
         this.sending = false;
       }

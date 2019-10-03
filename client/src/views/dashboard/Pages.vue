@@ -62,33 +62,31 @@
                       <!--Table body-->
                       <tbody>
                         <tr
-                          v-for="(pageInstitutional, idx) in $store.getters.getPagesInstitutional('INSTITUCIONAL')"
+                          v-for="({description, published, date, alias, _id}, idx) in $store.getters.getPagesInstitutional('INSTITUCIONAL')"
                           :key="idx"
                         >
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>
-                            <strong>{{ pageInstitutional.description }}</strong>
+                            <strong>{{ description }}</strong>
                           </td>
-                          <td v-html="setIconPublished(pageInstitutional.published)"></td>
-                          <td>{{ pageInstitutional.date | formatDate2 }}</td>
+                          <td v-html="setIconPublished(published)"></td>
+                          <td>{{ date | formatDate2 }}</td>
                           <td>
-                            <router-link :to="'/panel/paginas/' + pageInstitutional.alias">
+                            <router-link :to="'/panel/paginas/' + alias">
                               <strong>
                                 <i class="far fa-eye"></i>
                               </strong>
                             </router-link>
                           </td>
                           <td>
-                            <router-link
-                              :to="'/panel/paginas/' + pageInstitutional.alias + '/modificar'"
-                            >
+                            <router-link :to="'/panel/paginas/' + alias + '/modificar'">
                               <strong>
                                 <i class="far fa-edit"></i>
                               </strong>
                             </router-link>
                           </td>
                           <td>
-                            <a @click="removePage(pageInstitutional._id)">
+                            <a @click="removePage(_id)">
                               <strong>
                                 <i class="fas fa-trash-alt"></i>
                               </strong>
@@ -142,33 +140,31 @@
                       <!--Table body-->
                       <tbody>
                         <tr
-                          v-for="(pageInstitutional, idx) in $store.getters.getPagesInstitutional('INGRESANTES')"
+                          v-for="({description, published, date, alias, _id}, idx) in $store.getters.getPagesInstitutional('INGRESANTES')"
                           :key="idx"
                         >
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>
-                            <strong>{{ pageInstitutional.description }}</strong>
+                            <strong>{{ description }}</strong>
                           </td>
-                          <td v-html="setIconPublished(pageInstitutional.published)"></td>
-                          <td>{{ pageInstitutional.date | formatDate2 }}</td>
+                          <td v-html="setIconPublished(published)"></td>
+                          <td>{{ date | formatDate2 }}</td>
                           <td>
-                            <router-link :to="'/panel/paginas/' + pageInstitutional.alias">
+                            <router-link :to="'/panel/paginas/' + alias">
                               <strong>
                                 <i class="far fa-eye"></i>
                               </strong>
                             </router-link>
                           </td>
                           <td>
-                            <router-link
-                              :to="'/panel/paginas/' + pageInstitutional.alias + '/modificar'"
-                            >
+                            <router-link :to="'/panel/paginas/' + alias + '/modificar'">
                               <strong>
                                 <i class="far fa-edit"></i>
                               </strong>
                             </router-link>
                           </td>
                           <td>
-                            <a @click="removePage(pageInstitutional._id)">
+                            <a @click="removePage(_id)">
                               <strong>
                                 <i class="fas fa-trash-alt"></i>
                               </strong>
@@ -204,7 +200,7 @@
                   data-parent="#accordionExample"
                 >
                   <div class="card-body">
-                                        <!--Table-->
+                    <!--Table-->
                     <table id="tablePreview" class="table table-hover">
                       <!--Table head-->
                       <thead>
@@ -222,31 +218,31 @@
                       <!--Table body-->
                       <tbody>
                         <tr
-                          v-for="(career, idx) in $store.getters.getCareersInState"
+                          v-for="({description, published, date, alias, _id}, idx) in $store.getters.getCareersInState"
                           :key="idx"
                         >
                           <th scope="row">{{ idx + 1 }}</th>
                           <td>
-                            <strong>{{ career.name }}</strong>
+                            <strong>{{ description }}</strong>
                           </td>
-                          <td v-html="setIconPublished(career.published)"></td>
-                          <td>{{ career.date | formatDate2 }}</td>
+                          <td v-html="setIconPublished(published)"></td>
+                          <td>{{ date | formatDate2 }}</td>
                           <td>
-                            <router-link :to="'/panel/paginas/' + career.alias">
+                            <router-link :to="'/panel/paginas/' + alias">
                               <strong>
                                 <i class="far fa-eye"></i>
                               </strong>
                             </router-link>
                           </td>
                           <td>
-                            <router-link :to="'/panel/paginas/' + career.alias + '/modificar'">
+                            <router-link :to="'/panel/paginas/' + alias + '/modificar'">
                               <strong>
                                 <i class="far fa-edit"></i>
                               </strong>
                             </router-link>
                           </td>
                           <td>
-                            <a @click="removePage(career._id)">
+                            <a @click="removeCareer(_id)">
                               <strong>
                                 <i class="fas fa-trash-alt"></i>
                               </strong>
@@ -272,6 +268,7 @@
 <script>
 const CreateContent = () => import("@/components/dashboard/CreateContent.vue");
 import PagesService from "@/services/PagesService.js";
+import CareersService from "@/services/CareersService.js";
 
 export default {
   name: "Pages",
@@ -304,23 +301,40 @@ export default {
         if (resData.success) {
           this.$store.dispatch("getPages");
 
-          toastr.success(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.success(resData.message, {
+            icon: "check"
           });
         } else {
-          toastr.error(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.error(resData.message, {
+            icon: "times"
           });
         }
       } catch (error) {
-        toastr.error("Error de servicio de paginas.", {
-          preventDuplicates: true,
-          positionClass: "toast-bottom-full-width",
-          timeOut: "10000"
+        this.$toasted.error("Error de servicio de paginas.", {
+          icon: "times"
+        });
+      }
+    },
+
+    async removeCareer(id) {
+      try {
+        const data = await CareersService.remove(id);
+        const resData = await data.json();
+
+        if (resData.success) {
+          this.$store.dispatch("getCareers");
+
+          this.$toasted.success(resData.message, {
+            icon: "check"
+          });
+        } else {
+          this.$toasted.error(resData.message, {
+            icon: "times"
+          });
+        }
+      } catch (error) {
+        this.$toasted.error("Error de servicio de paginas.", {
+          icon: "times"
         });
       }
     }

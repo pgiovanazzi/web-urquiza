@@ -3,7 +3,15 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import moment from 'moment'
-import wysiwyg from "vue-wysiwyg";
+import wysiwyg from "vue-wysiwyg"
+import Toasted from 'vue-toasted'
+
+Vue.use(Toasted, {
+  theme: 'toasted-primary',
+  iconPack: 'fontawesome',
+  position: 'top-center',
+  duration: 5000
+})
 
 Vue.use(wysiwyg, {});
 

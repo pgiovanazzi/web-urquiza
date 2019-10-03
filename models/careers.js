@@ -26,11 +26,11 @@ const careersSchema = new Schema({
       type: Boolean,
       required: true
    },
-   logotypeName: {
+   logotype: {
       type: String,
       required: true
    },
-   planFileName: {
+   studyPlanFile: {
       type: String,
       required: true
    },

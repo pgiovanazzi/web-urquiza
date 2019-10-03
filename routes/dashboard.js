@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+
 const {
    mongose
 } = require('../config/connection');
@@ -175,8 +176,19 @@ router.delete('/pagina/eliminar/:id', async (req, res) => {
 // API Careers
 router.post('/carrera/nueva', async (req, res) => {
    try {
+      // path files added
+      req.body.studyPlanFile = req.files.studyPlanFile[0].path
+      req.body.logotype = req.files.logotype[0].path
+
+      // create alias
+      req.body.alias = req.body.description.toLowerCase().replace(/ /g, '-').replace(/[¿?¡!*%$#@()_+=<>~]/g, "").replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i').replace(/ó/g, 'o').replace(/ú/g, 'u')
+
+      // create url
+      req.body.url = req.body.alias
+
       const newCarrer = new Careers(req.body)
       await newCarrer.save()
+      
       res.status(201).json({
          success: true,
          message: "Nueva carrera creada."
@@ -212,6 +224,21 @@ router.put('/carrera/editar/:id', async (req, res) => {
       res.status(500).json({
          success: false,
          message: "Ocurrió un error inesperado."
+      })
+   }
+})
+
+router.delete('/carrera/eliminar/:id', async (req, res) => {
+   try {
+      await Careers.findByIdAndRemove(req.params.id)
+      res.status(200).json({
+         success: true,
+         message: "Carrera eliminada correctametne."
+      })
+   } catch (error) {
+      res.status(500).json({
+         success: false,
+         message: "Ha ocurrido un error al eliminar la carrera."
       })
    }
 })

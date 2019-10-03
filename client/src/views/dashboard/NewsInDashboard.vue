@@ -92,7 +92,9 @@ export default {
   methods: {
     ...mapActions(["getPosts"]),
     setIconPublished(pub) {
-      return pub ? "<i class='fas fa-check'></i>" : "<i class='fas fa-minus'></i>"
+      return pub
+        ? "<i class='fas fa-check'></i>"
+        : "<i class='fas fa-minus'></i>";
     },
     async removePost(id) {
       try {
@@ -101,23 +103,17 @@ export default {
 
         if (resData.success) {
           this.getPosts();
-          toastr.success(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.success(resData.message, {
+            icon: "check"
           });
         } else {
-          toastr.error(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.error(resData.message, {
+            icon: "times"
           });
         }
       } catch (error) {
-        toastr.error("Error de servicio de novedades.", {
-          preventDuplicates: true,
-          positionClass: "toast-bottom-full-width",
-          timeOut: "10000"
+        this.$toasted.error("Error de servicio de novedades.", {
+          icon: "times"
         });
       }
     }

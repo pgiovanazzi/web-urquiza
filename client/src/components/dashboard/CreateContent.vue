@@ -45,7 +45,7 @@
                 <i class="fas fa-file-alt prefix"></i>
                 <input
                   type="text"
-                  v-model.trim="newContent.title"
+                  v-model.trim="newContent.certificName"
                   class="form-control validate"
                   required
                 />
@@ -64,8 +64,29 @@
               </div>
 
               <div class="md-form mb-5" v-if="newContent.section === 'CARRERAS'">
+                <div class="custom-file">
                   <i class="fas fa-file-upload prefix"></i>
-                  <input type="file" @change="onFileSelected"/>
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    @change="onFileSelectedPlan"
+                    required
+                  />
+                  <label class="custom-file-label" for="customFileLang">{{ planFileName }}</label>
+                </div>
+              </div>
+
+              <div class="md-form mb-5" v-if="newContent.section === 'CARRERAS'">
+                <div class="custom-file">
+                  <i class="fas fa-file-upload prefix"></i>
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    @change="onFileSelectedIcon"
+                    required
+                  />
+                  <label class="custom-file-label" for="customFileLang">{{ iconFileName }}</label>
+                </div>
               </div>
 
               <wysiwyg v-model="newContent.content" />
@@ -115,6 +136,7 @@
 <script>
 import PostsService from "@/services/PostsService.js";
 import PagesService from "@/services/PagesService.js";
+import CareersService from "@/services/CareersService.js";
 import { mapActions } from "vuex";
 
 class ContentCreated {
@@ -137,56 +159,63 @@ export default {
   name: "CreateContent",
   data() {
     return {
-      newContent: {}
+      newContent: {},
+      planFileName: "Seleccione el archivo del plan de estudio",
+      iconFileName: "Seleccione el logo de la carrera"
     };
   },
   mounted() {
     this.newContent = new ContentCreated();
   },
   methods: {
-    ...mapActions(["getPosts", "getPages"]),
+    ...mapActions(["getPosts", "getPages", "getCareers"]),
+
     async sendNewContent() {
       try {
-        // { data } ?
         const data =
           this.$route.path === "/panel/novedades"
             ? await PostsService.send(this.newContent)
-            : await PagesService.send(this.newContent);
+            : !this.newContent.studyPlanFile
+            ? await PagesService.send(this.newContent)
+            : await CareersService.send(this.newContent);
+
         const resData = await data.json();
 
         if (resData.success) {
           this.getPosts();
           this.getPages();
-          toastr.success(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.getCareers();
+
+          this.$toasted.success(resData.message, {
+            icon: "check"
           });
+
           this.newContent = new ContentCreated();
         } else {
-          toastr.error(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.error(resData.message, {
+            icon: "times"
           });
         }
       } catch (error) {
-        toastr.error(
+        this.$toasted.error(
           this.$route.path === "/panel/novedades"
             ? "Error de servicio de novedades."
-            : "Error de servicio de paginas",
+            : "Error de servicio de paginas.",
           {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+            icon: "times"
           }
         );
       }
     },
 
-    onFileSelected(event) {
-      console.log(event.target.files[0])
-      this.newContent.logotype = event.target.files[0]
+    onFileSelectedPlan(event) {
+      this.planFileName = event.target.files[0].name;
+      this.newContent.studyPlanFile = event.target.files[0];
+    },
+
+    onFileSelectedIcon(event) {
+      this.iconFileName = event.target.files[0].name;
+      this.newContent.logotype = event.target.files[0];
     }
   }
 };

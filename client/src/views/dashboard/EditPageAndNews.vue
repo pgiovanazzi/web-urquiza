@@ -63,7 +63,7 @@ import PagesService from "@/services/PagesService.js";
 export default {
   name: "EditPageAndNews",
   created() {
-    this.$store.dispatch('getPosts')
+    this.$store.dispatch("getPosts");
   },
   mounted() {
     this.focusInput();
@@ -95,27 +95,27 @@ export default {
 
         if (resData.success) {
           this.$store.dispatch("getPosts");
-          
-          toastr.success(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+
+          this.$toasted.success(resData.message, {
+            icon: "check"
           });
 
           this.$router.push("/panel/novedades");
         } else {
-          toastr.error(resData.message, {
-            preventDuplicates: true,
-            positionClass: "toast-bottom-full-width",
-            timeOut: "10000"
+          this.$toasted.error(resData.message, {
+            icon: "times"
           });
         }
       } catch (error) {
-        toastr.error("Error de servicio de novedades.", {
-          preventDuplicates: true,
-          positionClass: "toast-bottom-full-width",
-          timeOut: "10000"
-        });
+        this.$toasted.error(
+          this.$route.path ===
+            "/panel/novedades/" + this.$route.params.id + "/modificar"
+            ? "Error de servicio de novedades."
+            : "Error de servicio de paginas",
+          {
+            icon: "times"
+          }
+        );
       }
     }
   }
