@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h1><div class="pb-5 p-sm-1 p-md-4" v-html="findTitlePageByParams(id)"></div></h1>
-    <img :src="findImagePageByParams(id)" class="mx-auto d-block img-thumbnail m-4" :alt="findTitlePageByParams(id)">
-    <div class="pb-5 p-sm-1 p-md-4" v-html="findPageByParams(id)"></div>
+    <h1>
+      <div class="pb-5 p-sm-1 p-md-4" v-html="findTitleByParams(id)"></div>
+    </h1>
+    <img :src="findImageByParams(id)" class="mx-auto d-block img-thumbnail m-4" :alt="findTitleByParams(id)" />
+    <div class="pb-5 p-sm-1 p-md-4" v-html="findContentByParams(id)"></div>
   </div>
 </template>
 
@@ -12,7 +14,7 @@ import { mapState } from "vuex";
 export default {
   name: "Careers",
   computed: {
-    ...mapState(["careers"])
+    ...mapState(['careers']),
   },
   watch: {
     $route(to, from) {
@@ -25,48 +27,48 @@ export default {
     };
   },
   methods: {
-    getID() {
+     getID() {
       return this.$route.params.careersPage;
     },
-    findPageByParams(urlIn) {
+
+    findContentByParams(urlIn) {
       let data = "";
       for (let index = 0; index < this.careers.length; index++) {
-        if (this.careers[index].route == urlIn) {
+        if (this.careers[index].url == urlIn) {
+          data = this.careers[index].content;
+          break;
+        }
+      }
+      return data;
+    },
+
+    findTitleByParams(urlIn) {
+      let data = "";
+      for (let index = 0; index < this.careers.length; index++) {
+        if (this.careers[index].url == urlIn) {
           data = this.careers[index].description;
           break;
         }
       }
       return data;
     },
-    findTitlePageByParams(urlIn) {
+
+    findImageByParams(urlIn) {
       let data = "";
       for (let index = 0; index < this.careers.length; index++) {
-        if (this.careers[index].route == urlIn) {
-          data = this.careers[index].name;
+        if (this.careers[index].url == urlIn) {
+          data = this.careers[index].logotype;
           break;
         }
       }
-      return data;
-    },
-    removeJpg(nameImage) {
-      return nameImage.split(".jpg")[0];
-    },
-    findImagePageByParams(urlIn) {
-      let data = "";
-      for (let index = 0; index < this.careers.length; index++) {
-        if (this.careers[index].route == urlIn) {
-          data = this.careers[index].imageName;
-          break;
-        }
-      }
-      return require('@/assets/' + this.removeJpg(data) + '.svg');
+      return require(`@/../../uploaded-files/${data}`);
     }
   }
 };
 </script>
 
 <style lang="css">
-  img {
-    width: 12rem;
-  }
+img {
+  width: 12rem;
+}
 </style>

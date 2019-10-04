@@ -25,6 +25,12 @@ export default new Vuex.Store({
       careers
     }) => careers,
 
+    getCareerByAlias: ({
+      careers
+    }) => (alias) => {
+      return careers.find(career => career.alias === alias)
+    },
+
     getPostsInState: ({
       posts
     }) => posts,

@@ -47,8 +47,8 @@
             role="tabpanel"
             aria-labelledby="careers-tab"
           >
-            <ul v-for="(career,idx) of getCareersInState" :key="idx">
-              <li>{{ career.name }}</li>
+            <ul v-for="({description},idx) of getCareersInState" :key="idx">
+              <li>{{ description }}</li>
             </ul>
           </div>
           <div
@@ -59,9 +59,7 @@
           >{{ secretariaAcademica }}</div>
           <div class="tab-pane fade" id="FAQ" role="tabpanel" aria-labelledby="FAQ-tab">
             <ul v-for="(pregFrec, idx) of pregFrecs" :key="idx">
-              <li>
-                {{ pregFrec.preg }} - {{pregFrec.resp}}
-              </li>
+              <li>{{ pregFrec.preg }} - {{pregFrec.resp}}</li>
             </ul>
           </div>
         </div>
@@ -148,14 +146,14 @@ export default {
     };
   },
   created() {
-    this.getCareers()
+    this.getCareers();
   },
   computed: {
     ...mapGetters(["getCareersInState"])
   },
   methods: {
     ...mapActions(["getCareers"])
-  },
+  }
 };
 </script>
 
@@ -166,6 +164,6 @@ export default {
 footer {
   box-shadow: 0px -2px 10px rgba(32, 32, 32, 0.678);
   position: relative;
-	z-index: 3;
+  z-index: 3;
 }
 </style>

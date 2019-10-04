@@ -251,7 +251,6 @@
                         </tr>
                       </tbody>
                       <!--Table body-->
-                      <!-- {{ $store.getters.getCareersInState }} -->
                     </table>
                     <!--Table-->
                   </div>
@@ -275,12 +274,18 @@ export default {
   components: {
     CreateContent
   },
+  computed: {
+    getLogitype() {
+      return this.$store.getters.getCareersInState[0].logotype;
+    }
+  },
   created() {
     this.$store.dispatch("getPages");
   },
   data() {
     return {
-      entrants: []
+      entrants: [],
+      img: require(`@/../../uploaded-files/${this.$store.getters.getCareersInState[0].logotype}`)
     };
   },
   mounted() {

@@ -3,8 +3,8 @@
   <div class="card mb-4">
     <!-- Card image -->
     <div class="view">
-      <img class="card-img-top" :src="bgCareersLogo[idx]" :alt="careerObj.name" />
-      <object id="icono" :data="getImgUrl(removeJpg(careerObj.imageName))" type="image/svg+xml"></object>
+      <img class="card-img-top" :src="bgCareersLogo[idx]" :alt="careerObj.description" />
+      <object id="icono" :data="getImgUrl(careerObj.logotype)" type="image/svg+xml"></object>
       <a>
         <div class="mask pattern-7"></div>
       </a>
@@ -13,15 +13,15 @@
     <!-- Card content -->
     <div class="card-body">
       <!-- Title -->
-      <h4 class="card-title">{{ careerObj.name }}</h4>
+      <h4 class="card-title">{{ careerObj.description }}</h4>
       <hr />
       <!-- Text -->
-      <p class="card-text">{{ careerObj.description.slice(0,150) + "..." }}</p>
+      <p class="card-text">{{ careerObj.content.slice(0,150) + "..." }}</p>
     </div>
     <!-- Link -->
     <div class="card-footer">
       <router-link
-        :to="{ name: 'Careers', params: { careersPage: careerObj.route }}"
+        :to="{ name: 'Careers', params: { careersPage: careerObj.url }}"
         class="black-text d-flex justify-content-end"
       >
         <div>
@@ -44,18 +44,15 @@ export default {
   },
   methods: {
     getImgUrl(imgIn) {
-      return require(`@/assets/${imgIn}.svg`);
-    },
-    removeJpg(nameImage) {
-      return nameImage.split(".jpg")[0];
+      return require(`@/../../uploaded-files/${imgIn}`);
     }
   },
   data() {
     return {
       bgCareersLogo: [
-        require(`@/assets/compu.jpeg`) ,
         require(`@/assets/funcional.jpg`),
-        require(`@/assets/datacenter.jpg`)
+        require(`@/assets/datacenter.jpg`),
+        require(`@/assets/compu.jpeg`)
       ]
     };
   }

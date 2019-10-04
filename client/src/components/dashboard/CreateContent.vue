@@ -191,6 +191,8 @@ export default {
           });
 
           this.newContent = new ContentCreated();
+          this.planFileName = "Seleccione el archivo del plan de estudio";
+          this.iconFileName = "Seleccione el logo de la carrera";
         } else {
           this.$toasted.error(resData.message, {
             icon: "times"

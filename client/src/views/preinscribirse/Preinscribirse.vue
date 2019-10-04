@@ -148,10 +148,10 @@
                       >
                         <option disabled value selected>Carrera</option>
                         <option
-                          v-for="career of careers"
-                          :key="career._id"
-                          :value="career.name"
-                        >{{ career.title }}</option>
+                          v-for="({description, certificName}, idx) of careers"
+                          :key="idx"
+                          :value="description"
+                        >{{ certificName }}</option>
                       </select>
                     </div>
                     <hr />

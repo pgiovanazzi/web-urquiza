@@ -25,33 +25,33 @@
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Institucional</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="page of getInstitutionalPages(pages)"
-                  :key="page._id"
+                  v-for="({description, url}, idx) of getInstitutionalPages(pages)"
+                  :key="idx"
                   class="dropdown-item"
-                  :to="{ name: 'Institutional', params: { instPage: page.url }}"
-                >{{ page.description }}</router-link>
+                  :to="{ name: 'Institutional', params: { instPage: url }}"
+                >{{ description }}</router-link>
               </div>
             </li>
             <li class="nav-item dropdown">
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Ingresantes</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="page of getEntrantsPages(pages)"
-                  :key="page._id"
+                  v-for="({description, url}, idx) of getEntrantsPages(pages)"
+                  :key="idx"
                   class="dropdown-item"
-                  :to="{ name: 'Entrants', params: { entrantsPage: page.url }}"
-                >{{ page.description }}</router-link>
+                  :to="{ name: 'Entrants', params: { entrantsPage: url }}"
+                >{{ description }}</router-link>
               </div>
             </li>
             <li class="nav-item dropdown">
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Carreras</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="page of careers"
-                  :key="page._id"
+                  v-for="({description, url}, idx) of careers"
+                  :key="idx"
                   class="dropdown-item"
-                  :to="{ name: 'Careers', params: { careersPage: page.route }}"
-                >{{ page.name }}</router-link>
+                  :to="{ name: 'Careers', params: { careersPage: url }}"
+                >{{ description }}</router-link>
               </div>
             </li>
             <li class="nav-item">
@@ -95,7 +95,7 @@ export default {
         return page.section === "INSTITUCIONAL";
       });
     },
-    
+
     getEntrantsPages(pages) {
       return pages.filter(page => {
         return page.section === "INGRESANTES";

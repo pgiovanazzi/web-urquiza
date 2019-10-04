@@ -18,7 +18,7 @@ var aspirantRouter = require('./routes/aspirant');
 var storage = multer.diskStorage({
   destination: path.join(__dirname, 'uploaded-files'),
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    cb(null, new Date().toISOString() + "-" + file.originalname)
   }
 })
 
@@ -29,8 +29,8 @@ const upload = multer({
   name: 'logotype',
   maxCount: 1
 }, {
-    name: 'studyPlanFile',
-    maxCount: 1
+  name: 'studyPlanFile',
+  maxCount: 1
 }])
 
 const app = express();
@@ -71,6 +71,7 @@ app.use(function (req, res, next) {
 // Middleware for Vuejs router mode history
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploaded-files', express.static(path.join(__dirname, 'uploaded-files')));
 
 // Routes
 app.use('/', indexRouter);
