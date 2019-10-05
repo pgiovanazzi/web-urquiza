@@ -6,7 +6,7 @@
         v-for="(career, idx) of getCareersInState"
         :key="idx"
       >
-        <Card :careerObj="career" :idx="idx" />
+        <Card :careerObj="career"/>
       </div>
     </div>
     <hr class="mt-3 mb-4" />

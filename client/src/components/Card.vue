@@ -3,7 +3,11 @@
   <div class="card mb-4">
     <!-- Card image -->
     <div class="view">
-      <img class="card-img-top" :src="bgCareersLogo[idx]" :alt="careerObj.description" />
+      <img
+        class="card-img-top"
+        :src="bgCareersLogo[careerObj.description]"
+        :alt="careerObj.description"
+      />
       <object id="icono" :data="getImgUrl(careerObj.logotype)" type="image/svg+xml"></object>
       <a>
         <div class="mask pattern-7"></div>
@@ -11,13 +15,13 @@
     </div>
 
     <!-- Card content -->
-    <div class="card-body">
+    <blockquote class="blockquote mb-0 card-body">
       <!-- Title -->
-      <h4 class="card-title">{{ careerObj.description }}</h4>
+      <h4 class="card-title mt-3">{{ careerObj.description }}</h4>
       <hr />
       <!-- Text -->
-      <p class="card-text">{{ careerObj.content.slice(0,150) + "..." }}</p>
-    </div>
+      <p class="card-text" v-html="cutText(careerObj.content, careerObj.description)"></p>
+    </blockquote>
     <!-- Link -->
     <div class="card-footer">
       <router-link
@@ -39,27 +43,48 @@
 export default {
   name: "Card",
   props: {
-    careerObj: Object,
-    idx: Number
+    careerObj: Object
   },
   methods: {
     getImgUrl(imgIn) {
       return require(`@/../../uploaded-files/${imgIn}`);
+    },
+
+    cutText(contentIn, description) {
+      const MAX = description.split(" ").length < 4 ? 48 : 35;
+      let content = "",
+        count = 0;
+
+      for (const word of contentIn.split(" ")) {
+        content += word + " ";
+        if (count == MAX) break;
+        else count++;
+      }
+
+      return content + " ...";
     }
   },
   data() {
     return {
-      bgCareersLogo: [
-        require(`@/assets/funcional.jpg`),
-        require(`@/assets/datacenter.jpg`),
-        require(`@/assets/compu.jpeg`)
-      ]
+      bgCareersLogo: {
+        "Análisis Funcional de Sistemas Informáticos": require(`@/assets/funcional.jpg`),
+        "Infraestructura de Tecnología de la Información": require(`@/assets/datacenter.jpg`),
+        "Desarrollo de Software": require(`@/assets/compu.jpeg`)
+      }
     };
   }
 };
 </script>
 
 <style scoped>
+.card {
+  width: 100%;
+}
+
+.card-text {
+  word-wrap: break-word;
+}
+
 hr {
   margin: 10px;
 }

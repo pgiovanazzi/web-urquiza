@@ -284,8 +284,7 @@ export default {
   },
   data() {
     return {
-      entrants: [],
-      img: require(`@/../../uploaded-files/${this.$store.getters.getCareersInState[0].logotype}`)
+      entrants: []
     };
   },
   mounted() {
