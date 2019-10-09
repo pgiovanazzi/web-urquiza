@@ -26,7 +26,7 @@
               <td>{{ name }}</td>
               <td>{{ doc_type }}</td>
               <td>{{ dni }}</td>
-              <td>{{ birth }}</td>
+              <td>{{ birth | formatDate2 }}</td>
               <td>{{ gender }}</td>
               <td>{{ phone_number }}</td>
               <td>{{ email }}</td>

@@ -141,7 +141,7 @@ export default {
       ? require(`@/../../uploaded-files/${this.contentData.logotype}`)
       : null;
     this.planPdf = this.contentData.studyPlanFile
-      ? "http://localhost:3000/uploaded-files/" + this.contentData.studyPlanFile
+      ? "/uploaded-files/" + this.contentData.studyPlanFile
       : null;
   },
   mounted() {
