@@ -91,11 +91,13 @@ export default {
   },
   methods: {
     ...mapActions(["getPosts"]),
+
     setIconPublished(pub) {
       return pub
         ? "<i class='fas fa-check'></i>"
         : "<i class='fas fa-minus'></i>";
     },
+
     async removePost(id) {
       try {
         const data = await PostsService.remove(id);

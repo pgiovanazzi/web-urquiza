@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="row" v-if="$route.path === '/panel/novedades/' + getAlias">
+    <div class="row" v-if="isPathPost">
       <div class="col-lg-8 col-md-12 mt-3" v-if="postByAlias(getAlias)">
         <div v-html="postByAlias(getAlias).content"></div>
       </div>
       <div class="col-lg-4 col-md-12 mt-3">
-        <DBSidebar :data="$store.getters.getPostByAlias(getAlias)" />
+        <DBSidebar :data="postByAlias(getAlias)" />
       </div>
     </div>
     <router-view></router-view>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import DBSidebar from "@/components/dashboard/Sidebar.vue";
+const DBSidebar = () => import("@/components/dashboard/Sidebar.vue");
 
 export default {
   name: "NewInDashboard",
@@ -24,6 +24,10 @@ export default {
     this.$store.dispatch("getPosts");
   },
   computed: {
+    isPathPost() {
+      return this.$route.path === "/panel/novedades/" + this.getAlias;
+    },
+
     getAlias() {
       return this.$route.params.id;
     },

@@ -14,6 +14,61 @@
         <label data-error="error" data-success="correcto">Descripción o nombre</label>
       </div>
 
+      <div class="md-form" v-if="contentData.certificName">
+        <i class="fas fa-file-alt prefix"></i>
+        <input
+          type="text"
+          v-model.trim="contentData.certificName"
+          class="form-control validate"
+          required
+        />
+        <label data-error="error" data-success="correcto">Título de la carrera</label>
+      </div>
+
+      <div class="md-form" v-if="contentData.years">
+        <i class="fas fa-file-alt prefix"></i>
+        <input type="text" v-model.trim="contentData.years" class="form-control validate" required />
+        <label data-error="error" data-success="correcto">Años de cursado</label>
+      </div>
+
+      <input type="file" style="display: none" @change="onFileSelectedPlan" ref="fileStudyPlan" />
+
+      <div class="md-form" v-if="contentData.studyPlanFile">
+        <div class="custom-file text-center">
+          <a
+            class="btn btn-link"
+            :href="planPdf"
+            target="_blank"
+          >{{ contentData.studyPlanFile.slice(25,) }}</a>
+          <button
+            class="btn btn-outline-primary waves-effect btn-large"
+            @click="$refs.fileStudyPlan.click()"
+          >
+            <i class="fas fa-upload"></i>
+            {{ planFileName }}
+          </button>
+        </div>
+      </div>
+
+      <input type="file" style="display: none" @change="onFileSelectedIcon" ref="fileIconCareer" />
+
+      <div class="md-form mb-5" v-if="contentData.logotype">
+        <div class="custom-file text-center">
+          <div class="container">
+            <div class="row flex-center">
+              <img :src="iconImg" :alt="contentData.description" style="height: 8rem" />
+              <button
+                class="btn btn-outline-primary waves-effect btn-large"
+                @click="$refs.fileIconCareer.click()"
+              >
+                <i class="fas fa-upload"></i>
+                {{ iconFileName }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <wysiwyg v-model="contentData.content" />
 
       <div class="md-from mt-3">
@@ -59,21 +114,46 @@
 <script>
 import PostsService from "@/services/PostsService.js";
 import PagesService from "@/services/PagesService.js";
+import CareersService from "@/services/CareersService.js";
 
 export default {
   name: "EditPageAndNews",
+  components: {},
   created() {
     this.$store.dispatch("getPosts");
+    this.$store.dispatch("getPages");
+    this.$store.dispatch("getCareers");
+
+    if (this.$store.getters.getPostByAlias(this.$route.params.id))
+      this.contentData = this.$store.getters.getPostByAlias(
+        this.$route.params.id
+      );
+    if (this.$store.getters.getPageByAlias(this.$route.params.id))
+      this.contentData = this.$store.getters.getPageByAlias(
+        this.$route.params.id
+      );
+    if (this.$store.getters.getCareerByAlias(this.$route.params.id))
+      this.contentData = this.$store.getters.getCareerByAlias(
+        this.$route.params.id
+      );
+
+    this.iconImg = this.contentData.logotype
+      ? require(`@/../../uploaded-files/${this.contentData.logotype}`)
+      : null;
+    this.planPdf = this.contentData.studyPlanFile
+      ? "http://localhost:3000/uploaded-files/" + this.contentData.studyPlanFile
+      : null;
   },
   mounted() {
     this.focusInput();
-    this.contentData = this.$store.getters.getPostByAlias(
-      this.$route.params.id
-    );
   },
   data() {
     return {
-      contentData: {}
+      contentData: {},
+      planFileName: "Cambiar archivo del plan de estudio",
+      iconFileName: "Cambiar icono de la carrera",
+      planPdf: null,
+      iconImg: null
     };
   },
   methods: {
@@ -87,20 +167,27 @@ export default {
 
     async sendEditContent() {
       try {
-        const data = await PostsService.edit(
-          this.contentData,
-          this.contentData._id
-        );
+        const data =
+          this.contentData.section === "CARRERAS"
+            ? await CareersService.edit(this.contentData, this.contentData._id)
+            : this.contentData.section
+            ? await PagesService.edit(this.contentData, this.contentData._id)
+            : await PostsService.edit(this.contentData, this.contentData._id);
+
         const resData = await data.json();
 
         if (resData.success) {
           this.$store.dispatch("getPosts");
+          this.$store.dispatch("getPages");
+          this.$store.dispatch("getCareers");
 
           this.$toasted.success(resData.message, {
             icon: "check"
           });
 
-          this.$router.push("/panel/novedades");
+          this.contentData.section
+            ? this.$router.push("/panel/paginas")
+            : this.$router.push("/panel/novedades");
         } else {
           this.$toasted.error(resData.message, {
             icon: "times"
@@ -117,6 +204,16 @@ export default {
           }
         );
       }
+    },
+
+    onFileSelectedPlan(event) {
+      this.planFileName = event.target.files[0].name;
+      this.contentData.studyPlanFile = event.target.files[0];
+    },
+
+    onFileSelectedIcon(event) {
+      this.iconFileName = event.target.files[0].name;
+      this.contentData.logotype = event.target.files[0];
     }
   }
 };

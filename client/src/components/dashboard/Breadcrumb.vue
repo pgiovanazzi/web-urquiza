@@ -3,11 +3,17 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb lighten-4">
         <li v-for="(path, idx) of getBreadcrumbPathsWithLink" :key="idx" class="breadcrumb-item">
-          <router-link class="btn btn-outline-link waves-effect btn-sm" :to="isPathDynamicLink(path)">{{ path.name | capitalize }}</router-link>
+          <router-link
+            class="btn btn-outline-link waves-effect btn-sm"
+            :to="isPathDynamicLink(path)"
+          >{{ path.name }}</router-link>
         </li>
-        <li
-          class="breadcrumb-item active"
-        ><button class="btn btn-outline-link waves-effect btn-sm" disabled>{{ isPathDynamicName(getLastBreadcrumPath) | capitalize }}</button></li>
+        <li class="breadcrumb-item active">
+          <button
+            class="btn btn-outline-link waves-effect btn-sm"
+            disabled
+          >{{ isPathDynamicName(getLastBreadcrumPath)}}</button>
+        </li>
       </ol>
     </nav>
   </div>

@@ -26,14 +26,14 @@
                 <div class="card-header" id="headingOne">
                   <h5 class="mb-0">
                     <button
-                      class="btn btn-link"
+                      class="btn btn-outline-link waves-effect collapsed"
                       type="button"
                       data-toggle="collapse"
                       data-target="#collapseOne"
                       aria-expanded="true"
                       aria-controls="collapseOne"
                     >
-                      <h4 class="h4-responsive m-0">Institucional</h4>
+                      Institucional <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
                 </div>
@@ -104,14 +104,14 @@
                 <div class="card-header" id="headingTwo">
                   <h5 class="mb-0">
                     <button
-                      class="btn btn-link collapsed"
+                      class="btn btn-outline-link  waves-effect collapsed"
                       type="button"
                       data-toggle="collapse"
                       data-target="#collapseTwo"
                       aria-expanded="false"
                       aria-controls="collapseTwo"
                     >
-                      <h4 class="h4-responsive m-0">Ingresantes</h4>
+                      Ingresantes <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
                 </div>
@@ -182,14 +182,14 @@
                 <div class="card-header" id="headingThree">
                   <h5 class="mb-0">
                     <button
-                      class="btn btn-link collapsed"
+                      class="btn btn-outline-link waves-effect collapsed"
                       type="button"
                       data-toggle="collapse"
                       data-target="#collapseThree"
                       aria-expanded="false"
                       aria-controls="collapseThree"
                     >
-                      <h4 class="h4-responsive m-0">Carreras</h4>
+                      Carreras <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
                 </div>

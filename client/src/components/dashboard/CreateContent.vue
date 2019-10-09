@@ -16,15 +16,15 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="sendNewContent">
+          <form @submit.prevent="sendNewContent" class="md-form">
             <div class="modal-body mx-3">
               <div v-if="$route.path === '/panel/paginas'">
-                <label data-error="error" data-success="correcto">Seleccione la sección</label>
                 <select
-                  class="browser-default custom-select form-control mb-2"
+                  class="browser-default custom-select form-control mb-2 p-2"
                   v-model="newContent.section"
                   required
                 >
+                  <option value disabled>Seleccione la sección</option>
                   <option value="INSTITUCIONAL">Institucional</option>
                   <option value="INGRESANTES">Ingresantes</option>
                   <option value="CARRERAS">Carreras</option>
@@ -63,40 +63,54 @@
                 <label data-error="error" data-success="correcto">Años de cursado</label>
               </div>
 
-              <div class="md-form mb-5" v-if="newContent.section === 'CARRERAS'">
-                <div class="custom-file">
-                  <i class="fas fa-file-upload prefix"></i>
-                  <input
-                    type="file"
-                    class="custom-file-input"
-                    @change="onFileSelectedPlan"
-                    required
-                  />
-                  <label class="custom-file-label" for="customFileLang">{{ planFileName }}</label>
+              <input
+                type="file"
+                style="display: none"
+                @change="onFileSelectedPlan"
+                ref="fileStudyPlan"
+                required
+              />
+
+              <div class="md-form" v-if="newContent.section === 'CARRERAS'">
+                <div class="custom-file text-center">
+                  <button
+                    class="btn btn-outline-primary waves-effect btn-large"
+                    @click="$refs.fileStudyPlan.click()"
+                  >
+                    <i class="fas fa-upload"></i>
+                    {{ planFileName }}
+                  </button>
                 </div>
               </div>
 
-              <div class="md-form mb-5" v-if="newContent.section === 'CARRERAS'">
-                <div class="custom-file">
-                  <i class="fas fa-file-upload prefix"></i>
-                  <input
-                    type="file"
-                    class="custom-file-input"
-                    @change="onFileSelectedIcon"
-                    required
-                  />
-                  <label class="custom-file-label" for="customFileLang">{{ iconFileName }}</label>
+              <input
+                type="file"
+                style="display: none"
+                @change="onFileSelectedIcon"
+                ref="fileIconCareer"
+                required
+              />
+
+              <div class="md-form" v-if="newContent.section === 'CARRERAS'">
+                <div class="custom-file text-center">
+                  <button
+                    class="btn btn-outline-primary waves-effect btn-large"
+                    @click="$refs.fileIconCareer.click()"
+                  >
+                    <i class="fas fa-upload"></i>
+                    {{ iconFileName }}
+                  </button>
                 </div>
               </div>
 
               <wysiwyg v-model="newContent.content" />
 
-              <div class="md-from mt-3">
+              <div class="md-from m-3">
                 <div class="custom-control custom-checkbox">
                   <input
                     type="checkbox"
                     v-model="newContent.published"
-                    class="custom-control-input"
+                    class="custom-control-input form-control"
                     id="defaultIndeterminate2"
                     checked
                   />
@@ -144,12 +158,14 @@ class ContentCreated {
     description = "",
     content = "",
     published = true,
+    section = "",
     metaDescription = "",
     metaLabel = ""
   ) {
     this.description = description;
     this.content = content;
     this.published = published;
+    this.section = section;
     this.metaDescription = metaDescription;
     this.metaLabel = metaLabel;
   }
@@ -163,6 +179,11 @@ export default {
       planFileName: "Seleccione el archivo del plan de estudio",
       iconFileName: "Seleccione el logo de la carrera"
     };
+  },
+  watch: {
+    $route(to, from) {
+       this.newContent = new ContentCreated();
+    }
   },
   mounted() {
     this.newContent = new ContentCreated();
