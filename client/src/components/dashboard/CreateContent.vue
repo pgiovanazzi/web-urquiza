@@ -63,15 +63,14 @@
                 <label data-error="error" data-success="correcto">Años de cursado</label>
               </div>
 
-              <input
-                type="file"
-                style="display: none"
-                @change="onFileSelectedPlan"
-                ref="fileStudyPlan"
-                required
-              />
-
               <div class="md-form" v-if="newContent.section === 'CARRERAS'">
+                <input
+                  type="file"
+                  style="display: none"
+                  @change="onFileSelectedPlan"
+                  ref="fileStudyPlan"
+                  required
+                />
                 <div class="custom-file text-center">
                   <button
                     class="btn btn-outline-primary waves-effect btn-large"
@@ -83,15 +82,14 @@
                 </div>
               </div>
 
-              <input
-                type="file"
-                style="display: none"
-                @change="onFileSelectedIcon"
-                ref="fileIconCareer"
-                required
-              />
-
               <div class="md-form" v-if="newContent.section === 'CARRERAS'">
+                <input
+                  type="file"
+                  style="display: none"
+                  @change="onFileSelectedIcon"
+                  ref="fileIconCareer"
+                  required
+                />
                 <div class="custom-file text-center">
                   <button
                     class="btn btn-outline-primary waves-effect btn-large"
@@ -112,9 +110,12 @@
                     v-model="newContent.published"
                     class="custom-control-input form-control"
                     id="defaultIndeterminate2"
-                    checked
                   />
-                  <label class="custom-control-label" for="defaultIndeterminate2">Publicado</label>
+                  <label
+                    @click.native="publishedState()"
+                    class="custom-control-label"
+                    for="defaultIndeterminate2"
+                  >Publicado</label>
                 </div>
               </div>
               <div class="md-form">
@@ -182,7 +183,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-       this.newContent = new ContentCreated();
+      this.newContent = new ContentCreated();
     }
   },
   mounted() {
@@ -190,6 +191,10 @@ export default {
   },
   methods: {
     ...mapActions(["getPosts", "getPages", "getCareers"]),
+
+    publishedState() {
+      this.newContent.published = !this.newContent.published;
+    },
 
     async sendNewContent() {
       try {

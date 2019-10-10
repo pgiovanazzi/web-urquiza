@@ -33,7 +33,8 @@
                       aria-expanded="true"
                       aria-controls="collapseOne"
                     >
-                      Institucional <i class="fas fa-caret-down"></i>
+                      Institucional
+                      <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
                 </div>
@@ -104,14 +105,15 @@
                 <div class="card-header" id="headingTwo">
                   <h5 class="mb-0">
                     <button
-                      class="btn btn-outline-link  waves-effect collapsed"
+                      class="btn btn-outline-link waves-effect collapsed"
                       type="button"
                       data-toggle="collapse"
                       data-target="#collapseTwo"
                       aria-expanded="false"
                       aria-controls="collapseTwo"
                     >
-                      Ingresantes <i class="fas fa-caret-down"></i>
+                      Ingresantes
+                      <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
                 </div>
@@ -189,7 +191,8 @@
                       aria-expanded="false"
                       aria-controls="collapseThree"
                     >
-                      Carreras <i class="fas fa-caret-down"></i>
+                      Carreras
+                      <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
                 </div>

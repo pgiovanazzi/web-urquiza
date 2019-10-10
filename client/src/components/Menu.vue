@@ -25,7 +25,7 @@
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Institucional</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="({description, url}, idx) of getInstitutionalPages(pages)"
+                  v-for="({description, url}, idx) of getPagesPublished(getPagesInstitutional('INSTITUCIONAL'))"
                   :key="idx"
                   class="dropdown-item"
                   :to="{ name: 'Institutional', params: { instPage: url }}"
@@ -36,7 +36,7 @@
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Ingresantes</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="({description, url}, idx) of getEntrantsPages(pages)"
+                  v-for="({description, url}, idx) of getPagesPublished(getPagesInstitutional('INGRESANTES'))"
                   :key="idx"
                   class="dropdown-item"
                   :to="{ name: 'Entrants', params: { entrantsPage: url }}"
@@ -47,7 +47,7 @@
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Carreras</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="({description, url}, idx) of careers"
+                  v-for="({description, url}, idx) of getCareersInState"
                   :key="idx"
                   class="dropdown-item"
                   :to="{ name: 'Careers', params: { careersPage: url }}"
@@ -71,13 +71,17 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { labeledStatement } from "babel-types";
 
 export default {
   name: "Menu",
   computed: {
-    ...mapState(["pages", "careers"])
+    ...mapGetters([
+      "getPagesInstitutional",
+      "getPagesEntrant",
+      "getCareersInState"
+    ])
   },
   async created() {
     await this.getPages();
@@ -90,16 +94,8 @@ export default {
   methods: {
     ...mapActions(["getPages"]),
 
-    getInstitutionalPages(pages) {
-      return pages.filter(page => {
-        return page.section === "INSTITUCIONAL";
-      });
-    },
-
-    getEntrantsPages(pages) {
-      return pages.filter(page => {
-        return page.section === "INGRESANTES";
-      });
+    getPagesPublished(pages) {
+      return pages.filter(page => page.published);
     }
   }
 };
