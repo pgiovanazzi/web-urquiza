@@ -118,7 +118,6 @@ import CareersService from "@/services/CareersService.js";
 
 export default {
   name: "EditPageAndNews",
-  components: {},
   created() {
     this.$store.dispatch("getPosts");
     this.$store.dispatch("getPages");

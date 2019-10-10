@@ -3,18 +3,35 @@
     <h1>
       <div class="pb-5 p-sm-1 p-md-4" v-html="findTitleByParams(id)"></div>
     </h1>
-    <img :src="findImageByParams(id)" class="mx-auto d-block img-thumbnail m-4" :alt="findTitleByParams(id)" />
-    <div class="pb-5 p-sm-1 p-md-4" v-html="findContentByParams(id)"></div>
+    <img
+      :src="findImageByParams(id)"
+      class="mx-auto d-block img-thumbnail m-4"
+      :alt="findTitleByParams(id)"
+    />
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="pb-5 p-sm-1 p-md-4" v-html="findContentByParams(id)"></div>
+        </div>
+        <div class="col-md-4">
+          <CareerSidebar :career="$store.getters.getCareerByAlias(id)" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+const CareerSidebar = () => import("@/components/CareerSidebar.vue");
 
 export default {
   name: "Careers",
+  components: {
+    CareerSidebar
+  },
   computed: {
-    ...mapState(['careers']),
+    ...mapState(["careers"])
   },
   watch: {
     $route(to, from) {
@@ -27,7 +44,7 @@ export default {
     };
   },
   methods: {
-     getID() {
+    getID() {
       return this.$route.params.careersPage;
     },
 
