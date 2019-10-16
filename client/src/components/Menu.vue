@@ -47,7 +47,7 @@
               <router-link class="nav-link dropdown-toggle" to data-toggle="dropdown">Carreras</router-link>
               <div class="dropdown-menu">
                 <router-link
-                  v-for="({description, url}, idx) of getCareersInState"
+                  v-for="({description, url}, idx) of getPagesPublished(getCareersInState)"
                   :key="idx"
                   class="dropdown-item"
                   :to="{ name: 'Careers', params: { careersPage: url }}"

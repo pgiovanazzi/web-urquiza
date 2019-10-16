@@ -153,6 +153,9 @@ import PostsService from "@/services/PostsService.js";
 import PagesService from "@/services/PagesService.js";
 import CareersService from "@/services/CareersService.js";
 import { mapActions } from "vuex";
+import "vue-wysiwyg/dist/vueWysiwyg.css";
+
+// https://tiptap.scrumpy.io
 
 class ContentCreated {
   constructor(
@@ -169,6 +172,17 @@ class ContentCreated {
     this.section = section;
     this.metaDescription = metaDescription;
     this.metaLabel = metaLabel;
+  }
+}
+
+class SwitAletOptions {
+  constructor(title, type) {
+    this.title = title;
+    this.type = type;
+    this.confirmButtonText = "Aceptar";
+    this.customClass = {
+      confirmButton: "btn btn-outline-elegant waves-effect rounded-0"
+    };
   }
 }
 
@@ -212,26 +226,22 @@ export default {
           this.getPages();
           this.getCareers();
 
-          this.$toasted.success(resData.message, {
-            icon: "check"
-          });
+          this.$swal.fire(new SwitAletOptions(resData.message, "success"));
 
           this.newContent = new ContentCreated();
           this.planFileName = "Seleccione el archivo del plan de estudio";
           this.iconFileName = "Seleccione el logo de la carrera";
         } else {
-          this.$toasted.error(resData.message, {
-            icon: "times"
-          });
+          this.$swal.fire(new SwitAletOptions(resData.message, "error"));
         }
       } catch (error) {
-        this.$toasted.error(
-          this.$route.path === "/panel/novedades"
-            ? "Error de servicio de novedades."
-            : "Error de servicio de paginas.",
-          {
-            icon: "times"
-          }
+        this.$swal.fire(
+          new SwitAletOptions(
+            this.$route.path === "/panel/novedades"
+              ? "Error de servicio de novedades."
+              : "Error de servicio de paginas.",
+            "error"
+          )
         );
       }
     },
@@ -248,7 +258,3 @@ export default {
   }
 };
 </script>
-
-<style lang="css">
-@import "~vue-wysiwyg/dist/vueWysiwyg.css";
-</style>

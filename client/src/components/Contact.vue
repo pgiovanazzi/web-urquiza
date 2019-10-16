@@ -117,12 +117,25 @@ class Query {
   }
 }
 
+class ToastOptions {
+  constructor(type, title) {
+    this.type = type;
+    this.title = title;
+  }
+}
+
 export default {
   name: "Contact",
   data() {
     return {
       newQuery: new Query(),
-      sending: false
+      sending: false,
+      toast: this.$swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 8000
+      })
     };
   },
   methods: {
@@ -133,21 +146,14 @@ export default {
         const resMsg = await data.json();
 
         if (resMsg.status)
-          this.$toasted.success(resMsg.message, {
-            icon: "check"
-          });
-        else
-          this.$toasted.error(resMsg.message, {
-            icon: "times"
-          });
+          this.toast.fire(new ToastOptions("success", resMsg.message));
+        else this.toast.fire(new ToastOptions("error", resMsg.message));
 
         this.newQuery = new Query();
-
       } catch (error) {
-        this.$toasted.error("Ha ocurrido un error inesperado.", {
-            icon: "times"
-          });
-        
+        this.toast.fire(
+          new ToastOptions("error", "Ha ocurrido un error inesperado...")
+        );
       } finally {
         this.sending = false;
       }

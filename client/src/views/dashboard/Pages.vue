@@ -272,6 +272,13 @@ const CreateContent = () => import("@/components/dashboard/CreateContent.vue");
 import PagesService from "@/services/PagesService.js";
 import CareersService from "@/services/CareersService.js";
 
+class ToastOptions {
+  constructor(type, title) {
+    this.type = type;
+    this.title = title;
+  }
+}
+
 export default {
   name: "Pages",
   components: {
@@ -287,7 +294,13 @@ export default {
   },
   data() {
     return {
-      entrants: []
+      entrants: [],
+      toast: this.$swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 8000
+      })
     };
   },
   mounted() {
@@ -308,18 +321,14 @@ export default {
         if (resData.success) {
           this.$store.dispatch("getPages");
 
-          this.$toasted.success(resData.message, {
-            icon: "check"
-          });
+          this.toast.fire(new ToastOptions("success", resData.message));
         } else {
-          this.$toasted.error(resData.message, {
-            icon: "times"
-          });
+          this.toast.fire(new ToastOptions("error", resData.message));
         }
       } catch (error) {
-        this.$toasted.error("Error de servicio de paginas.", {
-          icon: "times"
-        });
+        this.toast.fire(
+          new ToastOptions("success", "Error de servicio de paginas.")
+        );
       }
     },
 
@@ -331,18 +340,14 @@ export default {
         if (resData.success) {
           this.$store.dispatch("getCareers");
 
-          this.$toasted.success(resData.message, {
-            icon: "check"
-          });
+          this.toast.fire(new ToastOptions("success", resData.message));
         } else {
-          this.$toasted.error(resData.message, {
-            icon: "times"
-          });
+          this.toast.fire(new ToastOptions("error", resData.message));
         }
       } catch (error) {
-        this.$toasted.error("Error de servicio de paginas.", {
-          icon: "times"
-        });
+        this.toast.fire(
+          new ToastOptions("error", "Error de servicio de carreras.")
+        );
       }
     }
   }

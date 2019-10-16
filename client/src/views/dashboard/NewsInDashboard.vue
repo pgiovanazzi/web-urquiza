@@ -78,6 +78,13 @@ import { mapGetters, mapActions } from "vuex";
 import PostsService from "@/services/PostsService.js";
 const CreateContent = () => import("@/components/dashboard/CreateContent.vue");
 
+class ToastOptions {
+  constructor(type, title) {
+    this.type = type;
+    this.title = title;
+  }
+}
+
 export default {
   name: "NewsInDashboard",
   components: {
@@ -88,6 +95,16 @@ export default {
   },
   computed: {
     ...mapGetters(["getReversePosts"])
+  },
+  data() {
+    return {
+      toast: this.$swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 8000
+      })
+    };
   },
   methods: {
     ...mapActions(["getPosts"]),
@@ -105,18 +122,15 @@ export default {
 
         if (resData.success) {
           this.getPosts();
-          this.$toasted.success(resData.message, {
-            icon: "check"
-          });
+
+          this.toast.fire(new ToastOptions("success", resData.message));
         } else {
-          this.$toasted.error(resData.message, {
-            icon: "times"
-          });
+          this.toast.fire(new ToastOptions("error", resData.message));
         }
       } catch (error) {
-        this.$toasted.error("Error de servicio de novedades.", {
-          icon: "times"
-        });
+        this.toast.fire(
+          new ToastOptions("error", "Error de servicio de novedades.")
+        );
       }
     }
   }

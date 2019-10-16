@@ -3,17 +3,17 @@
     <div class="row" v-if="getCareersInState.length">
       <div
         class="col-sm-12 col-md-4 d-flex align-items-stretch"
-        v-for="(career, idx) of getCareersInState"
+        v-for="(career, idx) of getPagesPublished(getCareersInState)"
         :key="idx"
       >
-        <Card :careerObj="career"/>
+        <Card :careerObj="career" />
       </div>
     </div>
     <hr class="mt-3 mb-4" />
     <div class="row">
       <div class="col-lg-8 col-md-12 mt-4 mb-5">
         <router-view></router-view>
-        <UltimaNovedad v-if="getPostsInState.length && showLastNews"/>
+        <UltimaNovedad v-if="getPostsInState.length && showLastNews" />
       </div>
       <div class="col-lg-4 col-md-12 mt-4 mb-5">
         <h4 class="mb-n3">Ultimas Novedades</h4>
@@ -53,12 +53,16 @@ export default {
   computed: {
     ...mapGetters(["getPostsInState", "getCareersInState", "getReversePosts"]),
     showLastNews() {
-      return (this.$route.path == '/') ? true : false
+      return this.$route.path == "/" ? true : false;
     }
   },
 
   methods: {
     ...mapActions(["getCareers", "getPosts"]),
+
+    getPagesPublished(pages) {
+      return pages.filter(page => page.published);
+    },
 
     getPostsPublished() {
       return this.getReversePosts.filter(post => post.published);

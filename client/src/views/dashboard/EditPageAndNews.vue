@@ -116,6 +116,17 @@ import PostsService from "@/services/PostsService.js";
 import PagesService from "@/services/PagesService.js";
 import CareersService from "@/services/CareersService.js";
 
+class SwitAletOptions {
+  constructor(title, type) {
+    this.title = title;
+    this.type = type;
+    this.confirmButtonText = "Aceptar";
+    this.customClass = {
+      confirmButton: "btn btn-outline-elegant waves-effect rounded-0"
+    };
+  }
+}
+
 export default {
   name: "EditPageAndNews",
   created() {
@@ -143,9 +154,11 @@ export default {
       ? "/uploaded-files/" + this.contentData.studyPlanFile
       : null;
   },
+
   mounted() {
     this.focusInput();
   },
+
   data() {
     return {
       contentData: {},
@@ -155,6 +168,7 @@ export default {
       iconImg: null
     };
   },
+
   methods: {
     publishedState() {
       this.contentData.published = !this.contentData.published;
@@ -180,27 +194,23 @@ export default {
           this.$store.dispatch("getPages");
           this.$store.dispatch("getCareers");
 
-          this.$toasted.success(resData.message, {
-            icon: "check"
-          });
+          this.$swal.fire(new SwitAletOptions(resData.message, "success"));
 
           this.contentData.section
             ? this.$router.push("/panel/paginas")
             : this.$router.push("/panel/novedades");
         } else {
-          this.$toasted.error(resData.message, {
-            icon: "times"
-          });
+          this.$swal.fire(new SwitAletOptions(resData.message, "error"));
         }
       } catch (error) {
-        this.$toasted.error(
-          this.$route.path ===
+        this.$swal.fire(
+          new SwitAletOptions(
+            this.$route.path ===
             "/panel/novedades/" + this.$route.params.id + "/modificar"
-            ? "Error de servicio de novedades."
-            : "Error de servicio de paginas",
-          {
-            icon: "times"
-          }
+              ? "Error de servicio de novedades."
+              : "Error de servicio de paginas",
+            "error"
+          )
         );
       }
     },

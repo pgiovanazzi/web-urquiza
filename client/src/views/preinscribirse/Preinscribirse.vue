@@ -381,6 +381,13 @@ class Preinscripcion {
   }
 }
 
+class ToastOptions {
+  constructor(type, title) {
+    this.type = type;
+    this.title = title;
+  }
+}
+
 export default {
   name: "Preinscribirse",
   components: {
@@ -401,7 +408,13 @@ export default {
       careerYearValue: [
         this.getCareerYearValue(),
         this.getCareerYearValue() + 1
-      ]
+      ],
+      toast: this.$swal.mixin({
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 8000
+      })
     };
   },
   methods: {
@@ -416,17 +429,12 @@ export default {
           this.$store.commit("SUCCESS_PRE_INS", "PreInsSuccessComponent");
           this.formPreinscribirse = new Preinscripcion();
         } else {
-          this.$toasted.error(resMsg.message, {
-            icon: "times"
-          });
+          this.toast.fire(new ToastOptions("error", resData.message));
         }
-
       } catch (error) {
-
-        this.$toasted.error("Ha ocurrido un error inesperado.", {
-          icon: "times"
-        });
-        
+        this.toast.fire(
+          new ToastOptions("error", "Ha ocurrido un error inesperado...")
+        );
       } finally {
         this.sending = false;
       }
