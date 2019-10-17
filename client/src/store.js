@@ -27,7 +27,7 @@ export default new Vuex.Store({
 
     getPostsInState: ({ posts }) => posts,
 
-    getReversePosts: ({ posts }) => posts.slice().reverse(),
+    getReversePosts: ({ posts }) => posts.reverse(),
 
     getPostByAlias: ({ posts }) => alias => {
       return posts.find(post => post.alias === alias);

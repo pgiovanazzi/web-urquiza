@@ -155,8 +155,6 @@ import CareersService from "@/services/CareersService.js";
 import { mapActions } from "vuex";
 import "vue-wysiwyg/dist/vueWysiwyg.css";
 
-// https://tiptap.scrumpy.io
-
 class ContentCreated {
   constructor(
     description = "",
