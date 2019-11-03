@@ -73,6 +73,7 @@
                 />
                 <div class="custom-file text-center">
                   <button
+                    type="button"
                     class="btn btn-outline-primary waves-effect btn-large"
                     @click="$refs.fileStudyPlan.click()"
                   >
@@ -90,8 +91,9 @@
                   ref="fileIconCareer"
                   required
                 />
-                <div class="custom-file text-center">
+                <div class="custom-file text-center mb-3">
                   <button
+                    type="button"
                     class="btn btn-outline-primary waves-effect btn-large"
                     @click="$refs.fileIconCareer.click()"
                   >
@@ -101,7 +103,9 @@
                 </div>
               </div>
 
-              <wysiwyg v-model="newContent.content" />
+              <!-- resetear el contendido del ckeditor cada vez que se crea una publicacion -->
+              <CKEditor :contentData="newContent.content" />
+              <!-- <wysiwyg v-model="newContent.content" /> -->
 
               <div class="md-from m-3">
                 <div class="custom-control custom-checkbox">
@@ -152,8 +156,9 @@
 import PostsService from "@/services/PostsService.js";
 import PagesService from "@/services/PagesService.js";
 import CareersService from "@/services/CareersService.js";
+import CKEditor from "@/components/dashboard/CKEditor.vue";
 import { mapActions } from "vuex";
-import "vue-wysiwyg/dist/vueWysiwyg.css";
+// import "vue-wysiwyg/dist/vueWysiwyg.css";
 
 class ContentCreated {
   constructor(
@@ -186,11 +191,14 @@ class SwitAletOptions {
 
 export default {
   name: "CreateContent",
+  components: {
+    CKEditor
+  },
   data() {
     return {
       newContent: {},
-      planFileName: "Seleccione el archivo del plan de estudio",
-      iconFileName: "Seleccione el logo de la carrera"
+      planFileName: null,
+      iconFileName: null
     };
   },
   watch: {
@@ -200,6 +208,7 @@ export default {
   },
   mounted() {
     this.newContent = new ContentCreated();
+    this.setDataFilesName();
   },
   methods: {
     ...mapActions(["getPosts", "getPages", "getCareers"]),
@@ -208,8 +217,15 @@ export default {
       this.newContent.published = !this.newContent.published;
     },
 
+    setDataFilesName() {
+      this.planFileName = "Seleccione el archivo del plan de estudio";
+      this.iconFileName = "Seleccione el logo de la carrera";
+    },
+
     async sendNewContent() {
       try {
+        this.newContent.content = this.$store.getters.getEditorContent;
+
         const data =
           this.$route.path === "/panel/novedades"
             ? await PostsService.send(this.newContent)
@@ -227,8 +243,8 @@ export default {
           this.$swal.fire(new SwitAletOptions(resData.message, "success"));
 
           this.newContent = new ContentCreated();
-          this.planFileName = "Seleccione el archivo del plan de estudio";
-          this.iconFileName = "Seleccione el logo de la carrera";
+          this.$store.commit("SET_EDITOR_CONTENT", null);
+          this.setDataFilesName();
         } else {
           this.$swal.fire(new SwitAletOptions(resData.message, "error"));
         }

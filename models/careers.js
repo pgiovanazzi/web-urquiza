@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const careersSchema = new Schema({
   description: {
@@ -20,7 +20,7 @@ const careersSchema = new Schema({
   },
   section: {
     type: String,
-    default: 'CARRERAS'
+    default: "CARRERAS"
   },
   alias: {
     type: String,
@@ -54,8 +54,8 @@ const careersSchema = new Schema({
     type: Date,
     default: Date.now()
   }
-})
+});
 
-let Careers = mongoose.model('Careers', careersSchema)
+const Careers = mongoose.model("Careers", careersSchema);
 
-module.exports = Careers
+module.exports = Careers;

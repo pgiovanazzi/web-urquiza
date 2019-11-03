@@ -1,7 +1,9 @@
+"use strict";
+
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-var pagesSchema = new Schema({
+const pagesSchema = new Schema({
   description: {
     type: String,
     required: true
@@ -41,6 +43,6 @@ var pagesSchema = new Schema({
   }
 });
 
-var Pages = mongoose.model("Pages", pagesSchema);
+const Pages = mongoose.model("Pages", pagesSchema);
 
 module.exports = Pages;

@@ -1,8 +1,19 @@
-const apiNewCareer = '/su/panel/carrera/nueva'
-const apiEditCareer = '/su/panel/carrera/editar/'
-const apiRemoveCareer = '/su/panel/carrera/eliminar/'
+const apiGetCareers = "/su/panel/carreras";
+const apiNewCareer = "/su/panel/carrera/nueva";
+const apiEditCareer = "/su/panel/carrera/editar/";
+const apiRemoveCareer = "/su/panel/carrera/eliminar/";
 
 class CareerService {
+  static get() {
+    return fetch(apiGetCareers, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
   static send(newCareer) {
     var formData = new FormData();
 
@@ -13,7 +24,7 @@ class CareerService {
     return fetch(apiNewCareer, {
       method: "POST",
       body: formData
-    })
+    });
   }
 
   static edit(career, id) {
@@ -22,9 +33,9 @@ class CareerService {
       body: JSON.stringify(career),
       headers: {
         Accept: "application/json",
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       }
-    })
+    });
   }
 
   static remove(id) {
@@ -32,10 +43,10 @@ class CareerService {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       }
-    })
+    });
   }
 }
 
-export default CareerService
+export default CareerService;

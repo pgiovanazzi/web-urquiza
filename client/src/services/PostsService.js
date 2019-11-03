@@ -1,17 +1,28 @@
-const apiNewPost = "/su/panel/nueva-publicacion"
-const apiEditPost = "/su/panel/publicaciones/editar/"
-const apiRemovePost = "/su/panel/publicaciones/eliminar/"
+const apiGetPosts = "/su/panel/publicaciones";
+const apiNewPost = "/su/panel/nueva-publicacion";
+const apiEditPost = "/su/panel/publicaciones/editar/";
+const apiRemovePost = "/su/panel/publicaciones/eliminar/";
 
 class PostsService {
+  static get() {
+    return fetch(apiGetPosts, {
+      method: "GEt",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    });
+  }
+
   static send(newPost) {
     return fetch(apiNewPost, {
       method: "POST",
       body: JSON.stringify(newPost),
       headers: {
         Accept: "application/json",
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       }
-    })
+    });
   }
 
   static edit(post, id) {
@@ -20,9 +31,9 @@ class PostsService {
       body: JSON.stringify(post),
       headers: {
         Accept: "application/json",
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       }
-    })
+    });
   }
 
   static remove(id) {
@@ -30,10 +41,10 @@ class PostsService {
       method: "DELETE",
       headers: {
         Accept: "application/json",
-        "Content-type": "application/json"
+        "Content-Type": "application/json"
       }
-    })
+    });
   }
 }
 
-export default PostsService
+export default PostsService;

@@ -41,6 +41,7 @@
             target="_blank"
           >{{ contentData.studyPlanFile.slice(25,) }}</a>
           <button
+            type="button"
             class="btn btn-outline-primary waves-effect btn-large"
             @click="$refs.fileStudyPlan.click()"
           >
@@ -58,6 +59,7 @@
             <div class="row flex-center">
               <img :src="iconImg" :alt="contentData.description" style="height: 8rem" />
               <button
+                type="button"
                 class="btn btn-outline-primary waves-effect btn-large"
                 @click="$refs.fileIconCareer.click()"
               >
@@ -69,7 +71,8 @@
         </div>
       </div>
 
-      <wysiwyg v-model="contentData.content" />
+      <CKEditor :contentData="contentData.content" />
+      <!-- <wysiwyg v-model="contentData.content" /> -->
 
       <div class="md-from mt-3">
         <div class="custom-control custom-checkbox">
@@ -115,6 +118,7 @@
 import PostsService from "@/services/PostsService.js";
 import PagesService from "@/services/PagesService.js";
 import CareersService from "@/services/CareersService.js";
+import CKEditor from "@/components/dashboard/CKEditor.vue";
 
 class SwitAletOptions {
   constructor(title, type) {
@@ -129,6 +133,9 @@ class SwitAletOptions {
 
 export default {
   name: "EditPageAndNews",
+  components: {
+    CKEditor
+  },
   created() {
     this.$store.dispatch("getPosts");
     this.$store.dispatch("getPages");
@@ -180,6 +187,8 @@ export default {
 
     async sendEditContent() {
       try {
+        this.contentData.content = this.$store.getters.getEditorContent;
+
         const data =
           this.contentData.section === "CARRERAS"
             ? await CareersService.edit(this.contentData, this.contentData._id)
