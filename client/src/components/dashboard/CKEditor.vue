@@ -89,8 +89,7 @@ export default {
           ]
         },
         ckfinder: {
-          uploadUrl:
-            "http://localhost:3000/su/panel/api/ckeditor-content-files",
+          uploadUrl: "/su/panel/api/ckeditor-content-files",
           options: {
             resourceType: "Images"
           }
