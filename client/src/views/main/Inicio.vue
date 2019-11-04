@@ -19,7 +19,7 @@
         <h4 class="mb-n3">Ultimas Novedades</h4>
         <ul style="list-style-type: none;
         display: inline;" v-if="getPostsInState.length">
-          <li v-for="(post,idx) of getPostsPublished()" :key="idx">
+          <li v-for="(post,idx) of getPostPublishedAndSortedByDate" :key="idx">
             <NovedadesLista :post="post" />
           </li>
         </ul>
@@ -51,7 +51,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["getPostsInState", "getCareersInState", "getReversePosts"]),
+    ...mapGetters([
+      "getPostsInState",
+      "getCareersInState",
+      "getPostPublishedAndSortedByDate"
+    ]),
     showLastNews() {
       return this.$route.path == "/" ? true : false;
     }
@@ -62,10 +66,6 @@ export default {
 
     getPagesPublished(pages) {
       return pages.filter(page => page.published);
-    },
-
-    getPostsPublished() {
-      return this.getReversePosts.filter(post => post.published);
     }
   }
 };

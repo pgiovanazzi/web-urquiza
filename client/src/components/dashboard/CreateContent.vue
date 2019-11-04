@@ -103,9 +103,7 @@
                 </div>
               </div>
 
-              <!-- resetear el contendido del ckeditor cada vez que se crea una publicacion -->
               <CKEditor :contentData="newContent.content" />
-              <!-- <wysiwyg v-model="newContent.content" /> -->
 
               <div class="md-from m-3">
                 <div class="custom-control custom-checkbox">
@@ -158,7 +156,6 @@ import PagesService from "@/services/PagesService.js";
 import CareersService from "@/services/CareersService.js";
 import CKEditor from "@/components/dashboard/CKEditor.vue";
 import { mapActions } from "vuex";
-// import "vue-wysiwyg/dist/vueWysiwyg.css";
 
 class ContentCreated {
   constructor(

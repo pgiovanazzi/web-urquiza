@@ -22,7 +22,7 @@
         <div class="row">
           <div class="col-md-12 p-4">
             <div class="accordion" id="accordionExample">
-              <div class="card z-depth-0 bordered">
+              <div class="z-depth-0">
                 <div class="card-header" id="headingOne">
                   <h5 class="mb-0">
                     <button
@@ -33,7 +33,7 @@
                       aria-expanded="true"
                       aria-controls="collapseOne"
                     >
-                      Institucional
+                      Sección Institucional
                       <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
@@ -44,11 +44,11 @@
                   aria-labelledby="headingOne"
                   data-parent="#accordionExample"
                 >
-                  <div class="card-body">
+                  <div class="table-responsive text-nowrap">
                     <!--Table-->
                     <table id="tablePreview" class="table table-hover">
                       <!--Table head-->
-                      <thead>
+                      <thead class="unique-color white-text">
                         <tr>
                           <th>#</th>
                           <th>Descripción (título)</th>
@@ -101,7 +101,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card z-depth-0 bordered">
+              <div class="z-depth-0">
                 <div class="card-header" id="headingTwo">
                   <h5 class="mb-0">
                     <button
@@ -112,7 +112,7 @@
                       aria-expanded="false"
                       aria-controls="collapseTwo"
                     >
-                      Ingresantes
+                      Sección Ingresantes
                       <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
@@ -123,11 +123,11 @@
                   aria-labelledby="headingTwo"
                   data-parent="#accordionExample"
                 >
-                  <div class="card-body">
+                  <div class="table-responsive text-nowrap">
                     <!--Table-->
                     <table id="tablePreview" class="table table-hover">
                       <!--Table head-->
-                      <thead>
+                      <thead class="unique-color white-text">
                         <tr>
                           <th>#</th>
                           <th>Descripción (título)</th>
@@ -180,7 +180,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card z-depth-0 bordered">
+              <div class="z-depth-0">
                 <div class="card-header" id="headingThree">
                   <h5 class="mb-0">
                     <button
@@ -191,7 +191,7 @@
                       aria-expanded="false"
                       aria-controls="collapseThree"
                     >
-                      Carreras
+                      Sección Carreras
                       <i class="fas fa-caret-down"></i>
                     </button>
                   </h5>
@@ -202,11 +202,11 @@
                   aria-labelledby="headingThree"
                   data-parent="#accordionExample"
                 >
-                  <div class="card-body">
+                  <div class="table-responsive text-nowrap">
                     <!--Table-->
                     <table id="tablePreview" class="table table-hover">
                       <!--Table head-->
-                      <thead>
+                      <thead class="unique-color white-text">
                         <tr>
                           <th>#</th>
                           <th>Descripción (título)</th>

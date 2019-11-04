@@ -31,21 +31,22 @@ export default new Vuex.Store({
 
     getPostsInState: ({ posts }) => posts,
 
-    getReversePosts: ({ posts }) => posts.reverse(),
+    getPostsSortedByDate: ({ posts }) => {
+      return posts.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+    },
 
     getPostByAlias: ({ posts }) => alias => {
       return posts.find(post => post.alias === alias);
     },
 
-    getLastPost: ({ posts }) => {
-      let lastPostPublished = {};
-      for (let index = posts.length - 1; index > -1; index--) {
-        if (posts[index].published) {
-          lastPostPublished = posts[index];
-          break;
-        }
-      }
-      return lastPostPublished;
+    getPostPublishedAndSortedByDate: ({ posts }) => {
+      return posts
+        .filter(post => post.published)
+        .sort((a, b) => {
+          return new Date(b.date) - new Date(a.date);
+        });
     },
 
     getPageByAlias: ({ pages }) => alias => {

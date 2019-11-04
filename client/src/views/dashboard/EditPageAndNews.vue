@@ -72,7 +72,6 @@
       </div>
 
       <CKEditor :contentData="contentData.content" />
-      <!-- <wysiwyg v-model="contentData.content" /> -->
 
       <div class="md-from mt-3">
         <div class="custom-control custom-checkbox">

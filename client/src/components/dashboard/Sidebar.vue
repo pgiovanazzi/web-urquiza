@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <ul class="list-group list-group-flush" v-if="data">
-      <li class="list-group-item active text-center">Información de la publicación</li>
+      <li class="list-group-item text-center unique-color white-text">Información de la publicación</li>
       <li class="list-group-item">
         <strong>Título:</strong>
         {{ data.description }}
@@ -46,9 +46,3 @@ export default {
   }
 };
 </script>
-
-<style lang="css" scoped>
-.active {
-  background-color: #1f405c !important;
-}
-</style>

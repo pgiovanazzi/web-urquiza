@@ -13,7 +13,11 @@ import { mapGetters } from "vuex";
 export default {
   name: "ultimaNovedad",
   computed: {
-    ...mapGetters(["getLastPost"])
+    ...mapGetters(["getPostPublishedAndSortedByDate"]),
+
+    getLastPost() {
+      return this.getPostPublishedAndSortedByDate[0];
+    }
   }
 };
 </script>

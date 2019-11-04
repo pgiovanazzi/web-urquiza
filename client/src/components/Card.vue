@@ -15,13 +15,13 @@
     </div>
 
     <!-- Card content -->
-    <blockquote class="blockquote mb-0 card-body">
+    <div class="mb-0 card-body">
       <!-- Title -->
       <h4 class="card-title mt-3">{{ careerObj.description }}</h4>
       <hr />
       <!-- Text -->
-      <p class="card-text" v-html="cutText(careerObj.content, careerObj.description)"></p>
-    </blockquote>
+      <div class="card-text" v-html="cutText(careerObj.content, careerObj.description)"></div>
+    </div>
     <!-- Link -->
     <div class="card-footer">
       <router-link
@@ -81,9 +81,9 @@ export default {
   width: 100%;
 }
 
-.card-text {
+/* .card-text {
   word-wrap: break-word;
-}
+} */
 
 hr {
   margin: 10px;
