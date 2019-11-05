@@ -2,65 +2,82 @@
   <div>
     <div class="row">
       <div class="col-md-12">
-        <h3 class="m-3">Ultimos 30 Aspirantes</h3>
-        <div class="table-responsive text-nowrap">
-          <table class="table table-hover">
-            <thead class="unique-color white-text">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Tipo de Documento</th>
-                <th scope="col">Numero de Documento</th>
-                <th scope="col">Carrera</th>
-                <th scope="col">Fecha de Preinscripción</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="({_id, name, doc_type, dni, birth, gender, phone_number, email, career, signupDate}, idx) of getAspirantsSortedByDate"
-                :key="idx"
-                @click="getRouteAspirant(_id)"
-              >
-                <th scope="row">{{ idx + 1 }}</th>
-                <td>{{ name }}</td>
-                <td>{{ doc_type }}</td>
-                <td>{{ dni }}</td>
-                <td>{{ career }}</td>
-                <td>{{ signupDate | formatDate2 }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h3 class="m-3">Aspirantes registrados</h3>
+        <vue-good-table
+          :columns="columns"
+          :rows="rows"
+          :line-numbers="true"
+          @on-row-click="onRowClick"
+          :search-options="{
+            enabled: true,
+            placeholder: 'Buscar aspirante',
+          }"
+          :pagination-options="{
+            enabled: true,
+            nextLabel: 'Siguiente',
+            prevLabel: 'Anterior',
+            rowsPerPageLabel: 'Filas por página',
+            ofLabel: 'de',
+            pageLabel: 'página',
+            allLabel: 'Todas',
+          }"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-const Breadcrumb = () => import("@/components/dashboard/Breadcrumb.vue");
+// import the styles
+import "vue-good-table/dist/vue-good-table.css";
+import { VueGoodTable } from "vue-good-table";
 
 export default {
   name: "EntrantsInDashboard",
+
   components: {
-    Breadcrumb
+    VueGoodTable
   },
-  computed: {
-    getAspirantsSortedByDate() {
-      return this.$store.getters.getAspirants.sort((a, b) => {
-        return new Date(b.signupDate) - new Date(a.signupDate);
-      });
-    }
+
+  data() {
+    return {
+      columns: [
+        {
+          label: "Nombre",
+          field: "name"
+        },
+        {
+          label: "Tipo de Documento",
+          field: "doc_type"
+        },
+        {
+          label: "Numero de documento",
+          field: "dni",
+          type: "number"
+        },
+        {
+          label: "Carrera",
+          field: "career"
+        },
+        {
+          label: "Fecha de Preinscripción",
+          field: this.fealdFn
+        }
+      ],
+      rows: this.$store.getters.getAspirants
+    };
   },
+
   methods: {
-    getRouteAspirant(id) {
-      return this.$router.push(`/panel/aspirante/${id}`);
+    onRowClick(params) {
+      this.$router.push(`/panel/aspirante/${params.row._id}`);
+    },
+
+    fealdFn(param) {
+      if (param) {
+        return this.$options.filters.formatDate2(param.signupDate);
+      }
     }
   }
 };
 </script>
-
-<style scoped>
-td {
-  cursor: pointer;
-}
-</style>

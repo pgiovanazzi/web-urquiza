@@ -75,7 +75,7 @@
                           <td>
                             <router-link :to="'/panel/paginas/' + alias">
                               <strong>
-                                <i class="far fa-eye"></i>
+                                <i class="fa fa-search-plus"></i>
                               </strong>
                             </router-link>
                           </td>
@@ -154,7 +154,7 @@
                           <td>
                             <router-link :to="'/panel/paginas/' + alias">
                               <strong>
-                                <i class="far fa-eye"></i>
+                                <i class="fa fa-search-plus"></i>
                               </strong>
                             </router-link>
                           </td>
@@ -233,7 +233,7 @@
                           <td>
                             <router-link :to="'/panel/paginas/' + alias">
                               <strong>
-                                <i class="far fa-eye"></i>
+                                <i class="fa fa-search-plus"></i>
                               </strong>
                             </router-link>
                           </td>
@@ -362,7 +362,7 @@ a:hover {
   color: #6096cc !important;
 }
 
-.fa-eye,
+.fa-search-plus,
 .fa-edit,
 .fa-trash-alt {
   font-size: 1.3rem;
