@@ -60,7 +60,11 @@ export default new Vuex.Store({
       return pages.filter(page => page.section === section);
     },
 
-    getAspirants: ({ aspirants }) => aspirants
+    getAspirants: ({ aspirants }) => aspirants,
+
+    getAspirantById: ({ aspirants }) => id => {
+      return aspirants.filter(aspirant => aspirant._id == id)[0];
+    }
   },
   mutations: {
     SET_EDITOR_CONTENT(state, contentIn) {

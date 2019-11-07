@@ -13,7 +13,8 @@
                   <a>Páginas</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="far fa-file-alt"></i> {{ getPagesAmount }}
+                  <i class="far fa-file-alt"></i>
+                  {{ getPagesAmount }}
                 </span>
                 <!-- Text -->
                 <p class="card-text">Vea, cree, modifique y elimine páginas.</p>
@@ -35,7 +36,8 @@
                   <a>Novedades</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="far fa-newspaper"></i> {{ getPostsAmount }}
+                  <i class="far fa-newspaper"></i>
+                  {{ getPostsAmount }}
                 </span>
                 <!-- Text -->
                 <p class="card-text">Vea, cree, modifique y elimine las novedades.</p>
@@ -59,7 +61,8 @@
                   <a>Aspirantes</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="fas fa-users"></i> {{ getAspirantsAmount }}
+                  <i class="fas fa-users"></i>
+                  {{ getAspirantsAmount }}
                 </span>
                 <p class="card-text">Vea, modifique, elimine y dé de alta a los aspirantes.</p>
               </center>
@@ -99,7 +102,7 @@ const Breadcrumb = () =>
   import(
     /* webpackChunkName: "Breadcrumb" */ "@/components/dashboard/Breadcrumb.vue"
   );
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Home",
@@ -107,24 +110,26 @@ export default {
     Breadcrumb
   },
   created() {
-    this.getPosts()
-    this.getAspirants()
+    this.getPages();
+    this.getCareers();
+    this.getPosts();
+    this.getAspirants();
   },
   computed: {
-    ...mapState(['pages', 'careers', 'posts','aspirants']),
+    ...mapState(["pages", "careers", "posts", "aspirants"]),
     getPagesAmount() {
-      return this.pages.length + this.careers.length
+      return this.pages.length + this.careers.length;
     },
     getPostsAmount() {
-      return this.posts.length
+      return this.posts.length;
     },
     getAspirantsAmount() {
-      return this.aspirants.length
+      return this.aspirants.length;
     }
   },
   methods: {
-    ...mapActions(['getPosts', 'getAspirants'])
-  },
+    ...mapActions(["getPages", "getCareers", "getPosts", "getAspirants"])
+  }
 };
 </script>
 

@@ -302,9 +302,9 @@
                         class="browser-default custom-select text-white rounded-0"
                       >
                         <option value disabled selected>Estado de la carrera</option>
-                        <option value="Com">Completa</option>
-                        <option value="Inc">Incompleta</option>
-                        <option value="Cur">Cursando</option>
+                        <option value="Completa">Completa</option>
+                        <option value="Incompleta">Incompleta</option>
+                        <option value="Cursando">Cursando</option>
                       </select>
                     </div>
                     <hr style="margin-top: -21px;" />

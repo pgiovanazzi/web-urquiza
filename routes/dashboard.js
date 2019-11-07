@@ -13,12 +13,29 @@ const { uploadCareerFiles, uploadContentFiles } = require("../multer.config");
 const { searchPathFileByRegularExpr, createAlias } = require("./utils");
 const { FILE_NAME_LEN, PREFIX_ROUTE_NAME_LEN } = require("./global-const");
 
-router.get("/registros/aspirantes", async (req, res, next) => {
+// API Aspirant
+router.get("/registros/aspirantes", async (req, res) => {
   try {
     const aspirantes = await Users.find();
     res.status(200).send(aspirantes);
   } catch (error) {
     res.status(500).send(error);
+  }
+});
+
+router.delete("/aspirante/elimiar/:id", async (req, res) => {
+  try {
+    // Remove post from database
+    await Users.findByIdAndRemove(req.params.id);
+    res.status(200).json({
+      success: true,
+      message: "Se ha eliminado correctamente."
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error al elimiar al aspirante."
+    });
   }
 });
 

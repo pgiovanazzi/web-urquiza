@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="row" v-if="$store.getters.getAspirants">
       <div class="col-md-12">
         <h3 class="m-3">Aspirantes registrados</h3>
         <vue-good-table
@@ -39,6 +39,10 @@ export default {
     VueGoodTable
   },
 
+  async created() {
+    await this.$store.dispatch("getAspirants");
+  },
+
   data() {
     return {
       columns: [
@@ -66,6 +70,10 @@ export default {
       ],
       rows: this.$store.getters.getAspirants
     };
+  },
+
+  updated() {
+    this.rows = this.$store.getters.getAspirants;
   },
 
   methods: {

@@ -97,11 +97,11 @@ export default {
       quickAccessOptios: [
         {
           name: "Buscar aspirantes",
-          path: "/panel/buscar-aspirantes"
+          path: "/panel/aspirantes"
         },
         {
           name: "Buscar alumnos",
-          path: "/panel/buscar-alumnos"
+          path: "/panel/alumnos"
         }
       ]
     };
