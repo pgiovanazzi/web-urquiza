@@ -5,17 +5,17 @@ const apiDeleteAspirant = "/su/panel/aspirante/elimiar/";
 const AspirantsService = {
   get() {
     return fetch(apiAspirants, {
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
-      },
-      method: "GET"
+      }
     });
   },
 
   update(body, id) {
     return fetch(apiUpdateAspirant + id, {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(body),
       headers: {
         Accept: "application/json",

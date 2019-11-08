@@ -96,6 +96,18 @@ export default new Router({
         behavior: "smooth"
       });
 
+    if (to.name === "NewInDashboard")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    if (from.name === "NewInDashboard")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
     if (to.path === "/panel/paginas")
       return window.scrollTo({
         top: 0,
@@ -103,6 +115,18 @@ export default new Router({
       });
 
     if (from.path === "/panel/paginas")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    if (to.name === "Page")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    if (from.name === "Page")
       return window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -120,6 +144,18 @@ export default new Router({
         behavior: "smooth"
       });
 
+    if (to.name === "EntrantEdit")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    if (from.name === "EntrantEdit")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
     if (to.path === "/panel/alumnos")
       return window.scrollTo({
         top: 0,
@@ -127,6 +163,18 @@ export default new Router({
       });
 
     if (from.path === "/panel/alumnos")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    if (to.name === "StudentEdit")
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    if (from.name === "StudentEdit")
       return window.scrollTo({
         top: 0,
         behavior: "smooth"
@@ -400,7 +448,7 @@ export default new Router({
                   },
                   {
                     name: alias => alias,
-                    link: alias => `/panel/aspirantes/${alias}`,
+                    link: alias => `/panel/aspirante/${alias}`,
                     isDynamicParam: true
                   },
                   {

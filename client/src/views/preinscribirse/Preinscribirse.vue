@@ -148,7 +148,7 @@
                       >
                         <option disabled value selected>Carrera</option>
                         <option
-                          v-for="({description, certificName}, idx) of careers"
+                          v-for="({description, certificName}, idx) of $store.getters.getCareersInState"
                           :key="idx"
                           :value="description"
                         >{{ certificName }}</option>
@@ -334,7 +334,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import Datepicker from "vuejs-datepicker";
 import PreinscriptionService from "../../PrescriptionService";
 import PreInsSuccessComponent from "@/components/PreInsSuccessComponent.vue";
@@ -396,9 +395,6 @@ export default {
   created() {
     this.$store.commit("SET_LAYOUT", "SimpleLayout");
   },
-  computed: {
-    ...mapState(["careers"])
-  },
   data() {
     return {
       urquizaSvg: require("@/assets/Urquiza_Icon.svg"),
@@ -455,7 +451,7 @@ export default {
         this.formPreinscribirse.career ==
         "Análisis Funcional de Sistemas Informáticos"
       )
-        this.formPreinscribirse.place_career = "Oroñó 690";
+        this.formPreinscribirse.place_career = "Oroño 690";
     }
   }
 };

@@ -77,7 +77,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import PostsService from "@/services/PostsService.js";
+import { PostsService } from "@/services";
 const CreateContent = () => import("@/components/dashboard/CreateContent.vue");
 
 class ToastOptions {

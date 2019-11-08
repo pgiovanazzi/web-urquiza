@@ -3,11 +3,11 @@
     <!--Section: Contact-->
     <section class="m-md-2">
       <!-- Heading -->
-      <h2 class="mb-5 font-weight-bold text-center">Contactanos</h2>
+      <h2 class="mb-4 font-weight-bold text-center p-2">Contactanos</h2>
       <p
         class="text-center"
       >¿Tiene alguna pregunta? No dude en ponerse en contacto con nosotros directamente. Nuestro equipo se pondrá en contacto con usted en cuestión de horas para ayudarle.</p>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-lg-8 col-md-12 border">
           <!-- Form contact -->
           <form class="p-4 grey-text" @submit.prevent="sendMsg">

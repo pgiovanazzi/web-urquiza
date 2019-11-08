@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row" v-if="isAspirantView">
+    <div class="row text-center" v-if="isAspirantView">
       <div class="col-md-6">
         <!--Table-->
         <table id="tablePreview" class="table table-hover table-bordered shadow">
@@ -53,7 +53,7 @@
                     <td>
                       <p>
                         <strong>{{ idx }}:</strong>
-                        {{ $store.getters.getAspirantById(getId)[item]}}
+                        {{ $store.getters.getAspirantById(getId)[item] }}
                       </p>
                     </td>
                   </tr>
@@ -83,7 +83,7 @@
                     <td>
                       <p>
                         <strong>{{ idx }}:</strong>
-                        {{ $store.getters.getAspirantById(getId)[item]}}
+                        {{ $store.getters.getAspirantById(getId)[item] }}
                       </p>
                     </td>
                   </tr>
