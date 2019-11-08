@@ -8,7 +8,7 @@ const path = require("path");
 // DB conection
 require("../config/connection");
 
-const { Pages, Posts, Careers, Users } = require("../models");
+const { Pages, Posts, Careers, Users, Students } = require("../models");
 const { uploadCareerFiles, uploadContentFiles } = require("../multer.config");
 const { searchPathFileByRegularExpr, createAlias } = require("./utils");
 const { FILE_NAME_LEN, PREFIX_ROUTE_NAME_LEN } = require("./global-const");
@@ -53,6 +53,67 @@ router.put("/aspirante/actualizar/:id", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Ocurrio un error al acualizar el aspirante."
+    });
+  }
+});
+
+// API Students
+router.get("/alumnos", async (req, res) => {
+  try {
+    const students = await Students.find();
+
+    res.status(200).send(students);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post("/nuevo-alumno", async (req, res) => {
+  try {
+    const newStrudent = new Students(req.body);
+    await newStrudent.save();
+
+    res.status(200).json({
+      success: true,
+      message: `${req.body.name} fue agregado a la base de datos de alumnos.`
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Ha ocurrido un error al agregar al estudiante."
+    });
+  }
+});
+
+router.put("/alumnos/modificar/:id", async (req, res) => {
+  try {
+    await Students.findByIdAndUpdate(req.params.id, req.body);
+
+    res.status(200).json({
+      success: true,
+      message: `El alumno: ${req.body.name} fue actualizado correctamente.`
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: `Ocurrio un error al acualizar los datos el alumno.`
+    });
+  }
+});
+
+router.delete("/alumnos/eliminar/:id", async (req, res) => {
+  try {
+    let alumno = req.body.name;
+    await Students.findByIdAndRemove(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      message: `El alumno ${alumno} fue eliminado correctamente.`
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Ha ocurrido un error al elminiar al alumno."
     });
   }
 });

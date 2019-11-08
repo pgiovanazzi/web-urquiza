@@ -1,18 +1,19 @@
 <template>
   <div>
-    <div class="row" v-if="$store.getters.getAspirants">
-      <div class="col-md-12">
-        <h3 class="m-3">Aspirantes registrados</h3>
-        <vue-good-table
-          :columns="columns"
-          :rows="rows"
-          :line-numbers="true"
-          @on-row-click="onRowClick"
-          :search-options="{
+    <div class="container">
+      <div class="row" v-if="$store.getters.getAspirants">
+        <div class="col-md-12">
+          <h3 class="m-3">Aspirantes registrados</h3>
+          <vue-good-table
+            :columns="columns"
+            :rows="rows"
+            :line-numbers="true"
+            @on-row-click="onRowClick"
+            :search-options="{
             enabled: true,
             placeholder: 'Buscar aspirante',
           }"
-          :pagination-options="{
+            :pagination-options="{
             enabled: true,
             nextLabel: 'Siguiente',
             prevLabel: 'Anterior',
@@ -21,7 +22,8 @@
             pageLabel: 'página',
             allLabel: 'Todas',
           }"
-        />
+          />
+        </div>
       </div>
     </div>
   </div>

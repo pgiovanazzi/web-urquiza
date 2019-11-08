@@ -5,7 +5,8 @@ import {
   CareersService,
   PostsService,
   PagesService,
-  AspirantsService
+  AspirantsService,
+  StudentsService
 } from "@/services";
 
 Vue.use(Vuex);
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     careers: [],
     posts: [],
     pages: [],
-    aspirants: []
+    aspirants: [],
+    students: []
   },
   getters: {
     getEditorContent: ({ editorContent }) => editorContent,
@@ -64,6 +66,12 @@ export default new Vuex.Store({
 
     getAspirantById: ({ aspirants }) => id => {
       return aspirants.filter(aspirant => aspirant._id == id)[0];
+    },
+
+    getStudents: ({ students }) => students,
+
+    getStudentsById: ({ students }) => id => {
+      return students.filter(student => student._id == id)[0];
     }
   },
   mutations: {
@@ -98,6 +106,10 @@ export default new Vuex.Store({
       state.aspirants = aspirantsFromActions;
     },
 
+    UPDATE_STUDENTS(state, { studentsFromActions }) {
+      state.students = studentsFromActions;
+    },
+
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
       state.setComponentInSimpleLayout = preinscriptionSuccessComponent;
     }
@@ -128,6 +140,13 @@ export default new Vuex.Store({
       const aspirantsData = await AspirantsService.get();
       commit("UPDATE_ASPIRANTS", {
         aspirantsFromActions: await aspirantsData.json()
+      });
+    },
+
+    async getStudents({ commit }) {
+      const studentsData = await StudentsService.get();
+      commit("UPDATE_STUDENTS", {
+        studentsFromActions: await studentsData.json()
       });
     }
   }

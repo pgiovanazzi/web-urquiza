@@ -136,12 +136,23 @@
 </template>
 
 <script>
-import { AspirantsService } from "@/services";
+import { AspirantsService, StudentsService } from "@/services";
 
 class ToastOptions {
   constructor(type, title) {
     this.type = type;
     this.title = title;
+  }
+}
+
+class SwitAletOptions {
+  constructor(title, type) {
+    this.title = title;
+    this.type = type;
+    this.confirmButtonText = "Aceptar";
+    this.customClass = {
+      confirmButton: "btn btn-outline-elegant waves-effect rounded-0"
+    };
   }
 }
 
@@ -199,12 +210,46 @@ export default {
       );
     },
 
-    updateAsStudent(id) {
-      console.log(id);
-    },
-
     editAspirant(id) {
       this.$router.push(`/panel/aspirante/${id}/modificar`);
+    },
+
+    async updateAsStudent(id) {
+      try {
+        const data = await StudentsService.add(
+          this.$store.getters.getAspirantById(id)
+        );
+        const resData = await data.json();
+
+        if (resData.success) {
+          try {
+            const dataAspirantRemoved = await AspirantsService.delete(id);
+            const resDataAspirantRemoved = await dataAspirantRemoved.json();
+
+            if (resDataAspirantRemoved.success) {
+              this.$swal.fire(new SwitAletOptions(resData.message, "success"));
+              this.$router.push("/panel/aspirantes");
+            } else {
+              this.$swal.fire(
+                new SwitAletOptions(resDataAspirantRemoved.message, "error")
+              );
+            }
+          } catch (error) {
+            this.$swal.fire(
+              new SwitAletOptions(
+                "Error al cambiar de estado de aspirante a alumno.",
+                "error"
+              )
+            );
+          }
+        } else {
+          this.$swal.fire(new SwitAletOptions(resData.message, "error"));
+        }
+      } catch (error) {
+        this.$swal.fire(
+          new SwitAletOptions("Error en el servicio de alumnos.", "error")
+        );
+      }
     },
 
     async removeAspirant(id) {

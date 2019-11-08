@@ -3,5 +3,6 @@ module.exports = {
   Posts: require("./posts"),
   Careers: require("./careers"),
   Users: require("./user"),
+  Students: require("./students"),
   SuperUser: require("./superUser")
 };

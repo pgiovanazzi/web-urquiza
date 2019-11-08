@@ -83,7 +83,8 @@
                   <a>Alumnos</a>
                 </h3>
                 <span style="font-size: 5rem">
-                  <i class="fas fa-user-graduate"></i> 0
+                  <i class="fas fa-user-graduate"></i>
+                  {{ getStudentsAmount }}
                 </span>
                 <!-- Text -->
                 <p class="card-text">Vea, modifique y elimine a alumnos.</p>
@@ -114,21 +115,35 @@ export default {
     this.getCareers();
     this.getPosts();
     this.getAspirants();
+    this.getStudents();
   },
   computed: {
-    ...mapState(["pages", "careers", "posts", "aspirants"]),
+    ...mapState(["pages", "careers", "posts", "aspirants", "students"]),
+
     getPagesAmount() {
       return this.pages.length + this.careers.length;
     },
+
     getPostsAmount() {
       return this.posts.length;
     },
+
     getAspirantsAmount() {
       return this.aspirants.length;
+    },
+
+    getStudentsAmount() {
+      return this.students.length;
     }
   },
   methods: {
-    ...mapActions(["getPages", "getCareers", "getPosts", "getAspirants"])
+    ...mapActions([
+      "getPages",
+      "getCareers",
+      "getPosts",
+      "getAspirants",
+      "getStudents"
+    ])
   }
 };
 </script>
