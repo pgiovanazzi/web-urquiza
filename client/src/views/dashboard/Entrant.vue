@@ -164,7 +164,7 @@ export default {
     },
 
     isAspirantView() {
-      return this.$route.path == "/panel/aspirante/" + this.getId;
+      return this.$route.name == "Entrant";
     }
   },
 
@@ -265,7 +265,7 @@ export default {
         }
       } catch (error) {
         this.toast.fire(
-          new ToastOptions("error", "Error de servicio de novedades.")
+          new ToastOptions("error", "Error de servicio de aspirantes.")
         );
       }
     }

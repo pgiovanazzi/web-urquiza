@@ -213,10 +213,9 @@ export default {
       } catch (error) {
         this.$swal.fire(
           new SwitAletOptions(
-            this.$route.path ===
-            "/panel/novedades/" + this.$route.params.id + "/modificar"
-              ? "Error de servicio de novedades."
-              : "Error de servicio de paginas",
+            `Error de servicio de ${
+              this.$route.name == "NewEdit" ? "novedades" : "paginas"
+            }.`,
             "error"
           )
         );

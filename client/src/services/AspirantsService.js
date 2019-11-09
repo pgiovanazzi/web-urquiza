@@ -13,7 +13,7 @@ const AspirantsService = {
     });
   },
 
-  update(body, id) {
+  update(id, body) {
     return fetch(apiUpdateAspirant + id, {
       method: "PUT",
       body: JSON.stringify(body),

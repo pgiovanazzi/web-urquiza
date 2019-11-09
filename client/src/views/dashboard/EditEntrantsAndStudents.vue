@@ -1,5 +1,5 @@
 <template>
-  <div v-if="dataAspirant">
+  <div v-if="dataEntity">
     <div class="container">
       <form class="text-center">
         <div class="row">
@@ -12,7 +12,7 @@
                   <th scope="col">
                     <h3>Modificar datos del Aspirante</h3>
                     <small>
-                      <samp>Fecha de registro: {{ dataAspirant.signupDate | formatDate2 }}</samp>
+                      <samp>Fecha de registro: {{ dataEntity.signupDate | formatDate2 }}</samp>
                     </small>
                   </th>
                 </tr>
@@ -24,7 +24,7 @@
                 <tr>
                   <td>
                     <strong>Nombre y Apellido:</strong>
-                    <input class="form-control" v-model="dataAspirant.name" />
+                    <input class="form-control" v-model="dataEntity.name" />
                   </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@
                     <strong>Tipo de documento:</strong>
                     <select
                       class="browser-default custom-select"
-                      v-model="dataAspirant.doc_type"
+                      v-model="dataEntity.doc_type"
                       required
                     >
                       <option value="DNI">DNI: Documento Nacional de Identidad</option>
@@ -45,14 +45,14 @@
                 <tr>
                   <td>
                     <strong>Nro. de documento:</strong>
-                    <input class="form-control" v-model="dataAspirant.dni" />
+                    <input class="form-control" v-model="dataEntity.dni" />
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Fecha de nacimiento:</strong>
                     <datepicker
-                      v-model="dataAspirant.birth"
+                      v-model="dataEntity.birth"
                       :bootstrap-styling="true"
                       :format="customFormatter"
                       :language="es"
@@ -64,7 +64,7 @@
                   <td>
                     <strong>Genero:</strong>
                     <select
-                      v-model="dataAspirant.gender"
+                      v-model="dataEntity.gender"
                       class="browser-default custom-select"
                       required
                     >
@@ -77,37 +77,37 @@
                 <tr>
                   <td>
                     <strong>E-mail:</strong>
-                    <input class="form-control" v-model="dataAspirant.email" />
+                    <input class="form-control" v-model="dataEntity.email" />
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Numero de telefono:</strong>
-                    <input class="form-control" v-model="dataAspirant.phone_number" />
+                    <input class="form-control" v-model="dataEntity.phone_number" />
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Dirección:</strong>
-                    <input class="form-control" v-model="dataAspirant.address" />
+                    <input class="form-control" v-model="dataEntity.address" />
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Piso:</strong>
-                    <input class="form-control" v-model="dataAspirant.floor" />
+                    <input class="form-control" v-model="dataEntity.floor" />
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Departamento:</strong>
-                    <input class="form-control" v-model="dataAspirant.dpt" />
+                    <input class="form-control" v-model="dataEntity.dpt" />
                   </td>
                 </tr>
                 <tr>
                   <td>
                     <strong>Ciudad:</strong>
-                    <input class="form-control" v-model="dataAspirant.city" />
+                    <input class="form-control" v-model="dataEntity.city" />
                   </td>
                 </tr>
               </tbody>
@@ -137,7 +137,7 @@
                         <td>
                           <strong>Año de incripción:</strong>
                           <select
-                            v-model="dataAspirant.year_ins"
+                            v-model="dataEntity.year_ins"
                             class="browser-default custom-select"
                             required
                           >
@@ -153,7 +153,7 @@
                         <td>
                           <strong>Título:</strong>
                           <select
-                            v-model="dataAspirant.career"
+                            v-model="dataEntity.career"
                             class="browser-default custom-select"
                             required
                           >
@@ -169,7 +169,7 @@
                         <td>
                           <strong>Establecimiento:</strong>
                           <select
-                            v-model="dataAspirant.place_career"
+                            v-model="dataEntity.place_career"
                             class="browser-default custom-select"
                             required
                           >
@@ -203,20 +203,20 @@
                       <tr>
                         <td>
                           <strong>Carrera:</strong>
-                          <input class="form-control" v-model="dataAspirant.estudios_sup" />
+                          <input class="form-control" v-model="dataEntity.estudios_sup" />
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <strong>Ultimo año cursado:</strong>
-                          <input class="form-control" v-model="dataAspirant.last_year_c" />
+                          <input class="form-control" v-model="dataEntity.last_year_c" />
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <strong>Estado de la carrera:</strong>
                           <select
-                            v-model="dataAspirant.career_comp"
+                            v-model="dataEntity.career_comp"
                             class="browser-default custom-select"
                             required
                           >
@@ -237,8 +237,10 @@
                   <button
                     type="button"
                     class="btn btn-outline-success waves-effect btn-block"
-                    @click="uploadDataAspirant(getId)"
-                  >Actualizar datos</button>
+                    @click="uploadData()"
+                  >
+                    <i class="fas fa-user-edit"></i> Actualizar datos
+                  </button>
                 </div>
               </div>
             </div>
@@ -251,7 +253,7 @@
 
 <script>
 import Datepicker from "vuejs-datepicker";
-import { AspirantsService } from "@/services";
+import { AspirantsService, StudentsService } from "@/services";
 
 class ToastOptions {
   constructor(type, title) {
@@ -268,11 +270,17 @@ export default {
   computed: {
     getId() {
       return this.$route.params.id;
+    },
+
+    setEntity() {
+      if (this.$route.name == "EntrantEdit")
+        return this.$store.getters.getAspirantById(this.getId);
+      return this.$store.getters.getStudentsById(this.getId);
     }
   },
   data() {
     return {
-      dataAspirant: null,
+      dataEntity: null,
       careerYearValue: [
         this.getCareerYearValue(),
         this.getCareerYearValue() + 1
@@ -288,7 +296,7 @@ export default {
   },
 
   mounted() {
-    this.dataAspirant = this.$store.getters.getAspirantById(this.getId);
+    this.dataEntity = this.setEntity;
   },
 
   methods: {
@@ -307,22 +315,36 @@ export default {
       return d.getFullYear();
     },
 
-    async uploadDataAspirant(id) {
+    choseService(id) {
+      return this.$route.name == "EntrantEdit"
+        ? AspirantsService.update(id, this.dataEntity)
+        : StudentsService.update(id, this.dataEntity);
+    },
+
+    async uploadData() {
       try {
-        const data = await AspirantsService.update(this.dataAspirant, id);
+        const data = await this.choseService(this.dataEntity._id);
         const resData = await data.json();
 
         if (resData.success) {
           this.$store.dispatch("getAspirants");
 
           this.toast.fire(new ToastOptions("success", resData.message));
-          this.$router.push(`/panel/aspirante/${id}`);
+
+          this.$route.name == "EntrantEdit"
+            ? this.$router.push(`/panel/aspirante/${this.dataEntity._id}`)
+            : this.$router.push(`/panel/alumno/${this.dataEntity._id}`);
         } else {
           this.toast.fire(new ToastOptions("error", resData.message));
         }
       } catch (error) {
         this.toast.fire(
-          new ToastOptions("error", "Error de servicio de aspirantes.")
+          new ToastOptions(
+            "error",
+            `Error de servicio de ${
+              this.$route.name == "EntrantEdit" ? "aspirantes" : "alumnos"
+            }.`
+          )
         );
       }
     }

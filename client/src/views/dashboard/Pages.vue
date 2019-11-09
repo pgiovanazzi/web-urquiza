@@ -7,7 +7,7 @@
             <h3>Paginas</h3>
           </div>
           <CreateContent />
-          <div class="col-md-4">
+          <div class="col-md-4 d-flex justify-content-center">
             <button
               type="button"
               class="btn btn-outline-success btn-rounded waves-effect"

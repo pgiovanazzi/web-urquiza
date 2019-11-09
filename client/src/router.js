@@ -519,7 +519,7 @@ export default new Router({
                   },
                   {
                     name: alias => alias,
-                    link: alias => `/panel/alumnos/${alias}`,
+                    link: alias => `/panel/alumno/${alias}`,
                     isDynamicParam: true
                   },
                   {

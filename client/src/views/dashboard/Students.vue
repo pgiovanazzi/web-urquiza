@@ -2,10 +2,10 @@
   <div>
     <div class="container" v-if="$store.getters.getStudents">
       <div class="row mb-3">
-        <div class="col-md-6">
+        <div class="col-md-8">
           <h3 class="m-3">Alumnos registrados</h3>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4 d-flex justify-content-center">
           <button class="btn btn-outline-success waves-effect">
             <i class="fas fa-user-plus"></i> Agregar nuevo alumno
           </button>
