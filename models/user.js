@@ -5,15 +5,16 @@ const bcrypt = require("bcrypt-nodejs");
 const userSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: [true, 'El nombre y el apellido es requerido.']
   },
   doc_type: {
     type: String,
-    required: true
+    required: [true, 'El tipo de documento es requerido.']
   },
   dni: {
     type: String,
-    required: true
+    unique: true,
+    required: [true, 'El numero de documento es requerido.']
   },
   birth: {
     type: Date,
@@ -25,19 +26,41 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    required: true
+    required: [true, 'El email es requerido.'],
+    validate: {
+      validator: (em) => {
+        return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(em)
+      },
+      message: props => `${props.value} no es un email valido.`
+    }
   },
   phone_number: {
     type: String,
-    required: true
+    required: [true, 'El numero de telefono es requerido.'],
+    validate: {
+      validator: (tel) => {
+        return /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(tel)
+      },
+      message: props => `${props.value} no es un numero de teléfono valido.`
+    }
   },
   year_ins: {
     type: String,
-    required: true
+    required: [true, 'El año de inscripción es requerido.'],
+    validate: {
+      validator: (year) => {
+        let y = new Date()
+        y = y.getFullYear()
+        if (year < y || year >= y + 2)
+          return false
+        return true
+      },
+      message: props => `El año ${props.value} es menor al año actual.`
+    }
   },
   career: {
     type: String,
-    required: true
+    required: [true, 'La carrera es requerida.']
   },
   place_career: {
     type: String,

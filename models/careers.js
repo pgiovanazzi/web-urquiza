@@ -8,7 +8,8 @@ const careersSchema = new Schema({
   },
   certificName: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   years: {
     type: String,
@@ -24,7 +25,8 @@ const careersSchema = new Schema({
   },
   alias: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   published: {
     type: Boolean,
