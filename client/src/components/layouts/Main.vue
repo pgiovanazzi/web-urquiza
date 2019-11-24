@@ -5,7 +5,6 @@
     <div class="container p-md-3 p-lg-4">
       <router-view />
     </div>
-    <IllustratorBG id="position" />
     <Parallax />
     <div class="container p-md-3 p-lg-4" id="consultas">
       <Contact />
@@ -22,7 +21,6 @@ import Parallax from "@/components/Parallax.vue";
 import Contact from "@/components/Contact.vue";
 import Map from "@/components/Map.vue";
 import Footer from "@/components/Footer.vue";
-import IllustratorBG from "@/components/IllustratorBG.vue";
 
 export default {
   name: "Main",
@@ -32,8 +30,7 @@ export default {
     Parallax,
     Contact,
     Map,
-    Footer,
-    IllustratorBG
+    Footer
   }
 };
 </script>
@@ -49,10 +46,5 @@ body {
   position: relative;
   z-index: 2;
   margin-bottom: -63px;
-}
-
-#position {
-  position: absolute;
-  margin-top: -800px;
 }
 </style>

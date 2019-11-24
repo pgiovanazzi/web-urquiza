@@ -1,12 +1,10 @@
 <template>
-  <div class="contaier">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 text-center">
-        <object
-          class="mg-fluid "
-          :data="bgIllustrator"
-          type="image/svg+xml"
-        ></object>
+      <div class="col-md-6 d-flex justify-content-end">
+        <object class="s1" :data="bgIllustrator" type="image/svg+xml"></object>
+      </div>
+      <div class="col-md-6 d-flex justify-content-start">
         <object class="s2" :data="bgIllustrator2" type="image/svg+xml"></object>
       </div>
     </div>
@@ -26,23 +24,15 @@ export default {
 </script>
 
 <style scoped>
-.s1 {
-  z-index: -1;
-  position: absolute;
-  margin-left: 3.5em;
-  display: block;
-  width: 600px;
-  height: 100vh;
-  object-fit: cover;
+.s1,
+.s2 {
+  height: 500px;
 }
 
-.s2 {
-  z-index: -1;
-  position: absolute;
-  margin-left: 75em;
-  display: block;
-  width: 600px;
-  height: 100vh;
-  object-fit: cover;
+.s1 {
+  margin-right: 230px;
+}
+.s1 {
+  margin-left: 230px;
 }
 </style>
