@@ -10,7 +10,11 @@ const lh = "mongodb://localhost:27017/urquiza_db";
 const dbConnection = mlab;
 
 mongoose
-  .connect(dbConnection, { useNewUrlParser: true })
+  .connect(dbConnection, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+  })
   .then(db => console.log("DB is connected: " + dbConnection))
   .catch(err => console.error(err));
 

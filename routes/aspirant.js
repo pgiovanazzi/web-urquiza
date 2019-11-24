@@ -2,8 +2,11 @@
 
 var express = require("express");
 var router = express.Router();
+const { pre_insc_ctrl } = require('../controllers/preInsCtrl');
 
-router.post("/preinscripcion/aspirante-registrado", async (req, res) => {
+router.post('/preinscripcion/aspirante-registrado', pre_insc_ctrl);
+
+/*router.post("/preinscripcion/aspirante-registrado", async (req, res) => {
   const { mongoose } = require("../config/connection");
   const User = require("../models/user");
 
@@ -21,6 +24,6 @@ router.post("/preinscripcion/aspirante-registrado", async (req, res) => {
       message: "Ha ocurrido un error inesperado al registrar al aspirante."
     });
   }
-});
+});*/
 
 module.exports = router;

@@ -9,7 +9,6 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const history = require("connect-history-api-fallback");
 const cors = require("cors");
-
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/loginSu");
 var dashboardRouter = require("./routes/dashboard");
