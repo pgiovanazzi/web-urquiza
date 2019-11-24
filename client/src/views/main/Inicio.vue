@@ -10,6 +10,7 @@
       </div>
     </div>
     <hr class="mt-3 mb-4" />
+
     <div class="row">
       <div class="col-lg-8 col-md-12 mt-4 mb-5">
         <router-view></router-view>
@@ -17,9 +18,12 @@
       </div>
       <div class="col-lg-4 col-md-12 mt-4 mb-5">
         <h4 class="mb-n3">Ultimas Novedades</h4>
-        <ul style="list-style-type: none;
-        display: inline;" v-if="getPostsInState.length">
-          <li v-for="(post,idx) of getPostPublishedAndSortedByDate" :key="idx">
+        <ul
+          style="list-style-type: none;
+        display: inline;"
+          v-if="getPostsInState.length"
+        >
+          <li v-for="(post, idx) of getPostPublishedAndSortedByDate" :key="idx">
             <NovedadesLista :post="post" />
           </li>
         </ul>

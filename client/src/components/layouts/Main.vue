@@ -5,6 +5,7 @@
     <div class="container p-md-3 p-lg-4">
       <router-view />
     </div>
+    <IllustratorBG id="position" />
     <Parallax />
     <div class="container p-md-3 p-lg-4" id="consultas">
       <Contact />
@@ -21,23 +22,26 @@ import Parallax from "@/components/Parallax.vue";
 import Contact from "@/components/Contact.vue";
 import Map from "@/components/Map.vue";
 import Footer from "@/components/Footer.vue";
+import IllustratorBG from "@/components/IllustratorBG.vue";
 
 export default {
-   name: 'Main',
-   components: {
+  name: "Main",
+  components: {
     Menu,
     VideoHeader,
     Parallax,
     Contact,
     Map,
-    Footer
+    Footer,
+    IllustratorBG
   }
-}
+};
 </script>
 <style scoped>
 body {
   margin: 0px;
 }
+
 .container {
   padding-top: 30px;
   background-color: #fff;
@@ -45,5 +49,10 @@ body {
   position: relative;
   z-index: 2;
   margin-bottom: -63px;
+}
+
+#position {
+  position: absolute;
+  margin-top: -800px;
 }
 </style>

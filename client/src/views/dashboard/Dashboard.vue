@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-5 p-2">
-    <Breadcrumb />
+    <Breadcrumb class="mb-5" />
     <Home v-if="$route.path === '/panel'" />
     <router-view></router-view>
   </div>

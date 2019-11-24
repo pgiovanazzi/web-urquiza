@@ -70,8 +70,9 @@ router.get("/alumnos", async (req, res) => {
 
 router.post("/nuevo-alumno", async (req, res) => {
   try {
-    const newStrudent = new Students(req.body);
-    await newStrudent.save();
+    const newStudent = new Students(req.body);
+
+    await newStudent.save();
 
     res.status(200).json({
       success: true,
@@ -275,7 +276,9 @@ router.post("/nueva-pagina", async (req, res) => {
     req.body.url = req.body.alias;
 
     const newPage = new Pages(req.body);
+
     await newPage.save();
+
     res.status(201).json({
       success: true,
       message: "Página creada correctamente."

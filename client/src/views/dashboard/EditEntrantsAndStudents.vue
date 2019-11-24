@@ -5,14 +5,20 @@
         <div class="row">
           <div class="col-md-6">
             <!--Table-->
-            <table id="tablePreview" class="table table-hover table-bordered shadow">
+            <table
+              id="tablePreview"
+              class="table table-hover table-bordered shadow"
+            >
               <!--Table head-->
               <thead>
                 <tr>
                   <th scope="col">
                     <h3>Modificar datos del Aspirante</h3>
                     <small>
-                      <samp>Fecha de registro: {{ dataEntity.signupDate | formatDate2 }}</samp>
+                      <samp
+                        >Fecha de registro:
+                        {{ dataEntity.signupDate | formatDate2 }}</samp
+                      >
                     </small>
                   </th>
                 </tr>
@@ -35,7 +41,9 @@
                       v-model="dataEntity.doc_type"
                       required
                     >
-                      <option value="DNI">DNI: Documento Nacional de Identidad</option>
+                      <option value="DNI"
+                        >DNI: Documento Nacional de Identidad</option
+                      >
                       <option value="CI">CI: Cédula de Identidad</option>
                       <option value="LE">LE: Libreta de Enrolamiento</option>
                       <option value="LC">LC: Libreta Civica</option>
@@ -83,7 +91,10 @@
                 <tr>
                   <td>
                     <strong>Numero de telefono:</strong>
-                    <input class="form-control" v-model="dataEntity.phone_number" />
+                    <input
+                      class="form-control"
+                      v-model="dataEntity.phone_number"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -110,6 +121,12 @@
                     <input class="form-control" v-model="dataEntity.city" />
                   </td>
                 </tr>
+                <tr>
+                  <td>
+                    <strong>Codigo postal:</strong>
+                    <input class="form-control" v-model="dataEntity.zip_code" />
+                  </td>
+                </tr>
               </tbody>
               <!--Table body-->
             </table>
@@ -120,7 +137,10 @@
               <div class="row">
                 <div class="col-md-12">
                   <!--Table-->
-                  <table id="tablePreview" class="table table-hover table-bordered shadow">
+                  <table
+                    id="tablePreview"
+                    class="table table-hover table-bordered shadow"
+                  >
                     <!--Table head-->
                     <thead>
                       <tr>
@@ -145,7 +165,8 @@
                               v-for="year of careerYearValue"
                               :key="year"
                               :value="year"
-                            >{{year}}</option>
+                              >{{ year }}</option
+                            >
                           </select>
                         </td>
                       </tr>
@@ -158,10 +179,12 @@
                             required
                           >
                             <option
-                              v-for="({description, certificName}, idx) of $store.getters.getCareersInState"
+                              v-for="({ description, certificName },
+                              idx) of $store.getters.getCareersInState"
                               :key="idx"
                               :value="description"
-                            >{{ certificName }}</option>
+                              >{{ certificName }}</option
+                            >
                           </select>
                         </td>
                       </tr>
@@ -174,7 +197,9 @@
                             required
                           >
                             <option value="Oroño 690">Oroño 690</option>
-                            <option value="Extención aulica">Extención aulica (Sur)</option>
+                            <option value="Extención aulica"
+                              >Extención aulica (Sur)</option
+                            >
                           </select>
                         </td>
                       </tr>
@@ -187,7 +212,10 @@
               <div class="row">
                 <div class="col-md-12">
                   <!--Table-->
-                  <table id="tablePreview" class="table table-hover table-bordered shadow">
+                  <table
+                    id="tablePreview"
+                    class="table table-hover table-bordered shadow"
+                  >
                     <!--Table head-->
                     <thead>
                       <tr>
@@ -203,13 +231,19 @@
                       <tr>
                         <td>
                           <strong>Carrera:</strong>
-                          <input class="form-control" v-model="dataEntity.estudios_sup" />
+                          <input
+                            class="form-control"
+                            v-model="dataEntity.estudios_sup"
+                          />
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <strong>Ultimo año cursado:</strong>
-                          <input class="form-control" v-model="dataEntity.last_year_c" />
+                          <input
+                            class="form-control"
+                            v-model="dataEntity.last_year_c"
+                          />
                         </td>
                       </tr>
                       <tr>
@@ -218,7 +252,6 @@
                           <select
                             v-model="dataEntity.career_comp"
                             class="browser-default custom-select"
-                            required
                           >
                             <option value="Completa">Completa</option>
                             <option value="Incompleta">Incompleta</option>
@@ -300,12 +333,6 @@ export default {
   },
 
   methods: {
-    formater(item) {
-      return this.$options.filters.formatDate2(
-        this.$store.getters.getAspirantById(this.getId)[item]
-      );
-    },
-
     customFormatter(date) {
       return moment(date).format("DD/MM/YYYY");
     },
