@@ -41,17 +41,21 @@ const CareerSidebar = () => import("@/components/CareerSidebar.vue");
 
 export default {
   name: "Careers",
+
   components: {
     CareerSidebar
   },
+
   computed: {
     ...mapState(["careers"])
   },
+
   watch: {
     $route(to, from) {
       this.id = this.getID();
     }
   },
+
   data() {
     return {
       id: this.getID(),
@@ -62,6 +66,7 @@ export default {
       }
     };
   },
+
   methods: {
     getID() {
       return this.$route.params.careersPage;
