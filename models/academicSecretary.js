@@ -1,6 +1,4 @@
-const { Schema, Model } = require("mongoose");
-
-const academicSecretarySchema = new Schema({
+const academicSecretary = {
   description: {
     type: String,
     default:
@@ -11,6 +9,6 @@ const academicSecretarySchema = new Schema({
     default:
       "La secretaría académica brinda atención a los alumnos los dias de Lunes a Viernes de 20 a 22 hs en bedelía - 1º piso - Nivel Terciario Bv. Oroño 690 - Rosario"
   }
-});
+};
 
-module.exports = Model("academicSecretaries", academicSecretarySchema);
+module.exports = academicSecretary;

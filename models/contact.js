@@ -1,6 +1,4 @@
-const { Schema, Model } = require("mongoose");
-
-const contactSchema = new Schema({
+const contacts = {
   description: {
     type: String,
     default:
@@ -26,6 +24,6 @@ const contactSchema = new Schema({
     type: String,
     default: "info@terciariourquiza.edu.ar"
   }
-});
+};
 
-module.exports = Model("Contacts", contactSchema);
+module.exports = contacts;

@@ -1,6 +1,4 @@
-const { Schema, Model } = require("mongoose");
-
-const videoHeaderSchema = new Schema({
+const videoHeader = {
   description: {
     type: String,
     default:
@@ -15,6 +13,6 @@ const videoHeaderSchema = new Schema({
     default:
       "Las nuevas carreras que dicta la institución, con alta demanda laboral y altamente cualificadas."
   }
-});
+};
 
-module.exports = Model("VideoHeaders", videoHeaderSchema);
+module.exports = videoHeader;

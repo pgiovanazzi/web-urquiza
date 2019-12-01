@@ -5,8 +5,6 @@ module.exports = {
   Users: require("./user"),
   Students: require("./students"),
   SuperUser: require("./superUser"),
-  VideoHeaders: require("./videoHeader"),
-  Contacts: require("./contact"),
   FQAs: require("./fqa"),
-  AcademicSecretaries: require("./academicSecretary")
+  HomeInfos: require("./institute")
 };

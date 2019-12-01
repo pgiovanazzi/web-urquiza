@@ -8,10 +8,108 @@ const path = require("path");
 // DB conection
 require("../config/connection");
 
-const { Pages, Posts, Careers, Users, Students } = require("../models");
+const {
+  Pages,
+  Posts,
+  Careers,
+  Users,
+  Students,
+  FQAs,
+  HomeInfos
+} = require("../models");
 const { uploadCareerFiles, uploadContentFiles } = require("../multer.config");
 const { searchPathFileByRegularExpr, createAlias } = require("./utils");
 const { FILE_NAME_LEN, PREFIX_ROUTE_NAME_LEN } = require("./global-const");
+
+// API FQAs
+router.get("/preguntas-frecuentes", async (req, res) => {
+  try {
+    const fqas = await FQAs.find();
+
+    res.status(200).send(fqas);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.post("/preguntas-frecuentes/nueva", async (req, res) => {
+  try {
+    const newFQA = new FQAs(req.body);
+
+    await newFQA.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Nueva pregunta frecuente agregada"
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error al agregar una pregunta frecuente nueva."
+    });
+  }
+});
+
+router.put("/preguntas-frecuentes/modificar/:id", async (req, res) => {
+  try {
+    await FQAs.findByIdAndUpdate(req.params.id, req.body);
+
+    res.status(200).json({
+      success: true,
+      message: "Pregunta frecuente actualizada correctamente."
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error al actualizar la pregunta frecunete."
+    });
+  }
+});
+
+router.delete("/preguntas-frecuentes/eliminar/:id", async (req, res) => {
+  try {
+    const { question } = req.body;
+
+    await FQAs.findOneAndRemove(req.params.id);
+
+    res.status(200).json({
+      success: true,
+      message: `La pregunta frecuente ${question} se eliminó correctamente.`
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Error al eliminar la pregunta frecuente."
+    });
+  }
+});
+
+// API Institute info
+router.get("/datos-instituto", async (req, res) => {
+  try {
+    const datosInstituto = await HomeInfos.find();
+
+    res.status(200).send(datosInstituto);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.put("/datos-instituto/actualizar/:id", async (req, res) => {
+  try {
+    await HomeInfos.findByIdAndUpdate(req.params.id, req.body);
+
+    res.status(200).json({
+      success: true,
+      message: "Los datos fueron actualizados correctamete."
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: true,
+      message: "Error al actualizar los datos."
+    });
+  }
+});
 
 // API Aspirants
 router.get("/registros/aspirantes", async (req, res) => {
@@ -104,12 +202,13 @@ router.put("/alumnos/modificar/:id", async (req, res) => {
 
 router.delete("/alumnos/eliminar/:id", async (req, res) => {
   try {
-    let alumno = req.body.name;
+    const { name } = req.body;
+
     await Students.findByIdAndRemove(req.params.id);
 
     res.status(200).json({
       success: true,
-      message: `El alumno ${alumno} fue eliminado correctamente.`
+      message: `El alumno ${name} fue eliminado correctamente.`
     });
   } catch (error) {
     res.status(500).json({
