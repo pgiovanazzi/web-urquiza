@@ -1,14 +1,24 @@
 <template>
   <div>
     <!--Section: Contact-->
-    <section class="m-md-2">
+    <section class="m-md-2" v-if="dataInstitute">
       <!-- Heading -->
       <h2 class="mb-4 font-weight-bold text-center p-2">Contactanos</h2>
-      <p
-        class="text-center"
-      >¿Tiene alguna pregunta? No dude en ponerse en contacto con nosotros directamente. Nuestro equipo se pondrá en contacto con usted en cuestión de horas para ayudarle.</p>
+      <p class="text-center">
+        ¿Tiene alguna pregunta? No dude en ponerse en contacto con nosotros
+        directamente. Nuestro equipo se pondrá en contacto con usted en cuestión
+        de horas para ayudarle.
+      </p>
+
       <div class="row mt-5">
         <div class="col-lg-8 col-md-12 border">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 d-flex justify-content-center">
+                <object class="s1" :data="setBG" type="image/svg+xml"></object>
+              </div>
+            </div>
+          </div>
           <!-- Form contact -->
           <form class="p-4 grey-text" @submit.prevent="sendMsg">
             <div class="md-form form-sm">
@@ -57,13 +67,22 @@
               <label for="form8">Mensaje</label>
             </div>
             <div class="text-center mt-4">
-              <button v-if="!sending" class="btn btn-outline-blue-grey waves-effect">
-                <span>
-                  <i class="fas fa-paper-plane"></i> Enviar
-                </span>
+              <button
+                v-if="!sending"
+                class="btn btn-outline-blue-grey waves-effect"
+              >
+                <span> <i class="fas fa-paper-plane"></i> Enviar </span>
               </button>
-              <button v-if="sending" class="btn btn-outline-blue-grey waves-effect" disabled>
-                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+              <button
+                v-if="sending"
+                class="btn btn-outline-blue-grey waves-effect"
+                disabled
+              >
+                <span
+                  class="spinner-grow spinner-grow-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
                 Enviando...
               </button>
             </div>
@@ -78,22 +97,24 @@
                 <li>
                   <i class="fas fa-map-marker-alt fa-2x mb-2"></i>
                   <p>
-                    Bv. Oroño 690 - Rosario
-                    <br />Bedelía - 1º piso - Nivel Terciario
+                    {{ dataInstitute.contact.site.address }}
+                    <br />
+                    {{ dataInstitute.contact.site.floor }}
                   </p>
                 </li>
 
                 <li>
                   <i class="fas fa-phone mt-4 fa-2x mb-2"></i>
                   <p>
-                    (0341) 4721430
-                    <br />(0341) 4721431
+                    {{ dataInstitute.contact.phone.phone1 }}
+                    <br />
+                    {{ dataInstitute.contact.phone.phone2 }}
                   </p>
                 </li>
 
                 <li>
                   <i class="fas fa-envelope mt-4 fa-2x mb-2"></i>
-                  <p>info@terciariourquiza.edu.ar</p>
+                  <p>{{ dataInstitute.contact.email }}</p>
                 </li>
               </ul>
             </div>
@@ -126,10 +147,13 @@ class ToastOptions {
 
 export default {
   name: "Contact",
+
   data() {
     return {
+      setBG: require("@/assets/undraw_contact_us.svg"),
       newQuery: new Query(),
       sending: false,
+      dataInstitute: null,
       toast: this.$swal.mixin({
         toast: true,
         position: "top",
@@ -138,6 +162,12 @@ export default {
       })
     };
   },
+
+  async mounted() {
+    await this.$store.dispatch("getInstituteInfo");
+    this.dataInstitute = this.$store.getters.getInstituteInfo[0];
+  },
+
   methods: {
     async sendMsg() {
       try {
@@ -163,7 +193,20 @@ export default {
 </script>
 
 <style scoped>
+img {
+  width: 12rem;
+}
+
+.s1 {
+  position: absolute;
+  z-index: -1;
+  margin-top: -212px !important;
+  height: 100vh;
+  width: 100%;
+  opacity: 0.12369;
+}
 .color-contact-info {
+  z-index: -2;
   background-color: rgb(16, 45, 70);
 }
 input[type="text"]:focus:not([readonly]),

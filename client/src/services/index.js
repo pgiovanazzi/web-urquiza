@@ -4,6 +4,7 @@ import CareersService from "@/services/CareersService";
 import AspirantsService from "@/services/AspirantsService";
 import InstituteInfoService from "@/services/InstituteInfoService";
 import StudentsService from "@/services/StudentsService";
+import FQAsService from "@/services/FQAsService";
 
 export {
   CareersService,
@@ -11,5 +12,6 @@ export {
   PagesService,
   AspirantsService,
   InstituteInfoService,
-  StudentsService
+  StudentsService,
+  FQAsService
 };

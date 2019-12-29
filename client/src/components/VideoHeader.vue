@@ -1,8 +1,11 @@
 <template>
   <div id="header">
-    <div class="view">
+    <div class="view" v-if="dataInstitute">
       <video class="video-intro" playsinline autoplay muted loop>
-        <source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
+        <source
+          src="https://mdbootstrap.com/img/video/Lines.mp4"
+          type="video/mp4"
+        />
       </video>
       <!-- Mask & flexbox options-->
       <div class="mask rgba-gradient d-flex align-content-center flex-wrap">
@@ -11,12 +14,18 @@
             <div class="col-md-12 mb-4 white-text text-center">
               <h3
                 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5"
-              >DS <i class="fas fa-grip-lines-vertical"></i> AF <i class="fas fa-grip-lines-vertical"></i> ITI</h3>
+              >
+                {{ dataInstitute.header.titleMask }}
+              </h3>
               <hr class="hr-light my-4 w-85" />
-              <h4
-                class="subtext-header mt-2 mb-4 h4-responsive"
-              >Las nuevas carreras que dicta la institución, con alta demanda laboral y altamente cualificadas.</h4>
-              <router-link to="/preinscribirse" class="btn btn-rounded btn-outline-white"><i class="fas fa-home"></i> Inscribite</router-link>
+              <h4 class="subtext-header mt-2 mb-4 h4-responsive">
+                {{ dataInstitute.header.descriptionMask }}
+              </h4>
+              <router-link
+                to="/preinscribirse"
+                class="btn btn-rounded btn-outline-white"
+                ><i class="fas fa-home"></i> Inscribite</router-link
+              >
             </div>
           </div>
         </div>
@@ -29,7 +38,16 @@
 
 <script>
 export default {
-  name: "VideoHeader"
+  name: "VideoHeader",
+  data() {
+    return {
+      dataInstitute: null
+    };
+  },
+  async mounted() {
+    await this.$store.dispatch("getInstituteInfo");
+    this.dataInstitute = this.$store.getters.getInstituteInfo[0];
+  }
 };
 </script>
 
@@ -56,10 +74,10 @@ body,
   }
 }
 
-@media(max-width: 412px) {
-	h3 {
-		font-size: 42px;
-	}
+@media (max-width: 412px) {
+  h3 {
+    font-size: 42px;
+  }
 }
 
 .rgba-gradient {

@@ -66,6 +66,10 @@ const StudentEdit = () =>
   import(
     /* webpackChuckName: "StudentEdit" */ "./views/dashboard/EditEntrantsAndStudents.vue"
   );
+const ConfigInstitute = () =>
+  import(
+    /* webpackChuckName: "ConfigInstitute" */ "./views/dashboard/ConfigInstitute.vue"
+  );
 
 export default new Router({
   mode: "history",
@@ -179,6 +183,13 @@ export default new Router({
         top: 0,
         behavior: "smooth"
       });
+
+    if (to.path === "/panel/configuracion") {
+      return window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
 
     if (to.path != "/preinscribirse")
       return window.scrollTo({
@@ -530,9 +541,28 @@ export default new Router({
               }
             }
           ]
+        },
+        {
+          path: "/panel/configuracion",
+          name: "ConfigInstitute",
+          component: ConfigInstitute,
+          meta: {
+            breadcrumb: [
+              {
+                name: "Panel",
+                link: "/panel",
+                isDynamicParam: false
+              },
+              {
+                name: "Configuración",
+                isDynamicParam: false
+              }
+            ]
+          }
         }
       ]
     },
+
     {
       path: "*",
       redirect: "/"

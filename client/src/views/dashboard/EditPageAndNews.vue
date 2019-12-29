@@ -11,7 +11,9 @@
           required
           ref="description"
         />
-        <label data-error="error" data-success="correcto">Descripción o nombre</label>
+        <label data-error="error" data-success="correcto"
+          >Descripción o nombre</label
+        >
       </div>
 
       <div class="md-form" v-if="contentData.certificName">
@@ -22,24 +24,36 @@
           class="form-control validate"
           required
         />
-        <label data-error="error" data-success="correcto">Título de la carrera</label>
+        <label data-error="error" data-success="correcto"
+          >Título de la carrera</label
+        >
       </div>
 
       <div class="md-form" v-if="contentData.years">
         <i class="fas fa-file-alt prefix"></i>
-        <input type="text" v-model.trim="contentData.years" class="form-control validate" required />
-        <label data-error="error" data-success="correcto">Años de cursado</label>
+        <input
+          type="text"
+          v-model.trim="contentData.years"
+          class="form-control validate"
+          required
+        />
+        <label data-error="error" data-success="correcto"
+          >Años de cursado</label
+        >
       </div>
 
-      <input type="file" style="display: none" @change="onFileSelectedPlan" ref="fileStudyPlan" />
+      <input
+        type="file"
+        style="display: none"
+        @change="onFileSelectedPlan"
+        ref="fileStudyPlan"
+      />
 
       <div class="md-form" v-if="contentData.studyPlanFile">
         <div class="custom-file text-center">
-          <a
-            class="btn btn-link"
-            :href="planPdf"
-            target="_blank"
-          >{{ contentData.studyPlanFile.slice(25,) }}</a>
+          <a class="btn btn-link" :href="planPdf" target="_blank">{{
+            contentData.studyPlanFile.slice(25)
+          }}</a>
           <button
             type="button"
             class="btn btn-outline-primary waves-effect btn-large"
@@ -51,13 +65,22 @@
         </div>
       </div>
 
-      <input type="file" style="display: none" @change="onFileSelectedIcon" ref="fileIconCareer" />
+      <input
+        type="file"
+        style="display: none"
+        @change="onFileSelectedIcon"
+        ref="fileIconCareer"
+      />
 
       <div class="md-form mb-5" v-if="contentData.logotype">
         <div class="custom-file text-center">
           <div class="container">
             <div class="row flex-center">
-              <img :src="iconImg" :alt="contentData.description" style="height: 8rem" />
+              <img
+                :src="iconImg"
+                :alt="contentData.description"
+                style="height: 8rem"
+              />
               <button
                 type="button"
                 class="btn btn-outline-primary waves-effect btn-large"
@@ -85,14 +108,21 @@
             @click="publishedState()"
             class="custom-control-label"
             for="defaultIndeterminate2"
-          >Publicado</label>
+            >Publicado</label
+          >
         </div>
       </div>
 
       <div class="md-form">
         <i class="fas fa-pencil-alt prefix"></i>
-        <input type="text" v-model.trim="contentData.metaDescription" class="form-control validate" />
-        <label data-error="error" data-success="correcto" ref="metaDescription">Meta descripción</label>
+        <input
+          type="text"
+          v-model="contentData.metaDescription"
+          class="form-control validate"
+        />
+        <label data-error="error" data-success="correcto" ref="metaDescription"
+          >Meta descripción</label
+        >
       </div>
 
       <div class="md-form">
@@ -107,7 +137,9 @@
       </div>
 
       <div class="d-flex justify-content-center">
-        <button class="btn btn-outline-elegant waves-effect">Modificar contenido</button>
+        <button class="btn btn-outline-elegant waves-effect">
+          Modificar contenido
+        </button>
       </div>
     </form>
   </div>

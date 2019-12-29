@@ -6,7 +6,9 @@ import {
   PostsService,
   PagesService,
   AspirantsService,
-  StudentsService
+  StudentsService,
+  InstituteInfoService,
+  FQAsService
 } from "@/services";
 
 Vue.use(Vuex);
@@ -20,7 +22,17 @@ export default new Vuex.Store({
     posts: [],
     pages: [],
     aspirants: [],
-    students: []
+    students: [],
+    instituteInfo: [
+      {
+        header: {},
+        contact: {
+          site: {},
+          phone: {}
+        },
+        academicSecretary: {}
+      }
+    ]
   },
   getters: {
     getEditorContent: ({ editorContent }) => editorContent,
@@ -72,7 +84,9 @@ export default new Vuex.Store({
 
     getStudentsById: ({ students }) => id => {
       return students.filter(student => student._id == id)[0];
-    }
+    },
+
+    getInstituteInfo: ({ instituteInfo }) => instituteInfo
   },
   mutations: {
     SET_EDITOR_CONTENT(state, contentIn) {
@@ -112,6 +126,10 @@ export default new Vuex.Store({
 
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
       state.setComponentInSimpleLayout = preinscriptionSuccessComponent;
+    },
+
+    UPDATE_INSTITUTE_INFO(state, { instituteInfoFormActions }) {
+      state.instituteInfo = instituteInfoFormActions;
     }
   },
   actions: {
@@ -147,6 +165,13 @@ export default new Vuex.Store({
       const studentsData = await StudentsService.get();
       commit("UPDATE_STUDENTS", {
         studentsFromActions: await studentsData.json()
+      });
+    },
+
+    async getInstituteInfo({ commit }) {
+      const instituteInfoData = await InstituteInfoService.get();
+      commit("UPDATE_INSTITUTE_INFO", {
+        instituteInfoFormActions: await instituteInfoData.json()
       });
     }
   }

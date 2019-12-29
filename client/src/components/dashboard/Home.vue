@@ -40,7 +40,9 @@
                   {{ getPostsAmount }}
                 </span>
                 <!-- Text -->
-                <p class="card-text">Vea, cree, modifique y elimine las novedades.</p>
+                <p class="card-text">
+                  Vea, cree, modifique y elimine las novedades.
+                </p>
               </center>
             </div>
           </router-link>
@@ -64,7 +66,9 @@
                   <i class="fas fa-users"></i>
                   {{ getAspirantsAmount }}
                 </span>
-                <p class="card-text">Vea, modifique, elimine y dé de alta a los aspirantes.</p>
+                <p class="card-text">
+                  Vea, modifique, elimine y dé de alta a los aspirantes.
+                </p>
               </center>
             </div>
           </router-link>
@@ -116,6 +120,7 @@ export default {
     this.getPosts();
     this.getAspirants();
     this.getStudents();
+    this.getInstituteInfo();
   },
   computed: {
     ...mapState(["pages", "careers", "posts", "aspirants", "students"]),
@@ -142,7 +147,8 @@ export default {
       "getCareers",
       "getPosts",
       "getAspirants",
-      "getStudents"
+      "getStudents",
+      "getInstituteInfo"
     ])
   }
 };

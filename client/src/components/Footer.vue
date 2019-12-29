@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <footer class="page-footer font-small">
+  <footer class="page-footer font-small" v-if="dataInsitute">
     <!-- Footer Links -->
     <div class="container">
       <div class="classic-tabs">
@@ -14,7 +14,8 @@
               role="tab"
               aria-controls="careers"
               aria-selected="true"
-            >Carreras</a>
+              >Carreras</a
+            >
           </li>
           <li class="nav-item">
             <a
@@ -25,7 +26,8 @@
               role="tab"
               aria-controls="academic"
               aria-selected="false"
-            >Secretaría académica</a>
+              >Secretaría académica</a
+            >
           </li>
           <li class="nav-item">
             <a
@@ -36,7 +38,8 @@
               role="tab"
               aria-controls="FAQ"
               aria-selected="false"
-            >Preguntas frecuentes</a>
+              >Preguntas frecuentes</a
+            >
           </li>
         </ul>
 
@@ -47,7 +50,7 @@
             role="tabpanel"
             aria-labelledby="careers-tab"
           >
-            <ul v-for="({description},idx) of getCareersInState" :key="idx">
+            <ul v-for="({ description }, idx) of getCareersInState" :key="idx">
               <li>{{ description }}</li>
             </ul>
           </div>
@@ -56,16 +59,26 @@
             id="academic"
             role="tabpanel"
             aria-labelledby="academic-tab"
-          >{{ secretariaAcademica }}</div>
-          <div class="tab-pane fade" id="FAQ" role="tabpanel" aria-labelledby="FAQ-tab">
+          >
+            {{ dataInsitute.academicSecretary.content }}
+          </div>
+          <div
+            class="tab-pane fade"
+            id="FAQ"
+            role="tabpanel"
+            aria-labelledby="FAQ-tab"
+          >
             <ul v-for="(pregFrec, idx) of pregFrecs" :key="idx">
-              <li>{{ pregFrec.preg }} - {{pregFrec.resp}}</li>
+              <li>{{ pregFrec.preg }} - {{ pregFrec.resp }}</li>
             </ul>
           </div>
         </div>
       </div>
       <!-- Grid row-->
-      <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;" />
+      <hr
+        class="clearfix d-md-none rgba-white-light"
+        style="margin: 10% 15% 5%;"
+      />
 
       <!-- Grid row-->
       <div class="row pb-3">
@@ -107,7 +120,6 @@
   <!-- Footer -->
 </template>
 
-
 <script>
 import { mapGetters, mapActions } from "vuex";
 
@@ -115,8 +127,7 @@ export default {
   name: "Footer",
   data() {
     return {
-      secretariaAcademica:
-        "La secretaría académica brinda atención a los alumnos los dias de Lunes a Viernes de 20 a 22 hs en bedelía - 1º piso - Nivel Terciario Bv. Oroño 690 - Rosario",
+      dataInsitute: null,
       pregFrecs: [
         {
           preg: "¿Qué es un Analista Funcional?",
@@ -151,8 +162,14 @@ export default {
   computed: {
     ...mapGetters(["getCareersInState"])
   },
+
+  async mounted() {
+    await this.getInstituteInfo();
+    this.dataInsitute = this.$store.getters.getInstituteInfo[0];
+  },
+
   methods: {
-    ...mapActions(["getCareers"])
+    ...mapActions(["getCareers", "getInstituteInfo"])
   }
 };
 </script>
