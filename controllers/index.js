@@ -1,3 +1,4 @@
 module.exports = {
-  instituteInfoCtrl: require("./instituteInfoCtrl")
+  instituteInfoCtrl: require("./instituteInfoCtrl"),
+  FQAsCtrl: require("./FQAsCtrl")
 };

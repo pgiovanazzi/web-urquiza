@@ -2,7 +2,7 @@
   <!-- Footer -->
   <footer class="page-footer font-small" v-if="dataInsitute">
     <!-- Footer Links -->
-    <div class="container">
+    <div class="container" v-if="routeValid()">
       <div class="classic-tabs">
         <ul class="nav nav-justified pt-3" id="myTab" role="tablist">
           <li class="nav-item">
@@ -68,8 +68,8 @@
             role="tabpanel"
             aria-labelledby="FAQ-tab"
           >
-            <ul v-for="(pregFrec, idx) of pregFrecs" :key="idx">
-              <li>{{ pregFrec.preg }} - {{ pregFrec.resp }}</li>
+            <ul v-for="({ question, answer }, idx) of pregFrecs" :key="idx">
+              <li>{{ question }} - {{ answer }}</li>
             </ul>
           </div>
         </div>
@@ -128,32 +128,7 @@ export default {
   data() {
     return {
       dataInsitute: null,
-      pregFrecs: [
-        {
-          preg: "¿Qué es un Analista Funcional?",
-          resp: "..."
-        },
-        {
-          preg: "¿Qué es ITI?",
-          resp: "..."
-        },
-        {
-          preg: "¿Qué es un Desarrollador de Software?",
-          resp: "..."
-        },
-        {
-          preg: "Tengo estudios en la universidad, ¿puedo homologar materias?",
-          resp: "..."
-        },
-        {
-          preg: "Cuando termine esta carrera, ¿puedo seguir en la universidad?",
-          resp: "..."
-        },
-        {
-          preg: "Debo materias del secundario, ¿puedo inscribirme igual?",
-          resp: "..."
-        }
-      ]
+      pregFrecs: null
     };
   },
   created() {
@@ -165,11 +140,32 @@ export default {
 
   async mounted() {
     await this.getInstituteInfo();
+    await this.getFQAs();
     this.dataInsitute = this.$store.getters.getInstituteInfo[0];
+    this.pregFrecs = this.$store.getters.getFQAs;
   },
 
   methods: {
-    ...mapActions(["getCareers", "getInstituteInfo"])
+    ...mapActions(["getCareers", "getInstituteInfo", "getFQAs"]),
+
+    routeValid() {
+      return (
+        this.$route.name != "Panel" &&
+        this.$route.name != "Pages" &&
+        this.$route.name != "PageEdit" &&
+        this.$route.name != "Page" &&
+        this.$route.name != "NewsInDashboard" &&
+        this.$route.name != "NewInDashboard" &&
+        this.$route.name != "NewEdit" &&
+        this.$route.name != "EntrantsInDashboard" &&
+        this.$route.name != "Entrant" &&
+        this.$route.name != "EntrantEdit" &&
+        this.$route.name != "Students" &&
+        this.$route.name != "Student" &&
+        this.$route.name != "StudentEdit" &&
+        this.$route.name != "ConfigInstitute"
+      );
+    }
   }
 };
 </script>

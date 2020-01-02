@@ -32,7 +32,8 @@ export default new Vuex.Store({
         },
         academicSecretary: {}
       }
-    ]
+    ],
+    fqas: []
   },
   getters: {
     getEditorContent: ({ editorContent }) => editorContent,
@@ -86,7 +87,13 @@ export default new Vuex.Store({
       return students.filter(student => student._id == id)[0];
     },
 
-    getInstituteInfo: ({ instituteInfo }) => instituteInfo
+    getInstituteInfo: ({ instituteInfo }) => instituteInfo,
+
+    getFQAs: ({ fqas }) => fqas,
+
+    getFQAById: ({ fqas }) => id => {
+      return fqas.find(fqa => fqa._id == id);
+    }
   },
   mutations: {
     SET_EDITOR_CONTENT(state, contentIn) {
@@ -128,8 +135,12 @@ export default new Vuex.Store({
       state.setComponentInSimpleLayout = preinscriptionSuccessComponent;
     },
 
-    UPDATE_INSTITUTE_INFO(state, { instituteInfoFormActions }) {
-      state.instituteInfo = instituteInfoFormActions;
+    UPDATE_INSTITUTE_INFO(state, { instituteInfoFromActions }) {
+      state.instituteInfo = instituteInfoFromActions;
+    },
+
+    UPDATE_FQA(state, { FQAsFromActions }) {
+      state.fqas = FQAsFromActions;
     }
   },
   actions: {
@@ -171,7 +182,14 @@ export default new Vuex.Store({
     async getInstituteInfo({ commit }) {
       const instituteInfoData = await InstituteInfoService.get();
       commit("UPDATE_INSTITUTE_INFO", {
-        instituteInfoFormActions: await instituteInfoData.json()
+        instituteInfoFromActions: await instituteInfoData.json()
+      });
+    },
+
+    async getFQAs({ commit }) {
+      const FQAsData = await FQAsService.get();
+      commit("UPDATE_FQA", {
+        FQAsFromActions: await FQAsData.json()
       });
     }
   }

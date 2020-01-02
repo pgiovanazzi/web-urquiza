@@ -8,20 +8,20 @@ const path = require("path");
 // DB conection
 require("../config/connection");
 
-const { Pages, Posts, Careers, Users, Students, FQAs } = require("../models");
-const { instituteInfoCtrl } = require("../controllers");
+const { Pages, Posts, Careers, Users, Students } = require("../models");
+const { instituteInfoCtrl, FQAsCtrl } = require("../controllers");
 const { uploadCareerFiles, uploadContentFiles } = require("../multer.config");
 const { searchPathFileByRegularExpr, createAlias } = require("./utils");
 const { FILE_NAME_LEN, PREFIX_ROUTE_NAME_LEN } = require("./global-const");
 
 // API FQAs
-router.get("/preguntas-frecuentes", instituteInfoCtrl.index);
+router.get("/preguntas-frecuentes", FQAsCtrl.index);
 
-router.post("/preguntas-frecuentes", instituteInfoCtrl.store);
+router.post("/preguntas-frecuentes", FQAsCtrl.store);
 
-router.put("/preguntas-frecuentes/:id", instituteInfoCtrl.partialUpdate);
+router.patch("/preguntas-frecuentes/:id", FQAsCtrl.partialUpdate);
 
-router.delete("/preguntas-frecuentes/:id", instituteInfoCtrl.destroy);
+router.delete("/preguntas-frecuentes/:id", FQAsCtrl.destroy);
 
 // API Institute info
 router.get("/instituto-datos", instituteInfoCtrl.index);

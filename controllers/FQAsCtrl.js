@@ -19,7 +19,7 @@ module.exports = {
 
       res.status(200).json({
         success: true,
-        message: "Nueva pregunta frecuente agregada"
+        message: "Nueva pregunta frecuente agregada."
       });
     } catch (error) {
       res.status(500).json({
@@ -47,13 +47,11 @@ module.exports = {
 
   async destroy(req, res) {
     try {
-      const question = req.body.question;
-
-      await FQAs.findOneAndRemove(req.params.id);
+      await FQAs.findByIdAndRemove(req.params.id);
 
       res.status(200).json({
         success: true,
-        message: `La pregunta frecuente "${question}" se eliminó correctamente.`
+        message: `La pregunta frecuente se eliminó correctamente.`
       });
     } catch (error) {
       res.status(500).json({
