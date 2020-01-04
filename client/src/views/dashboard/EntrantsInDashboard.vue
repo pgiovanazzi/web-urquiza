@@ -1,27 +1,31 @@
 <template>
   <div>
     <div class="container">
+      <div class="row mb-3 mt-5">
+        <div class="col-md-12">
+          <h3>Aspirantes registrados</h3>
+        </div>
+      </div>
       <div class="row" v-if="$store.getters.getAspirants">
         <div class="col-md-12">
-          <h3 class="m-3">Aspirantes registrados</h3>
           <vue-good-table
             :columns="columns"
             :rows="rows"
             :line-numbers="true"
             @on-row-click="onRowClick"
             :search-options="{
-            enabled: true,
-            placeholder: 'Buscar aspirante',
-          }"
+              enabled: true,
+              placeholder: 'Buscar aspirante'
+            }"
             :pagination-options="{
-            enabled: true,
-            nextLabel: 'Siguiente',
-            prevLabel: 'Anterior',
-            rowsPerPageLabel: 'Filas por página',
-            ofLabel: 'de',
-            pageLabel: 'página',
-            allLabel: 'Todas',
-          }"
+              enabled: true,
+              nextLabel: 'Siguiente',
+              prevLabel: 'Anterior',
+              rowsPerPageLabel: 'Filas por página',
+              ofLabel: 'de',
+              pageLabel: 'página',
+              allLabel: 'Todas'
+            }"
           />
         </div>
       </div>

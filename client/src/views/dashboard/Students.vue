@@ -1,14 +1,21 @@
 <template>
   <div>
     <div class="container" v-if="$store.getters.getStudents">
-      <div class="row mb-3">
+      <div class="row mb-3 mt-5">
         <div class="col-md-8">
-          <h3 class="m-3">Alumnos registrados</h3>
+          <h3>
+            Alumnos registrados
+          </h3>
         </div>
         <div class="col-md-4 d-flex justify-content-center">
-          <button class="btn btn-outline-success waves-effect">
+          <button
+            class="btn btn-outline-success waves-effect"
+            data-toggle="modal"
+            data-target="#new-student"
+          >
             <i class="fas fa-user-plus"></i> Agregar nuevo alumno
           </button>
+          <NewStudent />
         </div>
       </div>
       <div class="row">
@@ -19,18 +26,18 @@
             :line-numbers="true"
             @on-row-click="onRowClick"
             :search-options="{
-            enabled: true,
-            placeholder: 'Buscar alumnos',
-          }"
+              enabled: true,
+              placeholder: 'Buscar alumnos'
+            }"
             :pagination-options="{
-            enabled: true,
-            nextLabel: 'Siguiente',
-            prevLabel: 'Anterior',
-            rowsPerPageLabel: 'Filas por página',
-            ofLabel: 'de',
-            pageLabel: 'página',
-            allLabel: 'Todas',
-          }"
+              enabled: true,
+              nextLabel: 'Siguiente',
+              prevLabel: 'Anterior',
+              rowsPerPageLabel: 'Filas por página',
+              ofLabel: 'de',
+              pageLabel: 'página',
+              allLabel: 'Todas'
+            }"
           />
         </div>
       </div>
@@ -40,6 +47,7 @@
 
 <script>
 import { StudentsService } from "@/services";
+import NewStudent from "@/components/dashboard/NewStudent.vue";
 // import the styles
 import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table";
@@ -48,7 +56,8 @@ export default {
   name: "Students",
 
   components: {
-    VueGoodTable
+    VueGoodTable,
+    NewStudent
   },
 
   async created() {
@@ -102,5 +111,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

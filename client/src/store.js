@@ -6,7 +6,9 @@ import {
   PostsService,
   PagesService,
   AspirantsService,
-  StudentsService
+  StudentsService,
+  InstituteInfoService,
+  FQAsService
 } from "@/services";
 
 Vue.use(Vuex);
@@ -20,7 +22,18 @@ export default new Vuex.Store({
     posts: [],
     pages: [],
     aspirants: [],
-    students: []
+    students: [],
+    instituteInfo: [
+      {
+        header: {},
+        contact: {
+          site: {},
+          phone: {}
+        },
+        academicSecretary: {}
+      }
+    ],
+    fqas: []
   },
   getters: {
     getEditorContent: ({ editorContent }) => editorContent,
@@ -72,6 +85,14 @@ export default new Vuex.Store({
 
     getStudentsById: ({ students }) => id => {
       return students.filter(student => student._id == id)[0];
+    },
+
+    getInstituteInfo: ({ instituteInfo }) => instituteInfo,
+
+    getFQAs: ({ fqas }) => fqas,
+
+    getFQAById: ({ fqas }) => id => {
+      return fqas.find(fqa => fqa._id == id);
     }
   },
   mutations: {
@@ -112,6 +133,14 @@ export default new Vuex.Store({
 
     SUCCESS_PRE_INS(state, preinscriptionSuccessComponent) {
       state.setComponentInSimpleLayout = preinscriptionSuccessComponent;
+    },
+
+    UPDATE_INSTITUTE_INFO(state, { instituteInfoFromActions }) {
+      state.instituteInfo = instituteInfoFromActions;
+    },
+
+    UPDATE_FQA(state, { FQAsFromActions }) {
+      state.fqas = FQAsFromActions;
     }
   },
   actions: {
@@ -147,6 +176,20 @@ export default new Vuex.Store({
       const studentsData = await StudentsService.get();
       commit("UPDATE_STUDENTS", {
         studentsFromActions: await studentsData.json()
+      });
+    },
+
+    async getInstituteInfo({ commit }) {
+      const instituteInfoData = await InstituteInfoService.get();
+      commit("UPDATE_INSTITUTE_INFO", {
+        instituteInfoFromActions: await instituteInfoData.json()
+      });
+    },
+
+    async getFQAs({ commit }) {
+      const FQAsData = await FQAsService.get();
+      commit("UPDATE_FQA", {
+        FQAsFromActions: await FQAsData.json()
       });
     }
   }

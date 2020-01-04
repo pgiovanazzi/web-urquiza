@@ -9,9 +9,28 @@ const path = require("path");
 require("../config/connection");
 
 const { Pages, Posts, Careers, Users, Students } = require("../models");
+const { instituteInfoCtrl, FQAsCtrl } = require("../controllers");
 const { uploadCareerFiles, uploadContentFiles } = require("../multer.config");
 const { searchPathFileByRegularExpr, createAlias } = require("./utils");
 const { FILE_NAME_LEN, PREFIX_ROUTE_NAME_LEN } = require("./global-const");
+
+// API FQAs
+router.get("/preguntas-frecuentes", FQAsCtrl.index);
+
+router.post("/preguntas-frecuentes", FQAsCtrl.store);
+
+router.patch("/preguntas-frecuentes/:id", FQAsCtrl.partialUpdate);
+
+router.delete("/preguntas-frecuentes/:id", FQAsCtrl.destroy);
+
+// API Institute info
+router.get("/instituto-datos", instituteInfoCtrl.index);
+
+router.post("/instituto-datos", instituteInfoCtrl.store);
+
+router.patch("/instituto-datos/:id", instituteInfoCtrl.partialUpdate);
+
+router.delete("/instituto-datos/:id", instituteInfoCtrl.destroy);
 
 // API Aspirants
 router.get("/registros/aspirantes", async (req, res) => {
@@ -70,8 +89,9 @@ router.get("/alumnos", async (req, res) => {
 
 router.post("/nuevo-alumno", async (req, res) => {
   try {
-    const newStrudent = new Students(req.body);
-    await newStrudent.save();
+    const newStudent = new Students(req.body);
+
+    await newStudent.save();
 
     res.status(200).json({
       success: true,
@@ -103,12 +123,13 @@ router.put("/alumnos/modificar/:id", async (req, res) => {
 
 router.delete("/alumnos/eliminar/:id", async (req, res) => {
   try {
-    let alumno = req.body.name;
+    const studenName = req.body.name;
+
     await Students.findByIdAndRemove(req.params.id);
 
     res.status(200).json({
       success: true,
-      message: `El alumno ${alumno} fue eliminado correctamente.`
+      message: `El alumno ${studenName} fue eliminado correctamente.`
     });
   } catch (error) {
     res.status(500).json({
@@ -275,7 +296,9 @@ router.post("/nueva-pagina", async (req, res) => {
     req.body.url = req.body.alias;
 
     const newPage = new Pages(req.body);
+
     await newPage.save();
+
     res.status(201).json({
       success: true,
       message: "Página creada correctamente."

@@ -12,7 +12,6 @@ const dbConnection = mlab;
 mongoose
   .connect(dbConnection, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
     useCreateIndex: true
   })
   .then(db => console.log("DB is connected: " + dbConnection))

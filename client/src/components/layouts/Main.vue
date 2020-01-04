@@ -23,8 +23,8 @@ import Map from "@/components/Map.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-   name: 'Main',
-   components: {
+  name: "Main",
+  components: {
     Menu,
     VideoHeader,
     Parallax,
@@ -32,12 +32,13 @@ export default {
     Map,
     Footer
   }
-}
+};
 </script>
 <style scoped>
 body {
   margin: 0px;
 }
+
 .container {
   padding-top: 30px;
   background-color: #fff;

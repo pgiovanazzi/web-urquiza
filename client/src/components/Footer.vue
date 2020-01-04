@@ -1,8 +1,8 @@
 <template>
   <!-- Footer -->
-  <footer class="page-footer font-small">
+  <footer class="page-footer font-small" v-if="dataInsitute">
     <!-- Footer Links -->
-    <div class="container">
+    <div class="container" v-if="routeValid()">
       <div class="classic-tabs">
         <ul class="nav nav-justified pt-3" id="myTab" role="tablist">
           <li class="nav-item">
@@ -14,7 +14,8 @@
               role="tab"
               aria-controls="careers"
               aria-selected="true"
-            >Carreras</a>
+              >Carreras</a
+            >
           </li>
           <li class="nav-item">
             <a
@@ -25,7 +26,8 @@
               role="tab"
               aria-controls="academic"
               aria-selected="false"
-            >Secretaría académica</a>
+              >Secretaría académica</a
+            >
           </li>
           <li class="nav-item">
             <a
@@ -36,7 +38,8 @@
               role="tab"
               aria-controls="FAQ"
               aria-selected="false"
-            >Preguntas frecuentes</a>
+              >Preguntas frecuentes</a
+            >
           </li>
         </ul>
 
@@ -47,7 +50,7 @@
             role="tabpanel"
             aria-labelledby="careers-tab"
           >
-            <ul v-for="({description},idx) of getCareersInState" :key="idx">
+            <ul v-for="({ description }, idx) of getCareersInState" :key="idx">
               <li>{{ description }}</li>
             </ul>
           </div>
@@ -56,16 +59,26 @@
             id="academic"
             role="tabpanel"
             aria-labelledby="academic-tab"
-          >{{ secretariaAcademica }}</div>
-          <div class="tab-pane fade" id="FAQ" role="tabpanel" aria-labelledby="FAQ-tab">
-            <ul v-for="(pregFrec, idx) of pregFrecs" :key="idx">
-              <li>{{ pregFrec.preg }} - {{pregFrec.resp}}</li>
+          >
+            {{ dataInsitute.academicSecretary.content }}
+          </div>
+          <div
+            class="tab-pane fade"
+            id="FAQ"
+            role="tabpanel"
+            aria-labelledby="FAQ-tab"
+          >
+            <ul v-for="({ question, answer }, idx) of pregFrecs" :key="idx">
+              <li>{{ question }} - {{ answer }}</li>
             </ul>
           </div>
         </div>
       </div>
       <!-- Grid row-->
-      <hr class="clearfix d-md-none rgba-white-light" style="margin: 10% 15% 5%;" />
+      <hr
+        class="clearfix d-md-none rgba-white-light"
+        style="margin: 10% 15% 5%;"
+      />
 
       <!-- Grid row-->
       <div class="row pb-3">
@@ -107,7 +120,6 @@
   <!-- Footer -->
 </template>
 
-
 <script>
 import { mapGetters, mapActions } from "vuex";
 
@@ -115,34 +127,8 @@ export default {
   name: "Footer",
   data() {
     return {
-      secretariaAcademica:
-        "La secretaría académica brinda atención a los alumnos los dias de Lunes a Viernes de 20 a 22 hs en bedelía - 1º piso - Nivel Terciario Bv. Oroño 690 - Rosario",
-      pregFrecs: [
-        {
-          preg: "¿Qué es un Analista Funcional?",
-          resp: "..."
-        },
-        {
-          preg: "¿Qué es ITI?",
-          resp: "..."
-        },
-        {
-          preg: "¿Qué es un Desarrollador de Software?",
-          resp: "..."
-        },
-        {
-          preg: "Tengo estudios en la universidad, ¿puedo homologar materias?",
-          resp: "..."
-        },
-        {
-          preg: "Cuando termine esta carrera, ¿puedo seguir en la universidad?",
-          resp: "..."
-        },
-        {
-          preg: "Debo materias del secundario, ¿puedo inscribirme igual?",
-          resp: "..."
-        }
-      ]
+      dataInsitute: null,
+      pregFrecs: null
     };
   },
   created() {
@@ -151,8 +137,35 @@ export default {
   computed: {
     ...mapGetters(["getCareersInState"])
   },
+
+  async mounted() {
+    await this.getInstituteInfo();
+    await this.getFQAs();
+    this.dataInsitute = this.$store.getters.getInstituteInfo[0];
+    this.pregFrecs = this.$store.getters.getFQAs;
+  },
+
   methods: {
-    ...mapActions(["getCareers"])
+    ...mapActions(["getCareers", "getInstituteInfo", "getFQAs"]),
+
+    routeValid() {
+      return (
+        this.$route.name != "Panel" &&
+        this.$route.name != "Pages" &&
+        this.$route.name != "PageEdit" &&
+        this.$route.name != "Page" &&
+        this.$route.name != "NewsInDashboard" &&
+        this.$route.name != "NewInDashboard" &&
+        this.$route.name != "NewEdit" &&
+        this.$route.name != "EntrantsInDashboard" &&
+        this.$route.name != "Entrant" &&
+        this.$route.name != "EntrantEdit" &&
+        this.$route.name != "Students" &&
+        this.$route.name != "Student" &&
+        this.$route.name != "StudentEdit" &&
+        this.$route.name != "ConfigInstitute"
+      );
+    }
   }
 };
 </script>

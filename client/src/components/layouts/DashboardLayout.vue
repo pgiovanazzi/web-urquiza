@@ -6,7 +6,9 @@
       <div class="col-sm-2 px-1 blue-grey lighten-5 z-depth-1-half">
         <div class="py-2 sticky-top flex-grow-1">
           <div class="nav flex-sm-column mx-4">
-            <router-link to="/" class="nav-link d-none d-sm-inline">TERCIARIO URQUIZA</router-link>
+            <router-link to="/" class="nav-link d-none d-sm-inline"
+              >TERCIARIO URQUIZA</router-link
+            >
             <hr class="m-1 mb-4" />
             <router-link
               class="nav-link"
@@ -28,8 +30,7 @@
 
             <router-link
               class="nav-link"
-              v-for="(option, idx) of quickAccessOptios 
-            "
+              v-for="(option, idx) of quickAccessOptios"
               :key="idx"
               :to="option.path"
             >
@@ -41,7 +42,9 @@
       </div>
       <div class="col-md-10 p-0">
         <nav class="mb-1 navbar navbar-expand-lg navbar-dark">
-          <router-link class="navbar-brand" to="/panel">PANEL DE ADMINISTRACIÓN DEL SITIO</router-link>
+          <router-link class="navbar-brand" to="/panel"
+            >PANEL DE ADMINISTRACIÓN DEL SITIO</router-link
+          >
           <ul class="navbar-nav ml-auto nav-flex-icons mx-4">
             <li class="nav-item dropdown">
               <a
@@ -57,12 +60,12 @@
                 class="dropdown-menu dropdown-menu-right dropdown-default"
                 aria-labelledby="navbarDropdownMenuLink-333"
               >
-                <a class="dropdown-item" href="#">
+                <router-link class="dropdown-item" to="/panel/configuracion">
                   <i class="fas fa-cog"></i> Configuración
-                </a>
-                <a class="dropdown-item" href="#">
+                </router-link>
+                <router-link class="dropdown-item" to="/su">
                   <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                </a>
+                </router-link>
               </div>
             </li>
           </ul>

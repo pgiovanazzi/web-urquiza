@@ -206,6 +206,7 @@
                         type="text"
                         v-model="formPreinscribirse.address"
                         class="form-control text-white"
+                        required
                       />
                       <label class>Domicilio</label>
                     </div>
