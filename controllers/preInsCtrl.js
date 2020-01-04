@@ -1,5 +1,5 @@
 'use strict'
-//const Aspirante = require('../models/user')
+
 const Aspirante = require('../models').Users
 const mongoose = require('mongoose')
 
