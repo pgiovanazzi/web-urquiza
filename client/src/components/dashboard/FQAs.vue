@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-      <div class="row mt-5">
+    <div class="row mt-5">
       <div class="col-md-12">
         <div class="table-responsive">
           <!--Table-->
@@ -92,6 +92,7 @@
               <tr
                 v-for="({ _id, question, answer, createdAt, updatedAt },
                 idx) of setDataFQA"
+                :key="idx"
               >
                 <th scope="row">{{ idx + 1 }}</th>
                 <td>{{ question }}</td>
@@ -110,7 +111,6 @@
           </table>
           <!--Table-->
         </div>
-      </div>
       </div>
     </div>
   </div>
