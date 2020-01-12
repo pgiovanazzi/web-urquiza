@@ -416,8 +416,27 @@ router.get("/carreras", async (req, res) => {
   }
 });
 
-router.put("/carrera/editar/:id", async (req, res) => {
+router.put("/carrera/editar/:id", uploadCareerFiles, async (req, res) => {
   try {
+    const career = await Careers.findById(req.params.id);
+
+    if (req.files.studyPlanFile) {
+      // Remove old file
+      fs.unlinkSync(
+        path.join(__dirname, `../uploaded-files/${career.studyPlanFile}`)
+      );
+      // Set new name file
+      req.body.studyPlanFile = req.files.studyPlanFile[0].filename;
+    }
+    if (req.files.logotype) {
+      // Remuve old icon
+      fs.unlinkSync(
+        path.join(__dirname, `../uploaded-files/${career.logotype}`)
+      );
+      // Set new name incon
+      req.body.logotype = req.files.logotype[0].filename;
+    }
+
     await Careers.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).json({
       success: true,

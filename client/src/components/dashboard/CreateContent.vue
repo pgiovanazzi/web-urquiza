@@ -44,7 +44,7 @@
                   required
                 />
                 <label data-error="error" data-success="correcto"
-                  >Descripción o nombre</label
+                  >Título de la publicación</label
                 >
               </div>
 

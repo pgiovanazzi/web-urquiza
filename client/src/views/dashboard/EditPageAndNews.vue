@@ -66,7 +66,7 @@
       <div class="md-form" v-if="contentData.studyPlanFile">
         <div class="custom-file text-center">
           <a class="btn btn-link" :href="planPdf" target="_blank">{{
-            contentData.studyPlanFile.slice(25)
+            contentData.studyPlanFile
           }}</a>
           <button
             type="button"
@@ -232,7 +232,8 @@ export default {
 
     async sendEditContent() {
       try {
-        this.contentData.content = this.$store.getters.getEditorContent;
+        if (this.$store.getters.getEditorContent)
+          this.contentData.content = this.$store.getters.getEditorContent;
 
         const data =
           this.contentData.section === "CARRERAS"

@@ -28,13 +28,15 @@ class CareerService {
   }
 
   static edit(career, id) {
+    var formData = new FormData();
+
+    for (var name in career) {
+      formData.append(name, career[name]);
+    }
+
     return fetch(apiEditCareer + id, {
       method: "PUT",
-      body: JSON.stringify(career),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
+      body: formData
     });
   }
 
