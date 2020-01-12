@@ -12,7 +12,12 @@
         <div class="modal-content">
           <div class="modal-header text-center">
             <h4 class="modal-title w-100 font-weight-bold">Crear Contenido</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -38,7 +43,9 @@
                   class="form-control validate"
                   required
                 />
-                <label data-error="error" data-success="correcto">Descripción o nombre</label>
+                <label data-error="error" data-success="correcto"
+                  >Descripción o nombre</label
+                >
               </div>
 
               <div class="md-form" v-if="newContent.section === 'CARRERAS'">
@@ -49,7 +56,9 @@
                   class="form-control validate"
                   required
                 />
-                <label data-error="error" data-success="correcto">Título de la carrera</label>
+                <label data-error="error" data-success="correcto"
+                  >Título de la carrera</label
+                >
               </div>
 
               <div class="md-form" v-if="newContent.section === 'CARRERAS'">
@@ -60,7 +69,22 @@
                   class="form-control validate"
                   required
                 />
-                <label data-error="error" data-success="correcto">Años de cursado</label>
+                <label data-error="error" data-success="correcto"
+                  >Años de cursado</label
+                >
+              </div>
+
+              <div v-if="newContent.section === 'CARRERAS'">
+                <select
+                  class="browser-default custom-select form-control mb-2 p-2"
+                  :value="newContent.time"
+                  required
+                >
+                  <option value disabled>Turno</option>
+                  <option value="M">Mañana</option>
+                  <option value="T">Tarde</option>
+                  <option value="N">Noche</option>
+                </select>
               </div>
 
               <div class="md-form" v-if="newContent.section === 'CARRERAS'">
@@ -117,7 +141,8 @@
                     @click.native="publishedState()"
                     class="custom-control-label"
                     for="defaultIndeterminate2"
-                  >Publicado</label>
+                    >Publicado</label
+                  >
                 </div>
               </div>
               <div class="md-form">
@@ -127,7 +152,9 @@
                   v-model.trim="newContent.metaDescription"
                   class="form-control validate"
                 />
-                <label data-error="error" data-success="correcto">Meta descripción</label>
+                <label data-error="error" data-success="correcto"
+                  >Meta descripción</label
+                >
               </div>
 
               <div class="md-form">
@@ -137,11 +164,15 @@
                   v-model.trim="newContent.metaLabel"
                   class="form-control validate"
                 />
-                <label data-error="error" data-success="correcto">Meta etiqueta</label>
+                <label data-error="error" data-success="correcto"
+                  >Meta etiqueta</label
+                >
               </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
-              <button class="btn btn-outline-elegant waves-effect">Crear contenido</button>
+              <button class="btn btn-outline-elegant waves-effect">
+                Crear contenido
+              </button>
             </div>
           </form>
         </div>

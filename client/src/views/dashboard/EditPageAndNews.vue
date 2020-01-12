@@ -42,6 +42,20 @@
         >
       </div>
 
+      <div class="md-form" v-if="contentData.time">
+        <select
+          class="browser-default custom-select rounded-0"
+          v-model="contentData.time"
+          required
+        >
+          <option disabled value selected>Turno</option>
+          opt >
+          <option value="M">Mañana</option>
+          <option value="T">Tarde</option>
+          <option value="N">Noche</option>
+        </select>
+      </div>
+
       <input
         type="file"
         style="display: none"

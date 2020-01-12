@@ -1,7 +1,9 @@
 <template>
   <div class="card">
     <ul class="list-group list-group-flush" v-if="data">
-      <li class="list-group-item text-center unique-color white-text">Información de la publicación</li>
+      <li class="list-group-item text-center unique-color white-text">
+        Información de la publicación
+      </li>
       <li class="list-group-item">
         <strong>Título:</strong>
         {{ data.description }}
@@ -12,25 +14,44 @@
       </li>
       <li class="list-group-item">
         <strong>Publicado:</strong>
-        {{ data.published ? 'Si' : 'No'}}
+        {{ data.published ? "Si" : "No" }}
       </li>
       <li class="list-group-item" v-if="data.section">
         <strong>Sección:</strong>
         {{ data.section }}
       </li>
-      <li class="list-group-item" v-if="$store.getters.getCareerByAlias($route.params.id)">
+      <li
+        class="list-group-item"
+        v-if="$store.getters.getCareerByAlias($route.params.id)"
+      >
+        <strong>Turno:</strong>
+        {{ data.time }}
+      </li>
+      <li
+        class="list-group-item"
+        v-if="$store.getters.getCareerByAlias($route.params.id)"
+      >
         <strong>Nombre del Título de la carrera:</strong>
         {{ data.certificName }}
       </li>
-      <li class="list-group-item" v-if="$store.getters.getCareerByAlias($route.params.id)">
+      <li
+        class="list-group-item"
+        v-if="$store.getters.getCareerByAlias($route.params.id)"
+      >
         <strong>Logotipo:</strong>
         {{ data.logotype }}
       </li>
-      <li class="list-group-item" v-if="$store.getters.getCareerByAlias($route.params.id)">
+      <li
+        class="list-group-item"
+        v-if="$store.getters.getCareerByAlias($route.params.id)"
+      >
         <strong>Plan de la carrera:</strong>
         {{ data.studyPlanFile }}
       </li>
-      <li class="list-group-item" v-if="$store.getters.getCareerByAlias($route.params.id)">
+      <li
+        class="list-group-item"
+        v-if="$store.getters.getCareerByAlias($route.params.id)"
+      >
         <strong>Cantidad de años:</strong>
         {{ data.years }}
       </li>

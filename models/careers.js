@@ -15,6 +15,11 @@ const careersSchema = new Schema({
     type: String,
     required: true
   },
+  time: {
+    type: String,
+    enum: ["M", "T", "N"],
+    default: "N"
+  },
   content: {
     type: String,
     required: true

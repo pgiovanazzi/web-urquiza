@@ -17,16 +17,20 @@
         <UltimaNovedad v-if="getPostsInState.length && showLastNews" />
       </div>
       <div class="col-lg-4 col-md-12 mt-4 mb-5">
-        <h4 class="mb-n3">Ultimas Novedades</h4>
-        <ul
-          style="list-style-type: none;
-        display: inline;"
-          v-if="getPostsInState.length"
-        >
-          <li v-for="(post, idx) of getPostPublishedAndSortedByDate" :key="idx">
-            <NovedadesLista :post="post" />
-          </li>
-        </ul>
+        <div class="container">
+          <h4>Ultimas Novedades</h4>
+          <hr />
+          <div
+            class="row mb-1 mt-2"
+            v-if="getPostsInState.length"
+            v-for="(post, idx) of getPostPublishedAndSortedByDate"
+            :key="idx"
+          >
+            <div class="col-md-12">
+              <NovedadesLista :post="post" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -74,3 +78,9 @@ export default {
   }
 };
 </script>
+
+<style lang="css">
+.nl {
+  width: 22rem;
+}
+</style>

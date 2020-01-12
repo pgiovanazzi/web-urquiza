@@ -6,6 +6,17 @@ import moment from "moment";
 import VueSweetalert2 from "vue-sweetalert2";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 
+router.beforeResolve((to, from, next) => {
+  if (to.path) {
+    NProgress.start();
+  }
+  next();
+});
+
+router.afterEach(() => {
+  NProgress.done();
+});
+
 Vue.use(CKEditor);
 
 Vue.use(VueSweetalert2);

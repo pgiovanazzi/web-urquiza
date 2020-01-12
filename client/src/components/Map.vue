@@ -1,21 +1,20 @@
 <template>
-   <div id="map">
-   </div>
+  <div id="map"></div>
 </template>
 
-
 <script>
+import buildMap from "@/../public/js/map.js";
 
 export default {
-   name: 'Map',
-   mounted() {
-      require('../../public/js/map.js')
-   },
-}
+  name: "Map",
+  mounted() {
+    buildMap();
+  }
+};
 </script>
 
 <style scoope>
-   #map {
-      margin: 0;
-   }
+#map {
+  margin: 0;
+}
 </style>

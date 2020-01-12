@@ -1,37 +1,19 @@
 <template>
   <div>
-    <hr />
-    <!--Small news-->
-    <div class="row">
-      <div class="col-md-3 align-self-center">
-        <!--Image-->
-        <div class="view overlay rounded z-depth-1">
-          <img
-            src="https://mdbootstrap.com/img/Photos/Others/photo8.jpg"
-            class="img-fluid"
-            alt="Minor sample post image"
-          />
-          <router-link :to="'/novedades/' + post.alias">
-            <div class="mask rgba-white-light"></div>
-          </router-link>
-        </div>
-      </div>
+    <router-link :to="'/novedades/' + post.alias" exact>
+      <div class="card">
+        <div class="card-body">
+          <p class="dark-grey-text">
+            <small>{{ post.date | formatDate }}</small>
+          </p>
 
-      <!--Excerpt-->
-      <div class="col-md-9">
-        <p class="dark-grey-text">
-          <small>{{ post.date | formatDate }}</small>
-        </p>
-
-        <router-link :to="'/novedades/' + post.alias" exact>
           <strong class="lead">
             {{ post.description }}
             <i class="fas fa-angle-right float-right"></i>
           </strong>
-        </router-link>
+        </div>
       </div>
-    </div>
-    <!--/Small news-->
+    </router-link>
   </div>
 </template>
 

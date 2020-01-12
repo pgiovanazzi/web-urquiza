@@ -12,14 +12,20 @@
         <tr v-for="(data, idx) of careerData" :key="idx">
           <th scope="row" v-if="data != 'studyPlanFile'">
             <strong>{{ idx }}:</strong>
-            {{ career[data] }}
+            <div v-if="data != 'time'">
+              {{ career[data] }}
+            </div>
+            <div v-else>
+              {{ convertTimes(career[data]) }}
+            </div>
           </th>
           <th scope="row" v-else>
             <a
               class="btn btn-link m-0 p-0"
               :href="getPdf(career[data])"
               target="_blank"
-            >Plan de Estudio</a>
+              >Plan de Estudio</a
+            >
           </th>
         </tr>
       </tbody>
@@ -41,17 +47,25 @@ export default {
       careerData: {
         Título: "certificName",
         Años: "years",
+        Turno: "time",
         "Plan de Estudio": "studyPlanFile"
+      },
+
+      longTimeString: {
+        M: "Mañana",
+        T: "Tarde",
+        N: "Noche"
       }
     };
   },
   methods: {
     getPdf(name) {
       return "/uploaded-files/" + name;
+    },
+
+    convertTimes(t) {
+      return this.longTimeString[t];
     }
   }
 };
 </script>
-
-<style>
-</style>
