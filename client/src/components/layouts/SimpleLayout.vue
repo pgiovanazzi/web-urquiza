@@ -1,11 +1,11 @@
 <template>
-  <div id="simpleLayout">
+  <div id="simpleLayout" class="asyncImage" data-src="https://i.imgur.com/J6Lc4HD.jpg?1">
     <nav class="navbar navbar-dark">
       <a class="navbar-brand" href="/"
         ><i class="fas fa-angle-left"></i> Volver al inicio</a
       >
     </nav>
-    <div class="container">
+    <div :class="vContainer">
       <div class="row m-5">
         <div class="col-md-12 d-flex justify-content-center">
           <object id="iconPreIns" :data="urqzSvg" type="image/svg+xml"></object>
@@ -33,14 +33,46 @@ export default {
     SuperUserSignIn
   },
   computed: {
-    ...mapState(["setComponentInSimpleLayout"])
+    ...mapState(["setComponentInSimpleLayout"]),
   },
   data() {
     return {
-      urqzSvg: require("@/assets/Urquiza_Icon.svg")
+      urqzSvg: require("@/assets/Urquiza_Icon.svg"),
+      vContainer: {
+        container: this.setContainer(),
+        'container-fluid': this.setContainer()
+      }
     };
+  }, 
+
+  mounted() {
+    (() => {
+      'use strict';
+      // Page is loaded
+      const objects = document.getElementsByClassName('asyncImage');
+      Array.from(objects).map((item) => {
+        // Start loading image
+        const img = new Image();
+        img.src = item.dataset.src;
+        // Once image is loaded replace the src of the HTML element
+        img.onload = () => {
+          item.classList.remove('asyncImage');
+          return item.nodeName === 'IMG' ? 
+            item.src = item.dataset.src :
+            item.style.backgroundImage = `url(${item.dataset.src})`;
+        };
+      });
+    })();
+  },
+
+  methods: {
+    setContainer() {
+      return window.screen.width >= 415 && window.screen.height >= 737
+    }
   }
 };
+
+
 </script>
 
 <style scoped>
@@ -49,7 +81,7 @@ export default {
 }
 
 #simpleLayout {
-  background: url("https://source.unsplash.com/user/iroot/2560x1440") no-repeat
+  background: url("https://i.imgur.com/xaE6kMZ.png") no-repeat
     center center/cover fixed;
   background-size: 100%;
   -webkit-background-size: cover;

@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="mb-4">
-      <div class="card text-center z-depth-2 p-4">
+      <div class="card text-center z-depth-2 p-sm-2 p-md-4">
         <div class="card-body white-text">
           <h4 class="text-center w-responsive mx-auto mb-5">Formulario de Preinscripción</h4>
 
